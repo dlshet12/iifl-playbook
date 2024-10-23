@@ -1,0 +1,51 @@
+/* ActionableView.css */
+.actionable-container {
+    padding: 16px;
+}
+
+.gap-item {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #E5E5E5;
+    ;
+}
+
+.gap-title {
+    color: #1a237e;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.status-tags {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.status-tag {
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    font-weight: 500;
+    color: #242056;
+}
+
+.status-completed {
+    background-color: #BCFFBC;
+}
+
+.status-delayed {
+    background-color: #FEADAF;
+}
+
+.status-not-started {
+    background-color: #FEADAF;
+}
+
+.status-in-progress {
+    background-color: #BCE3FF;
+}

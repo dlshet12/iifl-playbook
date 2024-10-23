@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
-import { Box,Chip,Button } from '@mui/material';
-import './listView.css'
+import { Box,Chip } from '@mui/material';
+import './listView.css';
+import ActionableView from '../actionableView/actionableView.js';
 // ListItem Component with onClick handling
-const ListItem = ({ item, onClick }) => (
-    <div
-      className="list-item cursor-pointer hover:bg-gray-50 transition-colors"
+const ListItem = ({ item, onClick }) => {
+  
+    // Split the description at the separator
+    const [prefix, personasText] = item.description.split('|');
+
+    return(
+      <div
+      className="list-item"
       onClick={() => onClick(item)}
     >
       <div className={`category-label ${item.category.toLowerCase()}`}>
@@ -14,35 +20,60 @@ const ListItem = ({ item, onClick }) => (
         {item.title}
       </div>
       <div className="item-description">
-        {item.description}
+        {prefix}
+        {personasText && (
+          <>
+            <span className="separator">|</span>
+            <span className="personas">{personasText.trim()}</span>
+          </>
+        )}
       </div>
       <Box className="tags-container">
         {item.tags.map((tag, index) => (
-          <Chip key={index} label={tag} className='chip_tag' />
+          <Chip key={index} label={tag} className='chip_tag' sx={{backgroundColor:'#BCE3FF', fontSize:'12px',fontWeight:'500', color:'#656565', padding:'4px 7px'}} />
         ))}
       </Box>
     </div>
-  );
+    )
+
+  }
 
 
 // ListView Component
 const ListView = ({ items, onItemClick }) => {
     const [activeView, setActiveView] = useState('gap');
     return(
-    <Box className="list-container">
-      <div className="scrollable-content">
-        {items.map((item, index) => (
-          <ListItem key={index} item={item} onClick={onItemClick} />
-        ))}
+      <Box className="list-container">
+      <div className={`views-wrapper ${activeView === 'gap' ? 'slide-gap' : 'slide-actionable'}`}>
+        <div className="view">
+          <div className="scrollable-content">
+            {items.map((item, index) => (
+              <ListItem key={index} item={item} onClick={onItemClick} />
+            ))}
+          </div>
+        </div>
+        <div className="view">
+          <div className="scrollable-content">
+           <ActionableView/>
+          </div>
+        </div>
       </div>
       <Box className="button-container">
-        <Button    className={`view-button ${activeView === 'gap' ? 'active' : ''}`}
-          onClick={() => setActiveView('gap')}>VIEW BY GAP</Button>
-        <Button  className={`view-button ${activeView === 'actionable' ? 'active' : ''}`}
-          onClick={() => setActiveView('actionable')}>VIEW BY ACTIONABLE</Button>
+        <button
+          className={`view-button ${activeView === 'gap' ? 'active' : ''}`}
+          onClick={() => setActiveView('gap')}
+        >
+          VIEW BY GAP
+        </button>
+        <button
+          className={`view-button ${activeView === 'actionable' ? 'active' : ''}`}
+          onClick={() => setActiveView('actionable')}
+        >
+          VIEW BY ACTIONABLE
+        </button>
       </Box>
     </Box>
-    )
-}
+  );
+};
 
   export default ListView;

@@ -1,5 +1,15 @@
 import './gapDetail.css';
-const DetailView = ({ section, onBack }) => {
+import { Box,Chip } from '@mui/material';
+const DetailView = ({ section, onBack, item }) => {
+  
+  const [prefix, personasText] = item.description.split('|');
+
+  const actionables = [
+    { days: 45, color: 'green' },
+    { days: 90, color: 'red' },
+    { days: 180, color: 'blue' }
+  ];
+
     return (
       <div className="gap-container">
         <div className="nav-back">
@@ -7,12 +17,30 @@ const DetailView = ({ section, onBack }) => {
             <svg className="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
-            Back
+            {item.title}
           </button>
+          <div className="item-description-bg">
+        {prefix}
+        {personasText && (
+          <>
+            <span className="separator">|</span>
+            <span className="personas">{personasText.trim()}</span>
+          </>
+        )}
+      </div>
+      <div className="category-badge-gap">
+          {item.category}
+        </div>
+        <Box className="tags-container-tab">
+        {item.tags.map((tag, index) => (
+          <Chip key={index} label={tag} className='chip_tag' sx={{backgroundColor:'#BCE3FF', fontSize:'12px',fontWeight:'500', color:'#656565', padding:'4px 7px'}} />
+        ))}
+      </Box>
+
         </div>
   
         <div className="detail-content">
-          <div className="detail-section">
+          <div className="detail-section-solution">
             <div className="detail-header">
               <span className="detail-tag">Solution</span>
             </div>
@@ -21,43 +49,42 @@ const DetailView = ({ section, onBack }) => {
             </div>
           </div>
   
-          <div className="detail-section">
-            <div className="detail-header">
-              <span className="detail-tag">Actionables</span>
+          <div className="detail-section-actionable">
+      <div className="detail-header">
+        <span className="detail-tag">ACTIONABLE'S</span>
+      </div>
+      <div className="detail-body">
+        {actionables.map((item, index) => (
+          <div key={index} className="actionable-item">
+            <div className="day-indicator">
+              <div className={`day-dot ${item.color}`}></div>
+              <span className="day-text">{item.days} Days</span>
             </div>
-            <div className="detail-body">
-              <div className="actionable-item">
-                <span className="bullet">•</span>
-                <span>Define content strategy and guidelines</span>
-              </div>
-              <div className="actionable-item">
-                <span className="bullet">•</span>
-                <span>Create personalized user journeys</span>
-              </div>
-              <div className="actionable-item">
-                <span className="bullet">•</span>
-                <span>Develop multimedia content library</span>
-              </div>
-            </div>
+            <svg className="chevron chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
           </div>
+        ))}
+      </div>
+    </div>
   
           <div className="detail-section">
             <div className="detail-header">
-              <span className="detail-tag">KPI's</span>
+              <span className="detail-tag">Impact</span>
             </div>
             <div className="detail-body">
-              <div className="kpi-item">
-                <span className="bullet">•</span>
-                <span>Content engagement rate</span>
-              </div>
-              <div className="kpi-item">
-                <span className="bullet">•</span>
-                <span>User satisfaction score</span>
-              </div>
-              <div className="kpi-item">
-                <span className="bullet">•</span>
-                <span>Knowledge base usage metrics</span>
-              </div>
+              <span>Provide personalized, mobile-friendly content, including short videos, infographics, and FAQs, tailored to users' browsing history, preferences, and transaction patterns to clearly explain financial products and service</span>
+             
+            </div>
+          </div>
+
+
+          <div className="detail-section">
+            <div className="detail-header">
+              <span className="detail-tag">Reference links</span>
+            </div>
+            <div className="detail-body">
+              <span>Provide personalized, mobile-friendly content, including short videos, infographics, and FAQs, tailored to users' browsing history, preferences, and transaction patterns to clearly explain financial products and service</span>
             </div>
           </div>
         </div>

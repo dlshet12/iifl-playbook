@@ -11,14 +11,6 @@
     padding: 16px;
     background-color: white;
 }
-
-.list-container {
-   top:100px;
-    position: relative;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
 .scrollable-content {
     flex: 1;
     overflow-y: auto;
