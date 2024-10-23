@@ -1,0 +1,85 @@
+.button-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #F5DEB3;
+    /* Wheat color background */
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+}
+
+.view-button {
+    position: relative;
+    padding: 12px 24px;
+    border: none;
+    background: none;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    color: #666;
+    /* Inactive text color */
+    transition: color 0.3s ease;
+}
+
+.list-item {
+    background-color: white;
+    padding: 16px;
+    margin-bottom: 16px;
+    border-bottom: solid 1px #E5E5E5;
+}
+
+.view-button:hover {
+    color: #444;
+}
+
+.view-button.active {
+    color: #656565;
+font-weight: 900;
+    /* Active text color */
+}
+
+.view-button.active::before {
+    content: '';
+    position: absolute;
+    top: -16px;
+    /* Align with the top of the container */
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #000;
+    /* Active line color */
+}
+
+.item-title {
+    color: #242056;
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%;
+    /* 28px */
+    letter-spacing: -0.3px;
+    margin-bottom: 8px;
+}
+
+.item-description {
+    color: #242056;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.3px;
+    margin-bottom: 8px;
+}
+
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}

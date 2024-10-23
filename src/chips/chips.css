@@ -1,0 +1,38 @@
+.filter-chips-container{
+    padding: 16px;
+    display: flex;
+   gap: 8px;
+    border-bottom: 1px solid #EEE;
+    color:  #242056;
+   font-size: 14px;
+   position: fixed;
+   top: 60px;
+   left: 0;
+   right: 0;
+   z-index: 1000;
+   background-color: rgb(255, 255, 255);
+}
+.selected-filters-container{
+    position: fixed;
+    top: 130px;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: rgb(255, 255, 255);
+}
+.filter-chip{
+    background-color: yellow;
+}
+.search-chip{
+    display: flex;
+    align-items: center;
+    padding: 6px;
+    /* padding: 8px; */
+    border-radius: 18.5px;
+    border: 1px solid #CCC;
+
+}
+.icon{
+    height: 20px;
+    width: 20px;
+}

@@ -1,0 +1,25 @@
+.logo_header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    color: #242056;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 24px;
+    font-style: italic;
+    font-weight: 900;
+    line-height: normal;
+    letter-spacing: -0.3px;
+    padding: 8px 16px;
+    box-shadow: 0px 1px 2px 0px rgba(33, 33, 33, 0.06), 0px 1px 3px 0px rgba(33, 33, 33, 0.10);
+}
