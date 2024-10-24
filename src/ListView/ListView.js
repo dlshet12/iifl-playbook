@@ -8,6 +8,22 @@ const ListItem = ({ item, onClick }) => {
     // Split the description at the separator
     const [prefix, personasText] = item.description.split('|');
 
+     // Function to determine chip color based on whether it's in impact array
+  const getChipColor = (tag) => {
+    return item.impact.includes(tag) 
+      ? '#FEDCAD' // Orange color for impact tags
+      : '#BCE3FF'; // Default blue color for other tags
+  };
+
+    // Sort tags to show impact tags first
+    const sortedTags = [...item.tags].sort((a, b) => {
+      const aIsImpact = item.impact.includes(a);
+      const bIsImpact = item.impact.includes(b);
+      if (aIsImpact && !bIsImpact) return -1;
+      if (!aIsImpact && bIsImpact) return 1;
+      return 0;
+    });
+
     return(
       <div
       className="list-item"
@@ -29,8 +45,8 @@ const ListItem = ({ item, onClick }) => {
         )}
       </div>
       <Box className="tags-container">
-        {item.tags.map((tag, index) => (
-          <Chip key={index} label={tag} className='chip_tag' sx={{backgroundColor:'#BCE3FF', fontSize:'12px',fontWeight:'500', color:'#656565', padding:'4px 7px'}} />
+        {sortedTags.map((tag, index) => (
+          <Chip key={index} label={tag} className='chip_tag' sx={{backgroundColor: getChipColor(tag), fontSize:'12px',fontWeight:'500', color:'#656565', padding:'4px 7px'}} />
         ))}
       </Box>
     </div>

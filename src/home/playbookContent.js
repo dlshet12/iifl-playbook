@@ -3,24 +3,24 @@ import { Box, } from '@mui/material';
 import './playbookContent.css';
 import GapView from '../gapPage/gap';
 import ListView from '../ListView/ListView';
- import FilterChips from '../chips/chips';
-  
-  // Main PlaybookContent Component
-  const PlaybookContent = ({ items, selectedFilters }) => {
-    const [selectedItem, setSelectedItem] = useState(null);
-    const [view, setView] = useState('list'); 
-  
-    const handleItemClick = (item) => {
-      setSelectedItem(item);
-      setView('gap');
-    };
-  
-    const handleBack = () => {
-      setView('list');
-      setSelectedItem(null);
-    };
+import FilterChips from '../chips/chips';
 
-     // Function to apply the filters to the items list
+// Main PlaybookContent Component
+const PlaybookContent = ({ items, selectedFilters }) => {
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [view, setView] = useState('list');
+
+  const handleItemClick = (item) => {
+    setSelectedItem(item);
+    setView('gap');
+  };
+
+  const handleBack = () => {
+    setView('list');
+    setSelectedItem(null);
+  };
+
+  // Function to apply the filters to the items list
   const applyFilters = () => {
     return items.filter(item => {
       // Check if the item matches the selected personas, stage, and DBT filters
@@ -34,267 +34,952 @@ import ListView from '../ListView/ListView';
 
   // Filter the items before rendering
   const filteredItems = applyFilters();
-  
-    return (
-      <Box className="playbook-content">
-        {view === 'list' ? (
-          <ListView items={filteredItems} onItemClick={handleItemClick} />
-        ) : (
-          <GapView selectedItem={selectedItem} onBack={handleBack} />
-        )}
-      </Box>
-    );
-  };
-  
+
+  return (
+    <Box className="playbook-content">
+      {view === 'list' ? (
+        <ListView items={filteredItems} onItemClick={handleItemClick} />
+      ) : (
+        <GapView selectedItem={selectedItem} onBack={handleBack} />
+      )}
+    </Box>
+  );
+};
+
 
 const PlaybookContents = () => {
-    
-          const itemsData = [ 
-            {
-              category: "EXPLORATION",
-              title: "Lack of relevant and easily consumable information.",
-              description: "Personas Effected | New, Existing, Offline",
-              personas: ["New", "Existing", "Offline"],
-              tags: ["CX", "Media", "Creative", "UX"],
-              sections: [
-                {
-                  type: "CX",
-                  content: "Provide personalized, mobile-friendly content, including short videos, infographics, and FAQs, tailored to users' browsing history, preferences, and transaction patterns to clearly explain financial products and services.",
-                  actionable: [
-                    { days: 45, color: 'green' },
-                    { days: 90, color: 'red' },
-                    { days: 180, color: 'blue' }
-                  ]
-                },
-                {
-                  type: "Media",
-                  content: "Full Funnel media activation to amplify the content and communication.",
-                  actionable: [
-                    { days: 15, color: 'yellow' },
-                    { days: 190, color: 'red' },
-                    { days: 18, color: 'orange' }
-                  ]
-                },
-                {
-                  type: "UX",
-                  content: "Create a knowledge base or resource centre with categorized articles and guides, and include an FAQ section addressing common user questions on both the website and different product landing pages.",
-                  actionable: [
-                    { days: 15, color: 'red' },
-                    { days: 10, color: 'green' },
-                    { days: 1, color: 'blue' }
-                  ]
-                }
-              ]
-            },
-            {
-              category: "EXPLORATION",
-              title: "Insufficient TOMA.",
-              description: "Personas Effected | New, Existing",
-              personas: ["New", "Existing"],
-              tags: ["Media", "Creative"],
-              sections: [
-                {
-                  type: "Media",
-                  content: "Provide personalized, mobile-friendly content, including short videos, infographics, and FAQs, tailored to users' browsing history, preferences, and transaction patterns to clearly explain financial products and services.",
-                  actionable: [
-                    { days: 10, color: 'yellow' },
-                    { days: 17, color: 'orange' },
-                    { days: 6, color: 'blue' }
-                  ]
-                },
-                {
-                  type: "Creative",
-                  content: "Full Funnel media activation to amplify the content and communication.",
-                  actionable: [
-                    { days: 52, color: 'green' },
-                    { days: 13, color: 'orange' },
-                    { days: 5, color: 'yellow' }
-                  ]
-                },
-            
-              ]
-            },
-            {
-              category: "CONSIDERATION",
-              title: "Enhanced competitor presence across digital touch-points.",
-              description: "Personas Effected | Existing",
-              personas: ["Existing"],
-              tags: ["Media", "SEO", "UX"],
-              sections: [
-                {
-                  type: "Media",
-                  content: "Provide personalized, mobile-friendly content, including short videos, infographics, and FAQs, tailored to users' browsing history, preferences, and transaction patterns to clearly explain financial products and services.",
-                  actionable: [
-                    { days: 10, color: 'yellow' },
-                    { days: 55, color: 'red' },
-                    { days: 4, color: 'orange' }
-                  ]
-                },
-                {
-                  type: "SEO",
-                  content: "Full Funnel media activation to amplify the content and communication.",
-                  actionable: [
-                    { days: 40, color: 'green' },
-                    { days: 34, color: 'yellow' },
-                    { days: 34, color: 'blue' }
-                  ]
-                },
-                {
-                  type: "UX",
-                  content: "Create a knowledge base or resource centre with categorized articles and guides, and include an FAQ section addressing common user questions on both the website and different product landing pages.",
-                  actionable: [
-                    { days: 20, color: 'green' },
-                    { days: 40, color: 'red' },
-                    { days: 10, color: 'blue' }
-                  ]
-                }
-              ]
-            },
-          
+
+  const itemsData = [
+    {
+      category: "EXPLORATION",
+      title: "Lack of relevant and easily consumable information.",
+      description: "Personas Effected | New, Existing, Offline",
+      personas: ["New", "Existing", "Offline"],
+      tags: ["CX", "Media", "Creative", "UX"],
+      impact: ["CX"],
+      sections: [
         {
-            category: "CONSIDERATION",
-            title: "Lack of integrated tools to help agents/call centre with cohesive insights for better customer understanding thus reducing manual process and TAT..",
-            description: "Personas Effected |  New, Existing, Offline, Agent",
-            personas: ["New","Existing", "Offline" ,"Agent"],
-            tags: ["CX", "Data", "UX"],
-            sections: [
-                {
-                  type: "CX",
-                  content: "Provide personalized, mobile-friendly content, including short videos, infographics, and FAQs, tailored to users' browsing history, preferences, and transaction patterns to clearly explain financial products and services.",
-                  actionable: [
-                    { days: 20, color: 'green' },
-                    { days: 40, color: 'red' },
-                    { days: 10, color: 'blue' }
-                  ]
-                },
-                {
-                  type: "Data",
-                  content: "Full Funnel media activation to amplify the content and communication.",
-                  actionable: [
-                    { days: 10, color: 'yellow' },
-                    { days: 55, color: 'red' },
-                    { days: 4, color: 'orange' }
-                  ]
-                },
-                {
-                  type: "UX",
-                  content: "Create a knowledge base or resource centre with categorized articles and guides, and include an FAQ section addressing common user questions on both the website and different product landing pages.",
-                  actionable: [
-                    { days: 10, color: 'yellow' },
-                    { days: 55, color: 'red' },
-                    { days: 4, color: 'orange' }
-                  ]
-                }
-              ]
-          },
-          {
-            category: "CONSIDERATION",
-            title: "Lack of self-qualification tool available.",
-            description: "Personas Effected |  Existing, Offline",
-            personas: ["Existing", "Offline"],
-            tags: [ "UX","Data", ],
-            sections: [
-                {
-                  type: "UX",
-                  content: "Optimize website and content for search engines to compete more effectively.",
-                  actionable: [
-                    { days: 10, color: 'yellow' },
-                    { days: 55, color: 'red' },
-                    { days: 4, color: 'orange' }
-                  ]
-                },
-                {
-                  type: "Data",
-                  content: "Increase digital ad spend to capture more consideration-stage traffic.",
-                  actionable: [
-                    { days: 10, color: 'yellow' },
-                    { days: 55, color: 'red' },
-                    { days: 4, color: 'orange' }
-                  ]
-                }
-              ]
-          },
-          {
-            category: "APPLICATION",
-            title: "Non-Intuitive Online Forms Requiring Excessive Manual Entry.",
-            description: "Personas Effected |  New, Existing, Offline, Agent",
-            personas: ["New","Existing", "Offline", "Agent"],
-            tags: [ "CX","Innovation", ],
-            sections: [
-                {
-                  type: "CX",
-                  content: "Develop a CRM tool for agents to provide a holistic customer view and insights.",
-               actionable: [
-                    { days: 10, color: 'yellow' },
-                    { days: 55, color: 'red' },
-                    { days: 4, color: 'orange' }
-                  ] 
-                },
-                {
-                  type: "Innovation",
-                  content: "Develop a CRM tool for agents to provide a holistic customer view and insights.",
-               actionable: [
-                    { days: 10, color: 'yellow' },
-                    { days: 55, color: 'red' },
-                    { days: 4, color: 'orange' }
-                  ] 
-                }
-              ]
-          },
-          {
-            category: "APPLICATION",
-            title: "Insufficient real-time application updates and proactive communication",
-            description: "Personas Effected |  New, Existing, Offline, Agent",
-            personas: ["New","Existing", "Offline", "Agent"],
-            tags: [ "Data","UX","Innovation", ],
-            sections: [
-                {
-                  type: "CX",
-                  content: "Develop a CRM tool for agents to provide a holistic customer view and insights.",
-                  actionable: [
-                    { days: 10, color: 'yellow' },
-                    { days: 55, color: 'red' },
-                    { days: 4, color: 'orange' }
-                  ]
-                }
-              ]
-          },
-          {
-            category: "VERIFICATION",
-            title: "Insufficient real-time application updates and proactive communication",
-            description: "Personas Effected |  New, Existing, Offline, Agent",
-            personas: ["New","Existing", "Offline", "Agent"],
-            tags: [ "Data","UX","Innovation", ],
-            sections: [
-                {
-                  type: "CX",
-                  content: "Develop a CRM tool for agents to provide a holistic customer view and insights.",
-                  actionable: [
-                    { days: 10, color: 'yellow' },
-                    { days: 55, color: 'red' },
-                    { days: 4, color: 'orange' }
-                  ]
-                }
-              ]
-          },
+          type: "CX",
+          content: "Provide personalized, mobile-friendly content, including short videos, infographics, and FAQs, tailored to users' browsing history, preferences, and transaction patterns to clearly explain financial products and services.",
+          actionable: [
+            { 
+              days: 45,
+              color: 'green',
+              details: {
+                cxSolution: "Provide personalized, mobile-friendly content, including short videos, infographics, and FAQs, tailored to users' browsing history, preferences, and transaction patterns to clearly explain financial products and service",
+                actionableSteps: [
+                  "Set up user behavior tracking",
+                  "Create content categorization system",
+                  "Develop recommendation algorithm",
+                  "Design UI for personalized content display"
+                ],
+                kpis: [
+                  "20% increase in content engagement",
+                  "15% reduction in bounce rate",
+                  "30% increase in time spent on site"
+                ]
+              }
+            },
+            { 
+              days: 90,
+              color: 'red',
+              details: {
+                cxSolution: "Launch interactive educational content hub",
+                actionableSteps: [
+                  "Create video content library",
+                  "Develop interactive tutorials",
+                  "Implement user progress tracking",
+                  "Design feedback collection system"
+                ],
+                kpis: [
+                  "25% increase in product understanding",
+                  "40% increase in self-service resolution",
+                  "50% reduction in support tickets"
+                ]
+              }
+            },
+            { 
+              days: 180,
+              color: 'blue',
+              details: {
+                cxSolution: "Roll out AI-powered content personalization",
+                actionableSteps: [
+                  "Train AI model on user data",
+                  "Implement A/B testing framework",
+                  "Deploy automated content tagging",
+                  "Launch predictive content suggestions"
+                ],
+                kpis: [
+                  "35% improvement in conversion rate",
+                  "45% increase in customer satisfaction",
+                  "60% increase in repeat visits"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          type: "Media",
+          content: "Full Funnel media activation to amplify the content and communication.",
+          actionable: [
+            {
+              days: 15,
+              color: 'yellow',
+              details: {
+                cxSolution: "Launch targeted social media campaign",
+                actionableSteps: [
+                  "Define audience segments",
+                  "Create campaign content",
+                  "Set up tracking pixels",
+                  "Configure ad targeting"
+                ],
+                kpis: [
+                  "25% increase in social engagement",
+                  "30% increase in click-through rate",
+                  "20% reduction in cost per acquisition"
+                ]
+              }
+            },
+            { 
+              days: 90,
+              color: 'red',
+              details: {
+                cxSolution: "Launch interactive educational content hub",
+                actionableSteps: [
+                  "Create video content library",
+                  "Develop interactive tutorials",
+                  "Implement user progress tracking",
+                  "Design feedback collection system"
+                ],
+                kpis: [
+                  "25% increase in product understanding",
+                  "40% increase in self-service resolution",
+                  "50% reduction in support tickets"
+                ]
+              }
+            },
+            { 
+              days: 180,
+              color: 'blue',
+              details: {
+                cxSolution: "Roll out AI-powered content personalization",
+                actionableSteps: [
+                  "Train AI model on user data",
+                  "Implement A/B testing framework",
+                  "Deploy automated content tagging",
+                  "Launch predictive content suggestions"
+                ],
+                kpis: [
+                  "35% improvement in conversion rate",
+                  "45% increase in customer satisfaction",
+                  "60% increase in repeat visits"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          type: "UX",
+          content: "Create a knowledge base or resource centre with categorized articles and guides, and include an FAQ section addressing common user questions on both the website and different product landing pages.",
+          actionable: [
+            { 
+              days: 45,
+              color: 'green',
+              details: {
+                cxSolution: "Implement personalized content recommendation engine",
+                actionableSteps: [
+                  "Set up user behavior tracking",
+                  "Create content categorization system",
+                  "Develop recommendation algorithm",
+                  "Design UI for personalized content display"
+                ],
+                kpis: [
+                  "20% increase in content engagement",
+                  "15% reduction in bounce rate",
+                  "30% increase in time spent on site"
+                ]
+              }
+            },
+            { 
+              days: 90,
+              color: 'red',
+              details: {
+                cxSolution: "Launch interactive educational content hub",
+                actionableSteps: [
+                  "Create video content library",
+                  "Develop interactive tutorials",
+                  "Implement user progress tracking",
+                  "Design feedback collection system"
+                ],
+                kpis: [
+                  "25% increase in product understanding",
+                  "40% increase in self-service resolution",
+                  "50% reduction in support tickets"
+                ]
+              }
+            },
+            { 
+              days: 180,
+              color: 'blue',
+              details: {
+                cxSolution: "Roll out AI-powered content personalization",
+                actionableSteps: [
+                  "Train AI model on user data",
+                  "Implement A/B testing framework",
+                  "Deploy automated content tagging",
+                  "Launch predictive content suggestions"
+                ],
+                kpis: [
+                  "35% improvement in conversion rate",
+                  "45% increase in customer satisfaction",
+                  "60% increase in repeat visits"
+                ]
+              }
+            }
+          ]
+        },
+      ]
+    },
+    {
+      category: "EXPLORATION",
+      title: "Insufficient TOMA.",
+      description: "Personas Effected | New, Existing",
+      personas: ["New", "Existing"],
+      tags: ["Media", "Creative"],
+      impact: ["Media"],
+      sections: [
+        {
+          type: "Media",
+          content: "Provide personalized, mobile-friendly content, including short videos, infographics, and FAQs, tailored to users' browsing history, preferences, and transaction patterns to clearly explain financial products and services.",
+          actionable: [
+            { 
+              days: 45,
+              color: 'green',
+              details: {
+                cxSolution: "Implement personalized content recommendation engine",
+                actionableSteps: [
+                  "Set up user behavior tracking",
+                  "Create content categorization system",
+                  "Develop recommendation algorithm",
+                  "Design UI for personalized content display"
+                ],
+                kpis: [
+                  "20% increase in content engagement",
+                  "15% reduction in bounce rate",
+                  "30% increase in time spent on site"
+                ]
+              }
+            },
+            { 
+              days: 90,
+              color: 'red',
+              details: {
+                cxSolution: "Launch interactive educational content hub",
+                actionableSteps: [
+                  "Create video content library",
+                  "Develop interactive tutorials",
+                  "Implement user progress tracking",
+                  "Design feedback collection system"
+                ],
+                kpis: [
+                  "25% increase in product understanding",
+                  "40% increase in self-service resolution",
+                  "50% reduction in support tickets"
+                ]
+              }
+            },
+            { 
+              days: 180,
+              color: 'blue',
+              details: {
+                cxSolution: "Roll out AI-powered content personalization",
+                actionableSteps: [
+                  "Train AI model on user data",
+                  "Implement A/B testing framework",
+                  "Deploy automated content tagging",
+                  "Launch predictive content suggestions"
+                ],
+                kpis: [
+                  "35% improvement in conversion rate",
+                  "45% increase in customer satisfaction",
+                  "60% increase in repeat visits"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          type: "Creative",
+          content: "Full Funnel media activation to amplify the content and communication.",
+          actionable: [
+            { 
+              days: 45,
+              color: 'green',
+              details: {
+                cxSolution: "Implement personalized content recommendation engine",
+                actionableSteps: [
+                  "Set up user behavior tracking",
+                  "Create content categorization system",
+                  "Develop recommendation algorithm",
+                  "Design UI for personalized content display"
+                ],
+                kpis: [
+                  "20% increase in content engagement",
+                  "15% reduction in bounce rate",
+                  "30% increase in time spent on site"
+                ]
+              }
+            },
+            { 
+              days: 90,
+              color: 'red',
+              details: {
+                cxSolution: "Launch interactive educational content hub",
+                actionableSteps: [
+                  "Create video content library",
+                  "Develop interactive tutorials",
+                  "Implement user progress tracking",
+                  "Design feedback collection system"
+                ],
+                kpis: [
+                  "25% increase in product understanding",
+                  "40% increase in self-service resolution",
+                  "50% reduction in support tickets"
+                ]
+              }
+            },
+            { 
+              days: 180,
+              color: 'blue',
+              details: {
+                cxSolution: "Roll out AI-powered content personalization",
+                actionableSteps: [
+                  "Train AI model on user data",
+                  "Implement A/B testing framework",
+                  "Deploy automated content tagging",
+                  "Launch predictive content suggestions"
+                ],
+                kpis: [
+                  "35% improvement in conversion rate",
+                  "45% increase in customer satisfaction",
+                  "60% increase in repeat visits"
+                ]
+              }
+            }
+          ]
+        },
 
-      ];
+      ]
+    },
+    {
+      category: "CONSIDERATION",
+      title: "Enhanced competitor presence across digital touch-points.",
+      description: "Personas Effected | Existing",
+      personas: ["Existing"],
+      tags: ["Media", "SEO",],
+      impact: ["Media", "SEO"],
+      sections: [
+        {
+          type: "Media",
+          content: "Provide personalized, mobile-friendly content, including short videos, infographics, and FAQs, tailored to users' browsing history, preferences, and transaction patterns to clearly explain financial products and services.",
+          actionable: [
+            { 
+              days: 45,
+              color: 'green',
+              details: {
+                cxSolution: "Implement personalized content recommendation engine",
+                actionableSteps: [
+                  "Set up user behavior tracking",
+                  "Create content categorization system",
+                  "Develop recommendation algorithm",
+                  "Design UI for personalized content display"
+                ],
+                kpis: [
+                  "20% increase in content engagement",
+                  "15% reduction in bounce rate",
+                  "30% increase in time spent on site"
+                ]
+              }
+            },
+            { 
+              days: 90,
+              color: 'red',
+              details: {
+                cxSolution: "Launch interactive educational content hub",
+                actionableSteps: [
+                  "Create video content library",
+                  "Develop interactive tutorials",
+                  "Implement user progress tracking",
+                  "Design feedback collection system"
+                ],
+                kpis: [
+                  "25% increase in product understanding",
+                  "40% increase in self-service resolution",
+                  "50% reduction in support tickets"
+                ]
+              }
+            },
+            { 
+              days: 180,
+              color: 'blue',
+              details: {
+                cxSolution: "Roll out AI-powered content personalization",
+                actionableSteps: [
+                  "Train AI model on user data",
+                  "Implement A/B testing framework",
+                  "Deploy automated content tagging",
+                  "Launch predictive content suggestions"
+                ],
+                kpis: [
+                  "35% improvement in conversion rate",
+                  "45% increase in customer satisfaction",
+                  "60% increase in repeat visits"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          type: "SEO",
+          content: "Full Funnel media activation to amplify the content and communication.",
+          actionable: [
+            { 
+              days: 45,
+              color: 'green',
+              details: {
+                cxSolution: "Implement personalized content recommendation engine",
+                actionableSteps: [
+                  "Set up user behavior tracking",
+                  "Create content categorization system",
+                  "Develop recommendation algorithm",
+                  "Design UI for personalized content display"
+                ],
+                kpis: [
+                  "20% increase in content engagement",
+                  "15% reduction in bounce rate",
+                  "30% increase in time spent on site"
+                ]
+              }
+            },
+            { 
+              days: 90,
+              color: 'red',
+              details: {
+                cxSolution: "Launch interactive educational content hub",
+                actionableSteps: [
+                  "Create video content library",
+                  "Develop interactive tutorials",
+                  "Implement user progress tracking",
+                  "Design feedback collection system"
+                ],
+                kpis: [
+                  "25% increase in product understanding",
+                  "40% increase in self-service resolution",
+                  "50% reduction in support tickets"
+                ]
+              }
+            },
+            { 
+              days: 180,
+              color: 'blue',
+              details: {
+                cxSolution: "Roll out AI-powered content personalization",
+                actionableSteps: [
+                  "Train AI model on user data",
+                  "Implement A/B testing framework",
+                  "Deploy automated content tagging",
+                  "Launch predictive content suggestions"
+                ],
+                kpis: [
+                  "35% improvement in conversion rate",
+                  "45% increase in customer satisfaction",
+                  "60% increase in repeat visits"
+                ]
+              }
+            }
+          ]
+        },
+ 
+      ]
+    },
+    {
+      category: "CONSIDERATION",
+      title: "Lack of integrated tools to help agents/call centre with cohesive insights for better customer understanding thus reducing manual process and TAT..",
+      description: "Personas Effected |  New, Existing, Offline, Agent",
+      personas: ["New", "Existing", "Offline", "Agent"],
+      tags: ["CX", "Data"],
+      impact: ["Data"],
+      sections: [
+        {
+          type: "CX",
+          content: "Provide personalized, mobile-friendly content, including short videos, infographics, and FAQs, tailored to users' browsing history, preferences, and transaction patterns to clearly explain financial products and services.",
+          actionable: [
+            { 
+              days: 45,
+              color: 'green',
+              details: {
+                cxSolution: "Implement personalized content recommendation engine",
+                actionableSteps: [
+                  "Set up user behavior tracking",
+                  "Create content categorization system",
+                  "Develop recommendation algorithm",
+                  "Design UI for personalized content display"
+                ],
+                kpis: [
+                  "20% increase in content engagement",
+                  "15% reduction in bounce rate",
+                  "30% increase in time spent on site"
+                ]
+              }
+            },
+            { 
+              days: 90,
+              color: 'red',
+              details: {
+                cxSolution: "Launch interactive educational content hub",
+                actionableSteps: [
+                  "Create video content library",
+                  "Develop interactive tutorials",
+                  "Implement user progress tracking",
+                  "Design feedback collection system"
+                ],
+                kpis: [
+                  "25% increase in product understanding",
+                  "40% increase in self-service resolution",
+                  "50% reduction in support tickets"
+                ]
+              }
+            },
+            { 
+              days: 180,
+              color: 'blue',
+              details: {
+                cxSolution: "Roll out AI-powered content personalization",
+                actionableSteps: [
+                  "Train AI model on user data",
+                  "Implement A/B testing framework",
+                  "Deploy automated content tagging",
+                  "Launch predictive content suggestions"
+                ],
+                kpis: [
+                  "35% improvement in conversion rate",
+                  "45% increase in customer satisfaction",
+                  "60% increase in repeat visits"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          type: "Data",
+          content: "Full Funnel media activation to amplify the content and communication.",
+          actionable: [
+            { 
+              days: 45,
+              color: 'green',
+              details: {
+                cxSolution: "Implement personalized content recommendation engine",
+                actionableSteps: [
+                  "Set up user behavior tracking",
+                  "Create content categorization system",
+                  "Develop recommendation algorithm",
+                  "Design UI for personalized content display"
+                ],
+                kpis: [
+                  "20% increase in content engagement",
+                  "15% reduction in bounce rate",
+                  "30% increase in time spent on site"
+                ]
+              }
+            },
+            { 
+              days: 90,
+              color: 'red',
+              details: {
+                cxSolution: "Launch interactive educational content hub",
+                actionableSteps: [
+                  "Create video content library",
+                  "Develop interactive tutorials",
+                  "Implement user progress tracking",
+                  "Design feedback collection system"
+                ],
+                kpis: [
+                  "25% increase in product understanding",
+                  "40% increase in self-service resolution",
+                  "50% reduction in support tickets"
+                ]
+              }
+            },
+            { 
+              days: 180,
+              color: 'blue',
+              details: {
+                cxSolution: "Roll out AI-powered content personalization",
+                actionableSteps: [
+                  "Train AI model on user data",
+                  "Implement A/B testing framework",
+                  "Deploy automated content tagging",
+                  "Launch predictive content suggestions"
+                ],
+                kpis: [
+                  "35% improvement in conversion rate",
+                  "45% increase in customer satisfaction",
+                  "60% increase in repeat visits"
+                ]
+              }
+            }
+          ]
+        },
+      ]
+    },
+    {
+      category: "CONSIDERATION",
+      title: "Lack of self-qualification tool available.",
+      description: "Personas Effected |  Existing, Offline",
+      personas: ["Existing", "Offline"],
+      tags: ["UX", "Data",],
+      impact: ["Data"],
+      sections: [
+        {
+          type: "UX",
+          content: "Optimize website and content for search engines to compete more effectively.",
+          actionable: [
+            { 
+              days: 45,
+              color: 'green',
+              details: {
+                cxSolution: "Implement personalized content recommendation engine",
+                actionableSteps: [
+                  "Set up user behavior tracking",
+                  "Create content categorization system",
+                  "Develop recommendation algorithm",
+                  "Design UI for personalized content display"
+                ],
+                kpis: [
+                  "20% increase in content engagement",
+                  "15% reduction in bounce rate",
+                  "30% increase in time spent on site"
+                ]
+              }
+            },
+            { 
+              days: 90,
+              color: 'red',
+              details: {
+                cxSolution: "Launch interactive educational content hub",
+                actionableSteps: [
+                  "Create video content library",
+                  "Develop interactive tutorials",
+                  "Implement user progress tracking",
+                  "Design feedback collection system"
+                ],
+                kpis: [
+                  "25% increase in product understanding",
+                  "40% increase in self-service resolution",
+                  "50% reduction in support tickets"
+                ]
+              }
+            },
+            { 
+              days: 180,
+              color: 'blue',
+              details: {
+                cxSolution: "Roll out AI-powered content personalization",
+                actionableSteps: [
+                  "Train AI model on user data",
+                  "Implement A/B testing framework",
+                  "Deploy automated content tagging",
+                  "Launch predictive content suggestions"
+                ],
+                kpis: [
+                  "35% improvement in conversion rate",
+                  "45% increase in customer satisfaction",
+                  "60% increase in repeat visits"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          type: "Data",
+          content: "Increase digital ad spend to capture more consideration-stage traffic.",
+          actionable: [
+            { 
+              days: 45,
+              color: 'green',
+              details: {
+                cxSolution: "Implement personalized content recommendation engine",
+                actionableSteps: [
+                  "Set up user behavior tracking",
+                  "Create content categorization system",
+                  "Develop recommendation algorithm",
+                  "Design UI for personalized content display"
+                ],
+                kpis: [
+                  "20% increase in content engagement",
+                  "15% reduction in bounce rate",
+                  "30% increase in time spent on site"
+                ]
+              }
+            },
+            { 
+              days: 90,
+              color: 'red',
+              details: {
+                cxSolution: "Launch interactive educational content hub",
+                actionableSteps: [
+                  "Create video content library",
+                  "Develop interactive tutorials",
+                  "Implement user progress tracking",
+                  "Design feedback collection system"
+                ],
+                kpis: [
+                  "25% increase in product understanding",
+                  "40% increase in self-service resolution",
+                  "50% reduction in support tickets"
+                ]
+              }
+            },
+            { 
+              days: 180,
+              color: 'blue',
+              details: {
+                cxSolution: "Roll out AI-powered content personalization",
+                actionableSteps: [
+                  "Train AI model on user data",
+                  "Implement A/B testing framework",
+                  "Deploy automated content tagging",
+                  "Launch predictive content suggestions"
+                ],
+                kpis: [
+                  "35% improvement in conversion rate",
+                  "45% increase in customer satisfaction",
+                  "60% increase in repeat visits"
+                ]
+              }
+            }
+          ]
+        },
+      ]
+    },
+    {
+      category: "APPLICATION",
+      title: "Non-Intuitive Online Forms Requiring Excessive Manual Entry.",
+      description: "Personas Effected |  New, Existing, Offline, Agent",
+      personas: ["New", "Existing", "Offline", "Agent"],
+      tags: ["CX", "Innovation",],
+      impact: ["CX"],
+      sections: [
+        {
+          type: "CX",
+          content: "Develop a CRM tool for agents to provide a holistic customer view and insights.",
+          actionable: [
+            { 
+              days: 45,
+              color: 'green',
+              details: {
+                cxSolution: "Implement personalized content recommendation engine",
+                actionableSteps: [
+                  "Set up user behavior tracking",
+                  "Create content categorization system",
+                  "Develop recommendation algorithm",
+                  "Design UI for personalized content display"
+                ],
+                kpis: [
+                  "20% increase in content engagement",
+                  "15% reduction in bounce rate",
+                  "30% increase in time spent on site"
+                ]
+              }
+            },
+            { 
+              days: 90,
+              color: 'red',
+              details: {
+                cxSolution: "Launch interactive educational content hub",
+                actionableSteps: [
+                  "Create video content library",
+                  "Develop interactive tutorials",
+                  "Implement user progress tracking",
+                  "Design feedback collection system"
+                ],
+                kpis: [
+                  "25% increase in product understanding",
+                  "40% increase in self-service resolution",
+                  "50% reduction in support tickets"
+                ]
+              }
+            },
+            { 
+              days: 180,
+              color: 'blue',
+              details: {
+                cxSolution: "Roll out AI-powered content personalization",
+                actionableSteps: [
+                  "Train AI model on user data",
+                  "Implement A/B testing framework",
+                  "Deploy automated content tagging",
+                  "Launch predictive content suggestions"
+                ],
+                kpis: [
+                  "35% improvement in conversion rate",
+                  "45% increase in customer satisfaction",
+                  "60% increase in repeat visits"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          type: "Innovation",
+          content: "Develop a CRM tool for agents to provide a holistic customer view and insights.",
+          actionable: [
+            { 
+              days: 45,
+              color: 'green',
+              details: {
+                cxSolution: "Implement personalized content recommendation engine",
+                actionableSteps: [
+                  "Set up user behavior tracking",
+                  "Create content categorization system",
+                  "Develop recommendation algorithm",
+                  "Design UI for personalized content display"
+                ],
+                kpis: [
+                  "20% increase in content engagement",
+                  "15% reduction in bounce rate",
+                  "30% increase in time spent on site"
+                ]
+              }
+            },
+            { 
+              days: 90,
+              color: 'red',
+              details: {
+                cxSolution: "Launch interactive educational content hub",
+                actionableSteps: [
+                  "Create video content library",
+                  "Develop interactive tutorials",
+                  "Implement user progress tracking",
+                  "Design feedback collection system"
+                ],
+                kpis: [
+                  "25% increase in product understanding",
+                  "40% increase in self-service resolution",
+                  "50% reduction in support tickets"
+                ]
+              }
+            },
+            { 
+              days: 180,
+              color: 'blue',
+              details: {
+                cxSolution: "Roll out AI-powered content personalization",
+                actionableSteps: [
+                  "Train AI model on user data",
+                  "Implement A/B testing framework",
+                  "Deploy automated content tagging",
+                  "Launch predictive content suggestions"
+                ],
+                kpis: [
+                  "35% improvement in conversion rate",
+                  "45% increase in customer satisfaction",
+                  "60% increase in repeat visits"
+                ]
+              }
+            }
+          ]
+        },
+      ]
+    },
+    {
+      category: "VERIFICATION",
+      title: "Insufficient real-time application updates and proactive communication",
+      description: "Personas Effected |  New, Existing, Offline, Agent",
+      personas: ["New", "Existing", "Offline", "Agent"],
+      tags: ["Data", "UX", "Innovation",],
+      impact: ["UX"],
+      sections: [
+        {
+          type: "UX",
+          content: "Develop a CRM tool for agents to provide a holistic customer view and insights.",
+          actionable: [
+            { 
+              days: 45,
+              color: 'green',
+              details: {
+                cxSolution: "Implement personalized content recommendation engine",
+                actionableSteps: [
+                  "Set up user behavior tracking",
+                  "Create content categorization system",
+                  "Develop recommendation algorithm",
+                  "Design UI for personalized content display"
+                ],
+                kpis: [
+                  "20% increase in content engagement",
+                  "15% reduction in bounce rate",
+                  "30% increase in time spent on site"
+                ]
+              }
+            },
+            { 
+              days: 90,
+              color: 'red',
+              details: {
+                cxSolution: "Launch interactive educational content hub",
+                actionableSteps: [
+                  "Create video content library",
+                  "Develop interactive tutorials",
+                  "Implement user progress tracking",
+                  "Design feedback collection system"
+                ],
+                kpis: [
+                  "25% increase in product understanding",
+                  "40% increase in self-service resolution",
+                  "50% reduction in support tickets"
+                ]
+              }
+            },
+            { 
+              days: 180,
+              color: 'blue',
+              details: {
+                cxSolution: "Roll out AI-powered content personalization",
+                actionableSteps: [
+                  "Train AI model on user data",
+                  "Implement A/B testing framework",
+                  "Deploy automated content tagging",
+                  "Launch predictive content suggestions"
+                ],
+                kpis: [
+                  "35% improvement in conversion rate",
+                  "45% increase in customer satisfaction",
+                  "60% increase in repeat visits"
+                ]
+              }
+            }
+          ]
+        },
+      ]
+    },
 
-        // State to track selected filters
+  ];
+
+  // State to track selected filters
   const [selectedFilters, setSelectedFilters] = useState({
     persona: [],
     stage: [],
     dbt: []
   });
-    
-    return(
-      <>
+
+  return (
+    <>
       {/* FilterChips component to manage selected filters */}
       <FilterChips selectedFilters={selectedFilters} setSelectedFilters={setSelectedFilters} />
-      
+
       {/* Pass selectedFilters to PlaybookContent */}
       <PlaybookContent items={itemsData} selectedFilters={selectedFilters} />
     </>
-    )
+  )
 }
 export default PlaybookContents;

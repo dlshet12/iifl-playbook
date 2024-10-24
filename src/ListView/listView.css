@@ -124,6 +124,18 @@ font-weight: 900;
     padding: 16px;
   }
   
+.category-label {
+  margin-bottom: 8px;
+  color: #F37021;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.3px;
+  text-transform: uppercase;
+}
+  
   @media (min-width: 1400px){
     .button-container  {
         display: none;

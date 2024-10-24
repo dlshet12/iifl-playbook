@@ -18,35 +18,6 @@
     padding-bottom: 80px; /* Add padding to prevent content from being hidden behind buttons */
 }
 
-
-.category-label {
-    margin-bottom: 8px;
-    color: #F37021;
-    font-family: Poppins;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    letter-spacing: -0.3px;
-    text-transform: uppercase;
-}
-
-.category-label.exploration {
-    color: #F37021;
-}
-
-.category-label.consideration {
-    color: #00C22D;
-}
-
-.category-label.application {
-    color: #6E75FF;
-}
-
-.category-label.verification {
-    color: #EC00C1;
-}
-
 .chip_tag{
     font-size: 12px;
 }

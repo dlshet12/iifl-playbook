@@ -1,11 +1,24 @@
 import { useState } from 'react';
 import './gapDetail.css';
-import { Box,Chip } from '@mui/material';
-const DetailView = ({ section, onBack, item }) => {
+import ActionDetailView from '../actionableDetailPage/actionableDeatil';
+const DetailView = ({ section, onBack, item , activeTab: initialActiveTab }) => {
   
-  const [activeTab, setActiveTab] = useState(item.tags[0] || '');
+  const [activeTab, setActiveTab] = useState(initialActiveTab || item.tags[0]);
   const [prefix, personasText] = item.description.split('|');
 
+  const [selectedActionable, setSelectedActionable] = useState(null);
+  
+
+  if (selectedActionable) {
+    return (
+      <ActionDetailView 
+        item={item} 
+        section={section} 
+        actionable={selectedActionable}
+        onBack={() => setSelectedActionable(null)} 
+      />
+    );
+  }
 
     return (
       <div className="gap-container">
@@ -47,13 +60,6 @@ const DetailView = ({ section, onBack, item }) => {
             ))}
           </div>
         </div>
-        
-        {/* <Box className="tags-container-tab">
-        {item.tags.map((tag, index) => (
-          <Chip key={index} label={tag} className='chip_tag' sx={{backgroundColor:'#BCE3FF', fontSize:'12px',fontWeight:'500', color:'#656565', padding:'4px 7px'}} />
-        ))}
-      </Box> */}
-
         </div>
   
         <div className="detail-content">
@@ -72,7 +78,7 @@ const DetailView = ({ section, onBack, item }) => {
       </div>
       <div className="detail-body">
         {section.actionable.map((item, index) => (
-          <div key={index} className="actionable-item">
+          <div key={index} className="actionable-item" onClick={() => setSelectedActionable(item)}>
             <div className="day-indicator">
               <div className={`day-dot ${item.color}`}></div>
               <span className="day-text">{item.days} Days</span>
