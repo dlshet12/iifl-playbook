@@ -3,10 +3,10 @@ import { Box, } from '@mui/material';
 import './playbookContent.css';
 import GapView from '../gapPage/gap';
 import ListView from '../ListView/ListView';
- 
+ import FilterChips from '../chips/chips';
   
   // Main PlaybookContent Component
-  const PlaybookContent = ({ items }) => {
+  const PlaybookContent = ({ items, selectedFilters }) => {
     const [selectedItem, setSelectedItem] = useState(null);
     const [view, setView] = useState('list'); 
   
@@ -19,11 +19,26 @@ import ListView from '../ListView/ListView';
       setView('list');
       setSelectedItem(null);
     };
+
+     // Function to apply the filters to the items list
+  const applyFilters = () => {
+    return items.filter(item => {
+      // Check if the item matches the selected personas, stage, and DBT filters
+      const personaMatch = selectedFilters.persona.length === 0 || selectedFilters.persona.some(persona => item.personas.includes(persona));
+      const stageMatch = selectedFilters.stage.length === 0 || selectedFilters.stage.includes(item.category);
+      const dbtMatch = selectedFilters.dbt.length === 0 || selectedFilters.dbt.some(tag => item.tags.includes(tag));
+
+      return personaMatch && stageMatch && dbtMatch;
+    });
+  };
+
+  // Filter the items before rendering
+  const filteredItems = applyFilters();
   
     return (
       <Box className="playbook-content">
         {view === 'list' ? (
-          <ListView items={items} onItemClick={handleItemClick} />
+          <ListView items={filteredItems} onItemClick={handleItemClick} />
         ) : (
           <GapView selectedItem={selectedItem} onBack={handleBack} />
         )}
@@ -33,70 +48,109 @@ import ListView from '../ListView/ListView';
   
 
 const PlaybookContents = () => {
-    const itemsData = [
-        {
-          category: "EXPLORATION",
-          title: "Lack of relevant and easily consumable information.",
-          description: "Personas Effected | New, Existing, Offline",
-          personas: ["New", "Existing", "Offline"],
-          tags: ["CX", "Media", "Creative", "UX"],
-          sections: [
+    
+          const itemsData = [ 
             {
-              type: "CX",
-              content: "Provide personalized, mobile-friendly content, including short videos, infographics, and FAQs, tailored to users' browsing history, preferences, and transaction patterns to clearly explain financial products and services."
+              category: "EXPLORATION",
+              title: "Lack of relevant and easily consumable information.",
+              description: "Personas Effected | New, Existing, Offline",
+              personas: ["New", "Existing", "Offline"],
+              tags: ["CX", "Media", "Creative", "UX"],
+              sections: [
+                {
+                  type: "CX",
+                  content: "Provide personalized, mobile-friendly content, including short videos, infographics, and FAQs, tailored to users' browsing history, preferences, and transaction patterns to clearly explain financial products and services.",
+                  actionable: [
+                    { days: 45, color: 'green' },
+                    { days: 90, color: 'red' },
+                    { days: 180, color: 'blue' }
+                  ]
+                },
+                {
+                  type: "Media",
+                  content: "Full Funnel media activation to amplify the content and communication.",
+                  actionable: [
+                    { days: 15, color: 'yellow' },
+                    { days: 190, color: 'red' },
+                    { days: 18, color: 'orange' }
+                  ]
+                },
+                {
+                  type: "UX",
+                  content: "Create a knowledge base or resource centre with categorized articles and guides, and include an FAQ section addressing common user questions on both the website and different product landing pages.",
+                  actionable: [
+                    { days: 15, color: 'red' },
+                    { days: 10, color: 'green' },
+                    { days: 1, color: 'blue' }
+                  ]
+                }
+              ]
             },
             {
-              type: "Media",
-              content: "Full Funnel media activation to amplify the content and communication."
+              category: "EXPLORATION",
+              title: "Insufficient TOMA.",
+              description: "Personas Effected | New, Existing",
+              personas: ["New", "Existing"],
+              tags: ["Media", "Creative"],
+              sections: [
+                {
+                  type: "Media",
+                  content: "Provide personalized, mobile-friendly content, including short videos, infographics, and FAQs, tailored to users' browsing history, preferences, and transaction patterns to clearly explain financial products and services.",
+                  actionable: [
+                    { days: 10, color: 'yellow' },
+                    { days: 17, color: 'orange' },
+                    { days: 6, color: 'blue' }
+                  ]
+                },
+                {
+                  type: "Creative",
+                  content: "Full Funnel media activation to amplify the content and communication.",
+                  actionable: [
+                    { days: 52, color: 'green' },
+                    { days: 13, color: 'orange' },
+                    { days: 5, color: 'yellow' }
+                  ]
+                },
+            
+              ]
             },
             {
-              type: "UX",
-              content: "Create a knowledge base or resource centre with categorized articles and guides, and include an FAQ section addressing common user questions on both the website and different product landing pages."
-            }
-          ]
-        },
-        {
-          category: "EXPLORATION",
-          title: "Insufficient TOMA.",
-          description: "Personas Effected | New, Existing",
-          personas: ["New", "Existing"],
-          tags: ["Media", "Creative"],
-          sections: [
-            {
-              type: "CX",
-              content: "Provide personalized, mobile-friendly content, including short videos, infographics, and FAQs, tailored to users' browsing history, preferences, and transaction patterns to clearly explain financial products and services."
+              category: "CONSIDERATION",
+              title: "Enhanced competitor presence across digital touch-points.",
+              description: "Personas Effected | Existing",
+              personas: ["Existing"],
+              tags: ["Media", "SEO", "UX"],
+              sections: [
+                {
+                  type: "Media",
+                  content: "Provide personalized, mobile-friendly content, including short videos, infographics, and FAQs, tailored to users' browsing history, preferences, and transaction patterns to clearly explain financial products and services.",
+                  actionable: [
+                    { days: 10, color: 'yellow' },
+                    { days: 55, color: 'red' },
+                    { days: 4, color: 'orange' }
+                  ]
+                },
+                {
+                  type: "SEO",
+                  content: "Full Funnel media activation to amplify the content and communication.",
+                  actionable: [
+                    { days: 40, color: 'green' },
+                    { days: 34, color: 'yellow' },
+                    { days: 34, color: 'blue' }
+                  ]
+                },
+                {
+                  type: "UX",
+                  content: "Create a knowledge base or resource centre with categorized articles and guides, and include an FAQ section addressing common user questions on both the website and different product landing pages.",
+                  actionable: [
+                    { days: 20, color: 'green' },
+                    { days: 40, color: 'red' },
+                    { days: 10, color: 'blue' }
+                  ]
+                }
+              ]
             },
-            {
-              type: "Media",
-              content: "Full Funnel media activation to amplify the content and communication."
-            },
-            {
-              type: "UX",
-              content: "Create a knowledge base or resource centre with categorized articles and guides, and include an FAQ section addressing common user questions on both the website and different product landing pages."
-            }
-          ]
-        },
-        {
-          category: "CONSIDERATION",
-          title: "Enhanced competitor presence across digital touch-points.",
-          description: "Personas Effected | Existing",
-          personas: ["Existing"],
-          tags: ["Media", "SEO", "UX"],
-          sections: [
-            {
-              type: "CX",
-              content: "Provide personalized, mobile-friendly content, including short videos, infographics, and FAQs, tailored to users' browsing history, preferences, and transaction patterns to clearly explain financial products and services."
-            },
-            {
-              type: "Media",
-              content: "Full Funnel media activation to amplify the content and communication."
-            },
-            {
-              type: "UX",
-              content: "Create a knowledge base or resource centre with categorized articles and guides, and include an FAQ section addressing common user questions on both the website and different product landing pages."
-            }
-          ]
-        },
+          
         {
             category: "CONSIDERATION",
             title: "Lack of integrated tools to help agents/call centre with cohesive insights for better customer understanding thus reducing manual process and TAT..",
@@ -106,15 +160,30 @@ const PlaybookContents = () => {
             sections: [
                 {
                   type: "CX",
-                  content: "Provide personalized, mobile-friendly content, including short videos, infographics, and FAQs, tailored to users' browsing history, preferences, and transaction patterns to clearly explain financial products and services."
+                  content: "Provide personalized, mobile-friendly content, including short videos, infographics, and FAQs, tailored to users' browsing history, preferences, and transaction patterns to clearly explain financial products and services.",
+                  actionable: [
+                    { days: 20, color: 'green' },
+                    { days: 40, color: 'red' },
+                    { days: 10, color: 'blue' }
+                  ]
                 },
                 {
-                  type: "Media",
-                  content: "Full Funnel media activation to amplify the content and communication."
+                  type: "Data",
+                  content: "Full Funnel media activation to amplify the content and communication.",
+                  actionable: [
+                    { days: 10, color: 'yellow' },
+                    { days: 55, color: 'red' },
+                    { days: 4, color: 'orange' }
+                  ]
                 },
                 {
                   type: "UX",
-                  content: "Create a knowledge base or resource centre with categorized articles and guides, and include an FAQ section addressing common user questions on both the website and different product landing pages."
+                  content: "Create a knowledge base or resource centre with categorized articles and guides, and include an FAQ section addressing common user questions on both the website and different product landing pages.",
+                  actionable: [
+                    { days: 10, color: 'yellow' },
+                    { days: 55, color: 'red' },
+                    { days: 4, color: 'orange' }
+                  ]
                 }
               ]
           },
@@ -126,12 +195,22 @@ const PlaybookContents = () => {
             tags: [ "UX","Data", ],
             sections: [
                 {
-                  type: "SEO",
-                  content: "Optimize website and content for search engines to compete more effectively."
+                  type: "UX",
+                  content: "Optimize website and content for search engines to compete more effectively.",
+                  actionable: [
+                    { days: 10, color: 'yellow' },
+                    { days: 55, color: 'red' },
+                    { days: 4, color: 'orange' }
+                  ]
                 },
                 {
-                  type: "Media",
-                  content: "Increase digital ad spend to capture more consideration-stage traffic."
+                  type: "Data",
+                  content: "Increase digital ad spend to capture more consideration-stage traffic.",
+                  actionable: [
+                    { days: 10, color: 'yellow' },
+                    { days: 55, color: 'red' },
+                    { days: 4, color: 'orange' }
+                  ]
                 }
               ]
           },
@@ -144,7 +223,21 @@ const PlaybookContents = () => {
             sections: [
                 {
                   type: "CX",
-                  content: "Develop a CRM tool for agents to provide a holistic customer view and insights."
+                  content: "Develop a CRM tool for agents to provide a holistic customer view and insights.",
+               actionable: [
+                    { days: 10, color: 'yellow' },
+                    { days: 55, color: 'red' },
+                    { days: 4, color: 'orange' }
+                  ] 
+                },
+                {
+                  type: "Innovation",
+                  content: "Develop a CRM tool for agents to provide a holistic customer view and insights.",
+               actionable: [
+                    { days: 10, color: 'yellow' },
+                    { days: 55, color: 'red' },
+                    { days: 4, color: 'orange' }
+                  ] 
                 }
               ]
           },
@@ -157,7 +250,12 @@ const PlaybookContents = () => {
             sections: [
                 {
                   type: "CX",
-                  content: "Develop a CRM tool for agents to provide a holistic customer view and insights."
+                  content: "Develop a CRM tool for agents to provide a holistic customer view and insights.",
+                  actionable: [
+                    { days: 10, color: 'yellow' },
+                    { days: 55, color: 'red' },
+                    { days: 4, color: 'orange' }
+                  ]
                 }
               ]
           },
@@ -170,15 +268,33 @@ const PlaybookContents = () => {
             sections: [
                 {
                   type: "CX",
-                  content: "Develop a CRM tool for agents to provide a holistic customer view and insights."
+                  content: "Develop a CRM tool for agents to provide a holistic customer view and insights.",
+                  actionable: [
+                    { days: 10, color: 'yellow' },
+                    { days: 55, color: 'red' },
+                    { days: 4, color: 'orange' }
+                  ]
                 }
               ]
           },
 
       ];
+
+        // State to track selected filters
+  const [selectedFilters, setSelectedFilters] = useState({
+    persona: [],
+    stage: [],
+    dbt: []
+  });
     
     return(
-        <PlaybookContent items={itemsData} />
+      <>
+      {/* FilterChips component to manage selected filters */}
+      <FilterChips selectedFilters={selectedFilters} setSelectedFilters={setSelectedFilters} />
+      
+      {/* Pass selectedFilters to PlaybookContent */}
+      <PlaybookContent items={itemsData} selectedFilters={selectedFilters} />
+    </>
     )
 }
 export default PlaybookContents;

@@ -12,19 +12,14 @@ const filterOptions = {
     dbt: ['CX', 'UX', 'Media', 'Creative', 'SEO']
   };
 
-const FilterChips = () => {
+const FilterChips = ({ selectedFilters, setSelectedFilters }) => {
 
-     // State for managing selected filters
-  const [selectedFilters, setSelectedFilters] = useState({
-    persona: [],
-    stage: [],
-    dbt: []
-  });
 
   // State for managing menu
   const [anchorEl, setAnchorEl] = useState(null);
   const [activeFilter, setActiveFilter] = useState(null);
 
+  
   // Handle main filter chip click
   const handleClick = (event, filterType) => {
     setAnchorEl(event.currentTarget);

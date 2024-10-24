@@ -1,6 +1,6 @@
 .button-container {
     position: fixed;
-    bottom: 0;
+   top: 462px;
     left: 0;
     right: 0;
     background-color: #F5DEB3;
@@ -124,3 +124,13 @@ font-weight: 900;
     padding: 16px;
   }
   
+  @media (min-width: 1400px){
+    .button-container  {
+        display: none;
+    }
+  }
+  @media (min-width: 768px){
+    .button-container  {
+        display: none;
+    }
+  }

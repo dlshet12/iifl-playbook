@@ -1,5 +1,5 @@
 import logo from '../asset/IIFL_Logo.svg';
-import FilterChips from '../chips/chips';
+// import FilterChips from '../chips/chips';
 import './header.css';
 
 const Header = ({ showFilters }) => {
@@ -10,7 +10,7 @@ const Header = ({ showFilters }) => {
                     <img alt='logo' src={logo} />
                     <div>Playbook</div>
                 </div>
-                <FilterChips />
+                {/* <FilterChips /> */}
             </div>
 
         </>
