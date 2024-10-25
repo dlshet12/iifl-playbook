@@ -98,7 +98,7 @@ const ActionDetailView = ({ section, onBack, item, actionable }) => {
       <div className="detail-header">
         <span className="detail-tag">ACTIONABLE</span>
       </div>
-      <div className="detail-body">
+      <div className="detail-body-action">
       <ul className="actionable-steps-list">
               {activeActionable.details.actionableSteps.map((step, index) => (
                 <li key={index}>{step}</li>
@@ -111,7 +111,7 @@ const ActionDetailView = ({ section, onBack, item, actionable }) => {
             <div className="detail-header">
               <span className="detail-tag">KPI</span>
             </div>
-            <div className="detail-body">
+            <div className="detail-section-actionable">
             <ul className="kpi-list">
               {activeActionable.details.kpis.map((kpi, index) => (
                 <li key={index}>{kpi}</li>
