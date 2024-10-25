@@ -3,7 +3,7 @@ import { Box,Chip } from '@mui/material';
 import './listView.css';
 import ActionableView from '../actionableView/actionableView.js';
 // ListItem Component with onClick handling
-const ListItem = ({ item, onClick }) => {
+const ListItem = ({ item, onClick,hideTags }) => {
   
     // Split the description at the separator
     const [prefix, personasText] = item.description.split('|');
@@ -44,11 +44,14 @@ const ListItem = ({ item, onClick }) => {
           </>
         )}
       </div>
+      {!hideTags && (
       <Box className="tags-container">
         {sortedTags.map((tag, index) => (
           <Chip key={index} label={tag} className='chip_tag' sx={{backgroundColor: getChipColor(tag), fontSize:'12px',fontWeight:'500', color:'#656565', padding:'4px 7px'}} />
         ))}
       </Box>
+      )}
+
     </div>
     )
 
@@ -56,7 +59,7 @@ const ListItem = ({ item, onClick }) => {
 
 
 // ListView Component
-const ListView = ({ items, onItemClick }) => {
+const ListView = ({ items, onItemClick,hideTags }) => {
     const [activeView, setActiveView] = useState('gap');
     return(
       <Box className="list-container">
@@ -64,7 +67,7 @@ const ListView = ({ items, onItemClick }) => {
         <div className="view">
           <div className="scrollable-content">
             {items.map((item, index) => (
-              <ListItem key={index} item={item} onClick={onItemClick} />
+              <ListItem key={index} item={item} onClick={onItemClick} hideTags={hideTags} />
             ))}
           </div>
         </div>

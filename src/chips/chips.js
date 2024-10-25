@@ -15,6 +15,10 @@ const filterOptions = {
 const FilterChips = ({ selectedFilters, setSelectedFilters }) => {
 
 
+  const areFiltersSelected = Object.values(selectedFilters).some(
+    (filterValues) => filterValues.length > 0
+  );
+
   // State for managing menu
   const [anchorEl, setAnchorEl] = useState(null);
   const [activeFilter, setActiveFilter] = useState(null);
@@ -85,7 +89,7 @@ const FilterChips = ({ selectedFilters, setSelectedFilters }) => {
       </Box>
 
       {/* Selected filter chips */}
-      {Object.entries(selectedFilters).some(([_, values]) => values.length > 0) && (
+      {areFiltersSelected && (
         <Box className="selected-filters-container">
           {Object.entries(selectedFilters).map(([filterType, values]) =>
             values.map((value) => (
@@ -118,6 +122,7 @@ const FilterChips = ({ selectedFilters, setSelectedFilters }) => {
           </MenuItem>
         ))}
       </Menu>
+      
     </>
 );
 };

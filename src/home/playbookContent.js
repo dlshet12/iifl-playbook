@@ -20,6 +20,11 @@ const PlaybookContent = ({ items, selectedFilters }) => {
     setSelectedItem(null);
   };
 
+   // Check if any filters are selected
+   const areFiltersSelected = Object.values(selectedFilters).some(
+    (filterValues) => filterValues.length > 0
+  );
+
   // Function to apply the filters to the items list
   const applyFilters = () => {
     return items.filter(item => {
@@ -38,7 +43,7 @@ const PlaybookContent = ({ items, selectedFilters }) => {
   return (
     <Box className="playbook-content">
       {view === 'list' ? (
-        <ListView items={filteredItems} onItemClick={handleItemClick} />
+        <ListView items={filteredItems} onItemClick={handleItemClick} hideTags={areFiltersSelected} />
       ) : (
         <GapView selectedItem={selectedItem} onBack={handleBack} />
       )}
