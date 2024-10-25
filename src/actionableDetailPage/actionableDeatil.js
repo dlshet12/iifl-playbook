@@ -1,9 +1,44 @@
-import { useState } from 'react';
+import { useState , useEffect} from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import './actionableDetail.css';
 const ActionDetailView = ({ section, onBack, item, actionable }) => {
   
     const [activeTab, setActiveTab] = useState(actionable.days);
- 
+    const [activeActionable, setActiveActionable] = useState(section.actionable[0]);
+    const [direction, setDirection] = useState(0);
+      // Update active actionable when tab changes
+  useEffect(() => {
+    const selected = section.actionable.find(action => action.days === activeTab);
+    if (selected) {
+      setActiveActionable(selected);
+    }
+  }, [activeTab, section.actionable]);
+
+  const activeSection = item.sections.find(s => s.type === activeTab) || section;
+
+  const handleTabChange = (newTab) => {
+    const currentIndex = item.tags.indexOf(activeTab);
+    const newIndex = item.tags.indexOf(newTab);
+    setDirection(newIndex > currentIndex ? 1 : -1);
+    setActiveTab(newTab);
+  };
+  const slideVariants = {
+    enter: (direction) => ({
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1
+    },
+    exit: (direction) => ({
+      zIndex: 0,
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0
+    })
+  };
+
     return (
       <div className="gap-container">
         <div className="nav-back-gap-detail">
@@ -23,7 +58,7 @@ const ActionDetailView = ({ section, onBack, item, actionable }) => {
             {section.actionable.map((actionableItem, index) => (
               <button
                 key={index}
-                onClick={() => setActiveTab(actionableItem.days)}
+                onClick={() => handleTabChange(actionableItem.days)}
                 className={`tab-button ${activeTab === actionableItem.days ? 'active' : ''}`}
               >
                {actionableItem.days}
@@ -33,6 +68,21 @@ const ActionDetailView = ({ section, onBack, item, actionable }) => {
         </div>
 
         </div>
+
+        <AnimatePresence initial={false} custom={direction} mode="wait">
+          <motion.div
+            key={activeTab}
+            custom={direction}
+            variants={slideVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{
+              x: { type: "spring", stiffness: 300, damping: 30 },
+              opacity: { duration: 0.2 }
+            }}
+          >
+
   
         <div className="actionable-content">
           <div className="detail-section-solution">
@@ -40,7 +90,7 @@ const ActionDetailView = ({ section, onBack, item, actionable }) => {
               <span className="detail-tag">Cx Solution</span>
             </div>
             <div className="detail-body">
-              <p>{actionable.details.cxSolution}</p>
+              <p>{activeActionable.details.cxSolution}</p>
             </div>
           </div>
   
@@ -50,7 +100,7 @@ const ActionDetailView = ({ section, onBack, item, actionable }) => {
       </div>
       <div className="detail-body">
       <ul className="actionable-steps-list">
-              {actionable.details.actionableSteps.map((step, index) => (
+              {activeActionable.details.actionableSteps.map((step, index) => (
                 <li key={index}>{step}</li>
               ))}
             </ul>
@@ -63,7 +113,7 @@ const ActionDetailView = ({ section, onBack, item, actionable }) => {
             </div>
             <div className="detail-body">
             <ul className="kpi-list">
-              {actionable.details.kpis.map((kpi, index) => (
+              {activeActionable.details.kpis.map((kpi, index) => (
                 <li key={index}>{kpi}</li>
               ))}
             </ul>
@@ -73,6 +123,10 @@ const ActionDetailView = ({ section, onBack, item, actionable }) => {
 
 
         </div>
+
+        
+    </motion.div>
+        </AnimatePresence>
       </div>
     );
   };

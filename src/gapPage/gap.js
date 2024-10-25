@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Button } from '@mui/material';
 import { Box,Chip } from '@mui/material';
 import './gap.css';
 import back from '../asset/back_icon.svg';
@@ -56,10 +55,10 @@ const GapView = ({ selectedItem, onBack }) => {
   return (
     <div className="gap-container">
       <div className='nav-back'>
-        <Button className="back-button" onClick={onBack}>
+        <button className="back-button" onClick={onBack}>
            <img src={back} alt='back' />
-          Gap
-        </Button>
+         <div>Gap</div> 
+        </button>
       </div>
 
       <div className="persona_card">

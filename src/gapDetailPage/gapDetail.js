@@ -1,14 +1,23 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import './gapDetail.css';
 import ActionDetailView from '../actionableDetailPage/actionableDeatil';
+
 const DetailView = ({ section, onBack, item , activeTab: initialActiveTab }) => {
-  
   const [activeTab, setActiveTab] = useState(initialActiveTab || item.tags[0]);
   const [prefix, personasText] = item.description.split('|');
-
   const [selectedActionable, setSelectedActionable] = useState(null);
-  
+  const [direction, setDirection] = useState(0);
+    // Find the active section based on the current tab
+    const activeSection = item.sections.find(s => s.type === activeTab) || section;
 
+    const handleTabChange = (newTab) => {
+      const currentIndex = item.tags.indexOf(activeTab);
+      const newIndex = item.tags.indexOf(newTab);
+      setDirection(newIndex > currentIndex ? 1 : -1);
+      setActiveTab(newTab);
+    };
+  
   if (selectedActionable) {
     return (
       <ActionDetailView 
@@ -19,6 +28,23 @@ const DetailView = ({ section, onBack, item , activeTab: initialActiveTab }) => 
       />
     );
   }
+
+  const slideVariants = {
+    enter: (direction) => ({
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1
+    },
+    exit: (direction) => ({
+      zIndex: 0,
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0
+    })
+  };
 
     return (
       <div className="gap-container">
@@ -31,7 +57,7 @@ const DetailView = ({ section, onBack, item , activeTab: initialActiveTab }) => 
             {item.title}
             </div>
           </button>
-
+<div style={{backgroundColor:'white', paddingBottom:'15px'}}>
           <div className='header_content'>
           <div className="item-description-bg">
         {prefix}
@@ -47,12 +73,16 @@ const DetailView = ({ section, onBack, item , activeTab: initialActiveTab }) => 
         </div>
         </div>
 
+        </div>
+
+<div style={{background:"white"}}>
+  
         <div className="tab-switcher-container">
           <div className="tab-switcher">
             {item.tags.map((tag, index) => (
               <button
                 key={index}
-                onClick={() => setActiveTab(tag)}
+                onClick={() => handleTabChange(tag)}
                 className={`tab-button ${activeTab === tag ? 'active' : ''}`}
               >
                 {tag}
@@ -61,14 +91,30 @@ const DetailView = ({ section, onBack, item , activeTab: initialActiveTab }) => 
           </div>
         </div>
         </div>
+        </div>
   
         <div className="detail-content">
+
+        <AnimatePresence initial={false} custom={direction} mode="wait">
+          <motion.div
+            key={activeTab}
+            custom={direction}
+            variants={slideVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{
+              x: { type: "spring", stiffness: 300, damping: 30 },
+              opacity: { duration: 0.2 }
+            }}
+          >
+
           <div className="detail-section-solution">
             <div className="detail-header">
               <span className="detail-tag">Solution</span>
             </div>
             <div className="detail-body">
-              <p>{section.content}</p>
+              <p>{activeSection.content}</p>
             </div>
           </div>
   
@@ -77,7 +123,7 @@ const DetailView = ({ section, onBack, item , activeTab: initialActiveTab }) => 
         <span className="detail-tag">ACTIONABLE'S</span>
       </div>
       <div className="detail-body">
-        {section.actionable.map((item, index) => (
+        {activeSection.actionable.map((item, index) => (
           <div key={index} className="actionable-item" onClick={() => setSelectedActionable(item)}>
             <div className="day-indicator">
               <div className={`day-dot ${item.color}`}></div>
@@ -90,6 +136,9 @@ const DetailView = ({ section, onBack, item , activeTab: initialActiveTab }) => 
         ))}
       </div>
     </div>
+
+    </motion.div>
+        </AnimatePresence>
   
           <div className="detail-section">
             <div className="detail-header">
