@@ -14,11 +14,12 @@
 }
 .selected-filters-container{
     position: fixed;
-    top: 130px;
+    top: 120px;
     left: 0;
     right: 0;
     z-index: 1000;
     background-color: rgb(255, 255, 255);
+  padding: 0 20px;
 }
 .filter-chip{
     background-color: yellow;

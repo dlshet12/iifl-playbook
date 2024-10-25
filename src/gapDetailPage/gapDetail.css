@@ -13,7 +13,7 @@
     padding: 0;
     height: 56px;
 padding-top: 16px;
-width: 100%;
+width: 390px;
 }
 
 .back-button-gap {
@@ -31,6 +31,7 @@ width: 100%;
 }
 .back-gap-title{
   text-align: left;
+  color: #242056;
 }
 
 .chevron {

@@ -89,12 +89,12 @@ const FilterChips = ({ selectedFilters, setSelectedFilters }) => {
         <Box className="selected-filters-container">
           {Object.entries(selectedFilters).map(([filterType, values]) =>
             values.map((value) => (
-              <Chip
+              <Chip variant="outlined"
                 key={`${filterType}-${value}`}
                 label={value}
                 onDelete={() => handleFilterRemove(filterType, value)}
-                deleteIcon={<CloseIcon fontSize="small" />}
-                className="selected-filter-chip"
+                deleteIcon={<CloseIcon fontSize="small" sx={{fill:'#F37021'}}/>}
+                className="selected-filter-chip" sx={{color:'#F37021', borderColor:'#F37021'}}
               />
             ))
           )}

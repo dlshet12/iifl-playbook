@@ -41,7 +41,7 @@ const ActionDetailView = ({ section, onBack, item, actionable }) => {
 
     return (
       <div className="gap-container">
-        <div className="nav-back-gap-detail">
+        <div className="nav-back-actionable">
           <button className="back-button-gap" onClick={onBack}>
             <svg className="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -52,21 +52,21 @@ const ActionDetailView = ({ section, onBack, item, actionable }) => {
           </button>
 
           
-
+<div style={{backgroundColor:'white'}}>
         <div className="tab-container">
-          <div className="tab-action-switcher">
+          <div style={{display:'flex',justifyContent:'space-between'}} className="tab-action-switcher">
             {section.actionable.map((actionableItem, index) => (
               <button
                 key={index}
                 onClick={() => handleTabChange(actionableItem.days)}
                 className={`tab-button ${activeTab === actionableItem.days ? 'active' : ''}`}
               >
-               {actionableItem.days}
+               {actionableItem.days} days
               </button>
             ))}
           </div>
         </div>
-
+        </div>
         </div>
 
         <AnimatePresence initial={false} custom={direction} mode="wait">
@@ -112,7 +112,7 @@ const ActionDetailView = ({ section, onBack, item, actionable }) => {
               <span className="detail-tag">KPI</span>
             </div>
             <div className="detail-section-actionable">
-            <ul className="kpi-list">
+            <ul className="actionable-steps-list">
               {activeActionable.details.kpis.map((kpi, index) => (
                 <li key={index}>{kpi}</li>
               ))}
