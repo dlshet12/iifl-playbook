@@ -40,7 +40,7 @@ const ActionDetailView = ({ section, onBack, item, actionable }) => {
   };
 
     return (
-      <div className="gap-container">
+      <div className="action-detail-container">
         <div className="nav-back-actionable">
           <button className="back-button-gap" onClick={onBack}>
             <svg className="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor">

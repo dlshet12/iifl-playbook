@@ -1,11 +1,11 @@
 .gap-container{
-    margin-top: 130px;
+    margin-top: 20px;
     /* z-index: 1000; */
   background-color: white;
   padding: 0 24px;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 120vh;
 }
 .nav-back{
     top: 52px;

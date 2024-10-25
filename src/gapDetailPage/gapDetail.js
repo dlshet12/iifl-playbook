@@ -47,7 +47,7 @@ const DetailView = ({ section, onBack, item , activeTab: initialActiveTab }) => 
   };
 
     return (
-      <div className="gap-container">
+      <div className="gap-detail-container">
         <div className="nav-back-gap-detail">
           <button className="back-button-gap" onClick={onBack}>
             <svg className="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor">
