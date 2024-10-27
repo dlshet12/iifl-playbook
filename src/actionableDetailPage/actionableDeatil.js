@@ -1,6 +1,7 @@
 import { useState , useEffect} from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './actionableDetail.css';
+import back from '../asset/back_icon.svg';
 const ActionDetailView = ({ section, onBack, item, actionable }) => {
   
     const [activeTab, setActiveTab] = useState(actionable.days);
@@ -42,14 +43,13 @@ const ActionDetailView = ({ section, onBack, item, actionable }) => {
     return (
       <div className="action-detail-container">
         <div className="nav-back-actionable">
-          <button className="back-button-gap" onClick={onBack}>
-            <svg className="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            <div className='back-gap-title'>
-           Actionable
-            </div>
+         
+          <button className="back-button-gap-detail" onClick={onBack}>
+          <img src={back} alt='back' />
+          <div className='back-gap-title'>Actionable</div> 
           </button>
+
+         
 
           
 <div style={{backgroundColor:'white'}}>
@@ -69,7 +69,7 @@ const ActionDetailView = ({ section, onBack, item, actionable }) => {
         </div>
         </div>
 
-        <AnimatePresence initial={false} custom={direction} mode="wait">
+        {/* <AnimatePresence initial={false} custom={direction} mode="wait">
           <motion.div
             key={activeTab}
             custom={direction}
@@ -81,7 +81,7 @@ const ActionDetailView = ({ section, onBack, item, actionable }) => {
               x: { type: "spring", stiffness: 300, damping: 30 },
               opacity: { duration: 0.2 }
             }}
-          >
+          > */}
 
   
         <div className="actionable-content">
@@ -124,9 +124,9 @@ const ActionDetailView = ({ section, onBack, item, actionable }) => {
 
         </div>
 
-        
+{/*         
     </motion.div>
-        </AnimatePresence>
+        </AnimatePresence> */}
       </div>
     );
   };

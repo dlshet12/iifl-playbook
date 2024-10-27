@@ -7,7 +7,7 @@
 
 .nav-back-gap-detail {
   margin-bottom: 20px;
-    top: 52px;
+    top: 53px;
     position: fixed;
     z-index: 1000;
     background-color: white;
@@ -19,6 +19,8 @@ width: 390px;
 
 .back-button-gap {
   display: flex;
+  align-items: start;
+  align-items: center;
   color: #333;
   cursor: pointer;
   font-size: 16px;
@@ -27,6 +29,7 @@ width: 390px;
   background-color: white;
   padding: 0 24px 8px 4px;
 }
+
 .header_content{
   padding: 0 30px;
 }

@@ -4,7 +4,7 @@ const ActionableView = () => {
         {
           title: "Lack of relevant and easily consumable information.",
           statuses: [
-            { category: "CX", days: 90, status: "Completed", className: "status-completed" },
+            { category: "CX", days: 160, status: "Completed", className: "status-completed" },
             { category: "Media", days: 45, status: "Delayed", className: "status-delayed" },
             { category: "Creative", days: 45, status: "Not started", className: "status-not-started" },
             { category: "UX", days: 90, status: "In progress", className: "status-in-progress" }
@@ -21,7 +21,7 @@ const ActionableView = () => {
           title: "Enhanced competitor presence across digital touchpoints",
           statuses: [
             { category: "Media", days: 45, status: "Delayed", className: "status-delayed" },
-            { category: "SEO", days: 90, status: "Completed", className: "status-completed" }
+            { category: "SEO", days: 160, status: "Completed", className: "status-completed" }
           ]
         }
       ];

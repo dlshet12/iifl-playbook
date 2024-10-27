@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './gapDetail.css';
+import back from '../asset/back_icon.svg';
 import ActionDetailView from '../actionableDetailPage/actionableDeatil';
 
 const DetailView = ({ section, onBack, item , activeTab: initialActiveTab }) => {
@@ -49,15 +50,14 @@ const DetailView = ({ section, onBack, item , activeTab: initialActiveTab }) => 
     return (
       <div className="gap-detail-container">
         <div className="nav-back-gap-detail">
-          <button className="back-button-gap" onClick={onBack}>
-            <svg className="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            <div className='back-gap-title'>
-            {item.title}
-            </div>
+          
+          <button className="back-button-gap"  onClick={onBack}>
+          <img src={back} alt='back' />
+          <div className='back-gap-title'>   {item.title}</div> 
           </button>
-<div style={{backgroundColor:'white', paddingBottom:'15px'}}>
+
+          
+<div style={{backgroundColor:'white', paddingBottom:'8px'}}>
           <div className='header_content'>
           <div className="item-description-bg">
         {prefix}
@@ -95,7 +95,7 @@ const DetailView = ({ section, onBack, item , activeTab: initialActiveTab }) => 
   
         <div className="detail-content">
 
-        <AnimatePresence initial={false} custom={direction} mode="wait">
+        {/* <AnimatePresence initial={false} custom={direction} mode="wait">
           <motion.div
             key={activeTab}
             custom={direction}
@@ -107,7 +107,7 @@ const DetailView = ({ section, onBack, item , activeTab: initialActiveTab }) => 
               x: { type: "spring", stiffness: 300, damping: 30 },
               opacity: { duration: 0.2 }
             }}
-          >
+          > */}
 
           <div className="detail-section-solution">
             <div className="detail-header">
@@ -137,8 +137,8 @@ const DetailView = ({ section, onBack, item , activeTab: initialActiveTab }) => 
       </div>
     </div>
 
-    </motion.div>
-        </AnimatePresence>
+    {/* </motion.div>
+        </AnimatePresence> */}
   
           <div className="detail-section">
             <div className="detail-header">

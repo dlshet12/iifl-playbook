@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {  } from 'react';
 import { Box,Chip } from '@mui/material';
 import './listView.css';
 import ActionableView from '../actionableView/actionableView.js';
@@ -59,8 +59,8 @@ const ListItem = ({ item, onClick,hideTags }) => {
 
 
 // ListView Component
-const ListView = ({ items, onItemClick,hideTags }) => {
-    const [activeView, setActiveView] = useState('gap');
+const ListView = ({ items, onItemClick,hideTags, activeView, setActiveView }) => {
+
     return(
       <Box className="list-container">
       <div className={`views-wrapper ${activeView === 'gap' ? 'slide-gap' : 'slide-actionable'}`}>
@@ -73,7 +73,7 @@ const ListView = ({ items, onItemClick,hideTags }) => {
         </div>
         <div className="view">
           <div className="scrollable-content">
-           <ActionableView/>
+           <ActionableView />
           </div>
         </div>
       </div>

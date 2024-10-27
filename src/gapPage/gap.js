@@ -93,7 +93,11 @@ const GapView = ({ selectedItem, onBack }) => {
               setActiveTab(section.type);
             }}>
               <div className="section-header">
-                <span className="section-type">{section.type}</span>
+
+              <Chip  label={section.type} className='chip_tag' 
+              sx={{backgroundColor: getChipColor(section.type), fontSize:'12px',fontWeight:'500', color:'#656565', padding:'4px 7px'}} />
+
+                {/* <span className="section-type">{section.type}</span> */}
                 <svg className="chevron chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
@@ -107,8 +111,6 @@ const GapView = ({ selectedItem, onBack }) => {
           <p>No sections available</p>
         )}
       </div>
-
-
     </div>
   );
 };

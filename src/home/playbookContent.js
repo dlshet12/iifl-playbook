@@ -6,10 +6,10 @@ import ListView from '../ListView/ListView';
 import FilterChips from '../chips/chips';
 
 // Main PlaybookContent Component
-const PlaybookContent = ({ items, selectedFilters }) => {
+const PlaybookContent = ({ items, selectedFilters, activeView, setActiveView, view, setView  }) => {
   const [selectedItem, setSelectedItem] = useState(null);
-  const [view, setView] = useState('list');
 
+  
   const handleItemClick = (item) => {
     setSelectedItem(item);
     setView('gap');
@@ -40,10 +40,16 @@ const PlaybookContent = ({ items, selectedFilters }) => {
   // Filter the items before rendering
   const filteredItems = applyFilters();
 
+  
   return (
     <Box className="playbook-content">
+
       {view === 'list' ? (
-        <ListView items={filteredItems} onItemClick={handleItemClick} hideTags={areFiltersSelected} />
+        <ListView items={filteredItems}
+         onItemClick={handleItemClick} 
+         hideTags={areFiltersSelected} 
+          activeView={activeView}
+        setActiveView={setActiveView}/>
       ) : (
         <GapView selectedItem={selectedItem} onBack={handleBack} />
       )}
@@ -62,6 +68,12 @@ const PlaybookContents = () => {
       personas: ["New", "Existing", "Offline"],
       tags: ["CX", "Media", "Creative", "UX"],
       impact: ["CX"],
+      statuses: [
+        { category: "CX", days: 160, status: "Completed", className: "status-completed" },
+        { category: "Media", days: 45, status: "Delayed", className: "status-delayed" },
+        { category: "Creative", days: 45, status: "Not started", className: "status-not-started" },
+        { category: "UX", days: 90, status: "In progress", className: "status-in-progress" }
+      ],
       sections: [
         {
           type: "CX",
@@ -252,6 +264,10 @@ const PlaybookContents = () => {
       personas: ["New", "Existing"],
       tags: ["Media", "Creative"],
       impact: ["Media"],
+      statuses: [
+        { category: "Media", days: 45, status: "Delayed", className: "status-delayed" },
+        { category: "Creative", days: 90, status: "Not started", className: "status-not-started" }
+      ],
       sections: [
         {
           type: "Media",
@@ -383,6 +399,10 @@ const PlaybookContents = () => {
       personas: ["Existing"],
       tags: ["Media", "SEO",],
       impact: ["Media", "SEO"],
+      statuses: [
+        { category: "Media", days: 45, status: "Delayed", className: "status-delayed" },
+        { category: "SEO", days: 160, status: "Completed", className: "status-completed" }
+      ],
       sections: [
         {
           type: "Media",
@@ -514,6 +534,10 @@ const PlaybookContents = () => {
       personas: ["New", "Existing", "Offline", "Agent"],
       tags: ["CX", "Data"],
       impact: ["Data"],
+      statuses: [
+        { category: "Media", days: 45, status: "Delayed", className: "status-delayed" },
+        { category: "SEO", days: 160, status: "Completed", className: "status-completed" }
+      ],
       sections: [
         {
           type: "CX",
@@ -644,6 +668,10 @@ const PlaybookContents = () => {
       personas: ["Existing", "Offline"],
       tags: ["UX", "Data",],
       impact: ["Data"],
+      statuses: [
+        { category: "Media", days: 45, status: "Delayed", className: "status-delayed" },
+        { category: "SEO", days: 160, status: "Completed", className: "status-completed" }
+      ],
       sections: [
         {
           type: "UX",
@@ -774,6 +802,10 @@ const PlaybookContents = () => {
       personas: ["New", "Existing", "Offline", "Agent"],
       tags: ["CX", "Innovation",],
       impact: ["CX"],
+      statuses: [
+        { category: "Media", days: 45, status: "Delayed", className: "status-delayed" },
+        { category: "SEO", days: 160, status: "Completed", className: "status-completed" }
+      ],
       sections: [
         {
           type: "CX",
@@ -904,6 +936,10 @@ const PlaybookContents = () => {
       personas: ["New", "Existing", "Offline", "Agent"],
       tags: ["Data", "UX", "Innovation",],
       impact: ["UX"],
+      statuses: [
+        { category: "Media", days: 45, status: "Delayed", className: "status-delayed" },
+        { category: "SEO", days: 160, status: "Completed", className: "status-completed" }
+      ],
       sections: [
         {
           type: "UX",
@@ -976,14 +1012,22 @@ const PlaybookContents = () => {
     stage: [],
     dbt: []
   });
-
+  const [activeView, setActiveView] = useState('gap');
+  const [view, setView] = useState('list');
   return (
     <>
-      {/* FilterChips component to manage selected filters */}
-      <FilterChips selectedFilters={selectedFilters} setSelectedFilters={setSelectedFilters} />
-
+         {/* Conditionally render FilterChips based on view */}
+      {view === 'list' && (
+        <FilterChips selectedFilters={selectedFilters}
+         setSelectedFilters={setSelectedFilters}  activeView={activeView} />
+      )}
+      
       {/* Pass selectedFilters to PlaybookContent */}
-      <PlaybookContent items={itemsData} selectedFilters={selectedFilters} />
+      <PlaybookContent items={itemsData} 
+      selectedFilters={selectedFilters} 
+      activeView={activeView}
+       setActiveView={setActiveView}  view={view}
+        setView={setView}/>
     </>
   )
 }
