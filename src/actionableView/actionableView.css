@@ -1,17 +1,17 @@
 /* ActionableView.css */
 .actionable-container {
-    padding: 16px;
+    /* padding: 16px; */
 }
 
 .gap-item {
-    margin-bottom: 16px;
+   
     padding-bottom: 16px;
     border-bottom: 1px solid #E5E5E5;
-    ;
+    padding: 16px 24px 16px 24px;
 }
 
 .gap-title {
-    color: #1a237e;
+    color: #242056;
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 12px;

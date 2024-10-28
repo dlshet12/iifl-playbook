@@ -11,12 +11,6 @@
     padding: 16px;
     background-color: white;
 }
-.scrollable-content {
-    flex: 1;
-    overflow-y: auto;
-    padding: 16px;
-    padding-bottom: 80px; /* Add padding to prevent content from being hidden behind buttons */
-}
 
 .chip_tag{
     font-size: 12px;

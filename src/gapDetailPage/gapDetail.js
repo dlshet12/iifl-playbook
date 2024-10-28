@@ -83,7 +83,7 @@ const DetailView = ({ section, onBack, item , activeTab: initialActiveTab }) => 
               <button
                 key={index}
                 onClick={() => handleTabChange(tag)}
-                className={`tab-button ${activeTab === tag ? 'active' : ''}`}
+                className={`tab-button-gap ${activeTab === tag ? 'active' : ''}`}
               >
                 {tag}
               </button>
@@ -92,7 +92,6 @@ const DetailView = ({ section, onBack, item , activeTab: initialActiveTab }) => 
         </div>
         </div>
         </div>
-  
         <div className="detail-content">
 
         {/* <AnimatePresence initial={false} custom={direction} mode="wait">

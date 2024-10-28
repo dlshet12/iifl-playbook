@@ -28,7 +28,7 @@
 
 .list-item {
     background-color: white;
-    padding: 16px;
+    padding: 16px 24px 16px 24px;
     border-bottom: solid 1px #E5E5E5;
     cursor: pointer;
 }
@@ -67,7 +67,7 @@ font-weight: 900;
     margin-bottom: 8px;
 }
 .list-container {
-    top:100px;
+    top:120px;
      position: relative;
      height: 100vh;
      display: flex;
@@ -76,6 +76,9 @@ font-weight: 900;
      width: 100%;
      max-width: 100vw;
  }
+ .extra-margin-top {
+  margin-top: 70px; /* Adjust this value as needed */
+}
 .item-description {
     color: #242056;
     font-family: Poppins;
@@ -122,7 +125,6 @@ font-weight: 900;
   .scrollable-content {
     height: calc(100% - 60px);
     overflow-y: auto;
-    padding: 16px;
   }
   
 .category-label {

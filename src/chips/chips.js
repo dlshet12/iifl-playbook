@@ -2,6 +2,7 @@ import { Box, Chip ,Menu, MenuItem} from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import search_icon from '../asset/search_icon.svg';
 import CloseIcon from '@mui/icons-material/Close';
+import arrow from '../asset/back_icon.svg';
 import { useState } from 'react';
 import './chips.css'
 
@@ -61,16 +62,26 @@ const handleFilterSelect = (value) => {
       {/* Main filter chips */}
       <Box className="filter-chips-container">
       {filtersToShow.map((filterType) => (
-          <Chip
-            key={filterType}
-            sx={{ padding: '8px 10px', border: '1px solid #E2E2E2' }}
-            label={filterType.charAt(0).toUpperCase() + filterType.slice(1)}
-            deleteIcon={<KeyboardArrowDownIcon />}
-            onDelete={() => {}}
-            onClick={(e) => handleClick(e, filterType)}
-            variant="outlined"
-            className={`filter-chip ${activeFilter === filterType ? 'active' : ''}`}
-          />
+          // <Chip
+          //   key={filterType}
+          //   sx={{ padding: '8px 8px', border: '1px solid #E2E2E2' }}
+          //   label={filterType.charAt(0).toUpperCase() + filterType.slice(1)}
+          //   deleteIcon={<KeyboardArrowDownIcon />}
+          //   onDelete={() => {}}
+          //   onClick={(e) => handleClick(e, filterType)}
+          //   variant="outlined"
+          //   className={`filter-chip ${activeFilter === filterType ? 'active' : ''}`}
+          // />
+          <button
+          key={filterType}
+          className={`filter-chip ${activeFilter === filterType ? 'active' : ''}`}
+          onClick={(e) => handleClick(e, filterType)}
+        >
+          {filterType.charAt(0).toUpperCase() + filterType.slice(1)}
+          <svg className="chevron chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+</svg>
+        </button>
         ))}
         <div 
           className="search-chip">
@@ -89,7 +100,7 @@ const handleFilterSelect = (value) => {
                 label={value}
                 onDelete={() => handleFilterRemove(filterType, value)}
                 deleteIcon={<CloseIcon fontSize="small" sx={{fill:'#F37021'}}/>}
-                className="selected-filter-chip" sx={{color:'#F37021', borderColor:'#F37021',marginRight:'10px'}}
+                className="selected-filter-chip" sx={{color:'#F37021', borderColor:'#F37021',marginRight:'10px',height:'29px', fontFamily:'Poppins',fontSize:'14px'}}
               />
             ))
           )}

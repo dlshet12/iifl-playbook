@@ -48,6 +48,7 @@ const PlaybookContent = ({ items, selectedFilters, activeView, setActiveView, vi
         <ListView items={filteredItems}
          onItemClick={handleItemClick} 
          hideTags={areFiltersSelected} 
+         hideCategory={areFiltersSelected}
           activeView={activeView}
         setActiveView={setActiveView}
         selectedFilters={selectedFilters} />

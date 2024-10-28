@@ -3,7 +3,7 @@ import { Box,Chip } from '@mui/material';
 import './listView.css';
 import ActionableView from '../actionableView/actionableView.js';
 // ListItem Component with onClick handling
-const ListItem = ({ item, onClick,hideTags }) => {
+const ListItem = ({ item, onClick,hideTags, hideCategory }) => {
   
     // Split the description at the separator
     const [prefix, personasText] = item.description.split('|');
@@ -29,9 +29,11 @@ const ListItem = ({ item, onClick,hideTags }) => {
       className="list-item"
       onClick={() => onClick(item)}
     >
-      <div className={`category-label ${item.category.toLowerCase()}`}>
-        {item.category}
-      </div>
+      {!hideCategory && (
+   <div className={`category-label ${item.category.toLowerCase()}`}>
+   {item.category}
+ </div>
+      )}
       <div className="item-title">
         {item.title}
       </div>
@@ -59,15 +61,19 @@ const ListItem = ({ item, onClick,hideTags }) => {
 
 
 // ListView Component
-const ListView = ({ items, onItemClick,hideTags, activeView, setActiveView,selectedFilters }) => {
+const ListView = ({ items, onItemClick,hideTags, activeView, setActiveView,selectedFilters, hideCategory }) => {
  
+    // Check if any filters are selected
+    const areFiltersSelected = Object.values(selectedFilters).some(
+      (filterValues) => filterValues.length > 0
+    );
     return(
-      <Box className="list-container">
+      <Box  className={`list-container ${areFiltersSelected ? 'extra-margin-top' : ''}`}>
       <div className={`views-wrapper ${activeView === 'gap' ? 'slide-gap' : 'slide-actionable'}`}>
         <div className="view">
           <div className="scrollable-content">
             {items.map((item, index) => (
-              <ListItem key={index} item={item} onClick={onItemClick} hideTags={hideTags} />
+              <ListItem key={index} item={item} onClick={onItemClick} hideTags={hideTags}  hideCategory={hideCategory}/>
             ))}
           </div>
         </div>
