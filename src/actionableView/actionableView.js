@@ -1,34 +1,25 @@
+import { useState } from 'react';
 import './actionableView.css';
-const ActionableView = () => {
-    const gapItems = [
-        {
-          title: "Lack of relevant and easily consumable information.",
-          statuses: [
-            { category: "CX", days: 160, status: "Completed", className: "status-completed" },
-            { category: "Media", days: 45, status: "Delayed", className: "status-delayed" },
-            { category: "Creative", days: 45, status: "Not started", className: "status-not-started" },
-            { category: "UX", days: 90, status: "In progress", className: "status-in-progress" }
-          ]
-        },
-        {
-          title: "Insufficient TOMA",
-          statuses: [
-            { category: "Media", days: 45, status: "Delayed", className: "status-delayed" },
-            { category: "Creative", days: 90, status: "Not started", className: "status-not-started" }
-          ]
-        },
-        {
-          title: "Enhanced competitor presence across digital touchpoints",
-          statuses: [
-            { category: "Media", days: 45, status: "Delayed", className: "status-delayed" },
-            { category: "SEO", days: 160, status: "Completed", className: "status-completed" }
-          ]
-        }
-      ];
-  
+const ActionableView = ({ items,selectedFilters= { dbt: [] } }) => {
+  const [daysFilter, setDaysFilter] = useState('all');
+
+
+  // Filter items based on selected DBT categories and days
+  const filteredItems = items.map(item => ({
+    ...item,
+    // Filter statuses based on selected DBT categories and days
+    statuses: item.statuses.filter(status => {
+      const dbtMatch = selectedFilters.dbt.length === 0 || 
+                      selectedFilters.dbt.includes(status.category);
+      const daysMatch = daysFilter === 'all' || 
+                       status.days === parseInt(daysFilter);
+      return dbtMatch && daysMatch;
+    })
+  })).filter(item => item.statuses.length > 0);
+   
     return (
         <div className="actionable-container">
-        {gapItems.map((item, index) => (
+        {filteredItems.map((item, index) => (
           <div key={index} className="gap-item">
             <div className="gap-title">{item.title}</div>
             <div className="status-tags">

@@ -89,7 +89,7 @@ const handleFilterSelect = (value) => {
                 label={value}
                 onDelete={() => handleFilterRemove(filterType, value)}
                 deleteIcon={<CloseIcon fontSize="small" sx={{fill:'#F37021'}}/>}
-                className="selected-filter-chip" sx={{color:'#F37021', borderColor:'#F37021'}}
+                className="selected-filter-chip" sx={{color:'#F37021', borderColor:'#F37021',marginRight:'10px'}}
               />
             ))
           )}

@@ -59,8 +59,8 @@ const ListItem = ({ item, onClick,hideTags }) => {
 
 
 // ListView Component
-const ListView = ({ items, onItemClick,hideTags, activeView, setActiveView }) => {
-
+const ListView = ({ items, onItemClick,hideTags, activeView, setActiveView,selectedFilters }) => {
+ 
     return(
       <Box className="list-container">
       <div className={`views-wrapper ${activeView === 'gap' ? 'slide-gap' : 'slide-actionable'}`}>
@@ -73,7 +73,7 @@ const ListView = ({ items, onItemClick,hideTags, activeView, setActiveView }) =>
         </div>
         <div className="view">
           <div className="scrollable-content">
-           <ActionableView />
+           <ActionableView items={items} selectedFilters={selectedFilters}/>
           </div>
         </div>
       </div>

@@ -49,7 +49,8 @@ const PlaybookContent = ({ items, selectedFilters, activeView, setActiveView, vi
          onItemClick={handleItemClick} 
          hideTags={areFiltersSelected} 
           activeView={activeView}
-        setActiveView={setActiveView}/>
+        setActiveView={setActiveView}
+        selectedFilters={selectedFilters} />
       ) : (
         <GapView selectedItem={selectedItem} onBack={handleBack} />
       )}
