@@ -62,7 +62,7 @@ const ActionDetailView = ({ section, onBack, item, actionable }) => {
         </button>
 
 
-        <div style={{ backgroundColor: 'white', width: '350px' }}>
+        <div className='tab-bg'>
           <div className="tab-container">
             <div style={{ display: 'flex', justifyContent: 'space-between' }} className="tab-action-switcher">
               {section.actionable.map((actionableItem, index) => (

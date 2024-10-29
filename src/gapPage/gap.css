@@ -83,7 +83,7 @@
   
   .section-card {
     background: white;
-    border-bottom: 2px solid #E5E5E5;
+    border-bottom: 1px solid #E5E5E5;
     cursor: pointer;
     transition: box-shadow 0.2s ease;
   }
@@ -105,9 +105,14 @@
   }
   
   .section-content {
-    font-size: 16px;
     color: #242056;
-    font-weight: 400;
+font-family: Poppins;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+letter-spacing: -0.3px;
+margin: 24px 0;
   }
   .chevron-right {
     color: #242056;

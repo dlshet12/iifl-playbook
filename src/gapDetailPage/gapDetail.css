@@ -11,7 +11,11 @@
     background-color: white;
     padding: 0;
 padding: 16px 24px 0px 24px;
-width: 340px;
+width: 100vw;
+margin: 0; /* Remove any margin */
+box-sizing: border-box; /* Ensure padding is included within the width */
+left: 0;
+right: 0;
 }
 
 .back-button-gap {
@@ -28,7 +32,7 @@ width: 340px;
 }
 
 .header_content{
-  padding: 0 32px;
+  padding: 0 0 0 32px;
 }
 .back-gap-title{
   text-align: left;
@@ -48,7 +52,7 @@ letter-spacing: -0.3px;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  margin-top: 260px;
+  margin-top: 240px;
 }
 
 .detail-section {

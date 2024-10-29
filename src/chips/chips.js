@@ -77,8 +77,7 @@ const handleFilterSelect = (value) => {
           className="search-chip">
          <img className='icon' src={search_icon} alt='search'/>
           </div>
-        
-      </Box>
+        </Box>
 
       {/* Selected filter chips */}
       {areFiltersSelected && (
@@ -90,7 +89,7 @@ const handleFilterSelect = (value) => {
                 label={value}
                 onDelete={() => handleFilterRemove(filterType, value)}
                 deleteIcon={<CloseIcon fontSize="small" sx={{fill:'#F37021'}}/>}
-                className="selected-filter-chip" sx={{color:'#F37021', borderColor:'#F37021',marginRight:'10px',height:'29px', fontFamily:'Poppins',fontSize:'14px'}}
+                className="selected-filter-chip" sx={{color:'#F37021', borderColor:'#F37021',marginRight:'10px',marginBottom:'10px',height:'29px', fontFamily:'Poppins',fontSize:'14px'}}
               />
             ))
           )}

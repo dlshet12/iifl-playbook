@@ -11,7 +11,6 @@
 }
 .tab-container {
     margin: 8px 0;
- min-width: 100%;
   }
   .status{
     margin-top: 8px;
@@ -76,7 +75,11 @@ font-weight: 700;
     font-family:Poppins;
   
   }
-  
+  .tab-bg{
+   min-width:  354px;
+   background-color: white;
+   
+  }
   .tab-button:last-child {
     margin-right: 0;
   }
@@ -100,5 +103,20 @@ font-weight: 700;
       z-index: 1000;
       background-color: white;
   padding: 16px 24px ;
-
+  width: 100vw;
+  margin: 0; 
+  box-sizing: border-box; 
+  left: 0;
+  right: 0;
   }
+  /* For smaller screens, reduce padding and font size to make chips more compact */
+@media (max-width: 600px) {
+  .tab-button {
+      padding: 6px 12px; /* Reduced padding */
+      font-size: 14px; /* Smaller font size */
+  }
+  .tab-bg {
+    width: 100%; /* Reduce width to fit within parent padding */
+    min-width: 330px; /* Optional max width for even smaller devices */
+}
+}
