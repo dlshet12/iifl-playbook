@@ -11,6 +11,7 @@
    right: 0;
    z-index: 1000;
    background-color: rgb(255, 255, 255);
+   overflow: hidden;
 }
 .selected-filters-container{
     position: fixed;
@@ -35,6 +36,8 @@ border: 1px solid #E2E2E2;
 background-color: white;
 color: #242056;
 font-size: 14px;
+white-space: nowrap;
+flex-shrink: 1;
 }
 .search-chip{
     display: flex;
@@ -48,4 +51,11 @@ font-size: 14px;
 .icon{
     height: 20px;
     width: 20px;
+}
+/* For smaller screens, reduce padding and font size to make chips more compact */
+@media (max-width: 600px) {
+    .filter-chip {
+        padding: 6px 12px; /* Reduced padding */
+        font-size: 14px; /* Smaller font size */
+    }
 }

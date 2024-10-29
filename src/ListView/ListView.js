@@ -53,10 +53,8 @@ const ListItem = ({ item, onClick,hideTags, hideCategory }) => {
         ))}
       </Box>
       )}
-
     </div>
     )
-
   }
 
 
