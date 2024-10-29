@@ -21,9 +21,8 @@
     right: 0;
     z-index: 1000;
     background-color: rgb(255, 255, 255);
-    border-top: 1px solid #EEE;
     border-bottom: 1px solid #EEE;
-  padding: 16px 20px;
+  padding: 16px;
 }
 .filter-chip{
     display: flex;
@@ -43,7 +42,7 @@ flex-shrink: 1;
 .search-chip{
     display: flex;
     align-items: center;
-    padding: 8px;
+    padding: 9px;
     /* padding: 8px; */
     border-radius: 18.5px;
     border: 1px solid #CCC;
@@ -70,7 +69,7 @@ flex-shrink: 1;
     }
     .filter-chip {
         padding: 5px 11px; 
-        font-size: 12px; /* Smaller font size */
+        font-size: 13px; /* Smaller font size */
     }
     .icon{
         height: 18px;
