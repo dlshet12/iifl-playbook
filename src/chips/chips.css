@@ -56,6 +56,6 @@ flex-shrink: 1;
 @media (max-width: 385px) {
     .filter-chip {
         padding: 6px 12px; /* Reduced padding */
-        font-size: 14px; /* Smaller font size */
+        font-size: 12px; /* Smaller font size */
     }
 }
