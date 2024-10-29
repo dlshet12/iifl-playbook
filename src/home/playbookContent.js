@@ -84,6 +84,7 @@ const PlaybookContents = () => {
             { 
               days: 45,
               color: 'green',
+              status:'Complete',
               details: {
                 cxSolution: "Provide personalized, mobile-friendly content, including short videos, infographics, and FAQs, tailored to users' browsing history, preferences, and transaction patterns to clearly explain financial products and service",
                 actionableSteps: [
@@ -102,6 +103,7 @@ const PlaybookContents = () => {
             { 
               days: 90,
               color: 'red',
+              status:'Delay',
               details: {
                 cxSolution: "Launch interactive educational content hub",
                 actionableSteps: [
@@ -120,6 +122,7 @@ const PlaybookContents = () => {
             { 
               days: 180,
               color: 'blue',
+              status:'In progress',
               details: {
                 cxSolution: "Roll out AI-powered content personalization",
                 actionableSteps: [
@@ -144,6 +147,7 @@ const PlaybookContents = () => {
             {
               days: 15,
               color: 'yellow',
+              status:'Complete',
               details: {
                 cxSolution: "Launch targeted social media campaign",
                 actionableSteps: [
@@ -162,6 +166,7 @@ const PlaybookContents = () => {
             { 
               days: 90,
               color: 'red',
+              status:'delay',
               details: {
                 cxSolution: "Launch interactive educational content hub",
                 actionableSteps: [
@@ -180,6 +185,7 @@ const PlaybookContents = () => {
             { 
               days: 180,
               color: 'blue',
+              status:'In progress',
               details: {
                 cxSolution: "Roll out AI-powered content personalization",
                 actionableSteps: [
@@ -204,6 +210,7 @@ const PlaybookContents = () => {
             { 
               days: 45,
               color: 'green',
+              status:'Complete',
               details: {
                 cxSolution: "Implement personalized content recommendation engine",
                 actionableSteps: [
@@ -222,6 +229,7 @@ const PlaybookContents = () => {
             { 
               days: 90,
               color: 'red',
+              status:'Delay',
               details: {
                 cxSolution: "Launch interactive educational content hub",
                 actionableSteps: [
@@ -240,6 +248,7 @@ const PlaybookContents = () => {
             { 
               days: 180,
               color: 'blue',
+              status:'In progress',
               details: {
                 cxSolution: "Roll out AI-powered content personalization",
                 actionableSteps: [
@@ -278,6 +287,7 @@ const PlaybookContents = () => {
             { 
               days: 45,
               color: 'green',
+              status:'complete',
               details: {
                 cxSolution: "Implement personalized content recommendation engine",
                 actionableSteps: [
@@ -296,6 +306,7 @@ const PlaybookContents = () => {
             { 
               days: 90,
               color: 'red',
+              status:'Delay',
               details: {
                 cxSolution: "Launch interactive educational content hub",
                 actionableSteps: [
@@ -314,6 +325,7 @@ const PlaybookContents = () => {
             { 
               days: 180,
               color: 'blue',
+              status:'In progress',
               details: {
                 cxSolution: "Roll out AI-powered content personalization",
                 actionableSteps: [
@@ -338,6 +350,7 @@ const PlaybookContents = () => {
             { 
               days: 45,
               color: 'green',
+              status:'complete',
               details: {
                 cxSolution: "Implement personalized content recommendation engine",
                 actionableSteps: [
@@ -356,6 +369,7 @@ const PlaybookContents = () => {
             { 
               days: 90,
               color: 'red',
+              status:'Delay',
               details: {
                 cxSolution: "Launch interactive educational content hub",
                 actionableSteps: [
@@ -374,6 +388,7 @@ const PlaybookContents = () => {
             { 
               days: 180,
               color: 'blue',
+              status:'In progress',
               details: {
                 cxSolution: "Roll out AI-powered content personalization",
                 actionableSteps: [
@@ -413,6 +428,7 @@ const PlaybookContents = () => {
             { 
               days: 45,
               color: 'green',
+              status:'complete',
               details: {
                 cxSolution: "Implement personalized content recommendation engine",
                 actionableSteps: [
@@ -431,6 +447,7 @@ const PlaybookContents = () => {
             { 
               days: 90,
               color: 'red',
+              status:'Delay',
               details: {
                 cxSolution: "Launch interactive educational content hub",
                 actionableSteps: [
@@ -449,6 +466,7 @@ const PlaybookContents = () => {
             { 
               days: 180,
               color: 'blue',
+              status:'In progress',
               details: {
                 cxSolution: "Roll out AI-powered content personalization",
                 actionableSteps: [
@@ -473,6 +491,7 @@ const PlaybookContents = () => {
             { 
               days: 45,
               color: 'green',
+              status:'complete',
               details: {
                 cxSolution: "Implement personalized content recommendation engine",
                 actionableSteps: [
@@ -491,6 +510,7 @@ const PlaybookContents = () => {
             { 
               days: 90,
               color: 'red',
+              status:'Delay',
               details: {
                 cxSolution: "Launch interactive educational content hub",
                 actionableSteps: [
@@ -509,6 +529,7 @@ const PlaybookContents = () => {
             { 
               days: 180,
               color: 'blue',
+              status:'In progress',
               details: {
                 cxSolution: "Roll out AI-powered content personalization",
                 actionableSteps: [
@@ -548,6 +569,7 @@ const PlaybookContents = () => {
             { 
               days: 45,
               color: 'green',
+              status:'complete',
               details: {
                 cxSolution: "Implement personalized content recommendation engine",
                 actionableSteps: [
@@ -566,6 +588,7 @@ const PlaybookContents = () => {
             { 
               days: 90,
               color: 'red',
+              status:'Delay',
               details: {
                 cxSolution: "Launch interactive educational content hub",
                 actionableSteps: [
@@ -584,6 +607,7 @@ const PlaybookContents = () => {
             { 
               days: 180,
               color: 'blue',
+              status:'In progress',
               details: {
                 cxSolution: "Roll out AI-powered content personalization",
                 actionableSteps: [
@@ -608,6 +632,7 @@ const PlaybookContents = () => {
             { 
               days: 45,
               color: 'green',
+              status:'complete',
               details: {
                 cxSolution: "Implement personalized content recommendation engine",
                 actionableSteps: [
@@ -626,6 +651,7 @@ const PlaybookContents = () => {
             { 
               days: 90,
               color: 'red',
+              status:'Delay',
               details: {
                 cxSolution: "Launch interactive educational content hub",
                 actionableSteps: [
@@ -644,6 +670,7 @@ const PlaybookContents = () => {
             { 
               days: 180,
               color: 'blue',
+              status:'In progress',
               details: {
                 cxSolution: "Roll out AI-powered content personalization",
                 actionableSteps: [
@@ -682,6 +709,7 @@ const PlaybookContents = () => {
             { 
               days: 45,
               color: 'green',
+              status:'complete',
               details: {
                 cxSolution: "Implement personalized content recommendation engine",
                 actionableSteps: [
@@ -700,6 +728,7 @@ const PlaybookContents = () => {
             { 
               days: 90,
               color: 'red',
+              status:'Delay',
               details: {
                 cxSolution: "Launch interactive educational content hub",
                 actionableSteps: [
@@ -718,6 +747,7 @@ const PlaybookContents = () => {
             { 
               days: 180,
               color: 'blue',
+              status:'In progress',
               details: {
                 cxSolution: "Roll out AI-powered content personalization",
                 actionableSteps: [
@@ -742,6 +772,7 @@ const PlaybookContents = () => {
             { 
               days: 45,
               color: 'green',
+              status:'complete',
               details: {
                 cxSolution: "Implement personalized content recommendation engine",
                 actionableSteps: [
@@ -760,6 +791,7 @@ const PlaybookContents = () => {
             { 
               days: 90,
               color: 'red',
+              status:'Delay',
               details: {
                 cxSolution: "Launch interactive educational content hub",
                 actionableSteps: [
@@ -778,6 +810,7 @@ const PlaybookContents = () => {
             { 
               days: 180,
               color: 'blue',
+              status:'In progress',
               details: {
                 cxSolution: "Roll out AI-powered content personalization",
                 actionableSteps: [
@@ -816,6 +849,7 @@ const PlaybookContents = () => {
             { 
               days: 45,
               color: 'green',
+              status:'complete',
               details: {
                 cxSolution: "Implement personalized content recommendation engine",
                 actionableSteps: [
@@ -834,6 +868,7 @@ const PlaybookContents = () => {
             { 
               days: 90,
               color: 'red',
+              status:'complete',
               details: {
                 cxSolution: "Launch interactive educational content hub",
                 actionableSteps: [
@@ -852,6 +887,7 @@ const PlaybookContents = () => {
             { 
               days: 180,
               color: 'blue',
+              status:'In progress',
               details: {
                 cxSolution: "Roll out AI-powered content personalization",
                 actionableSteps: [
@@ -876,6 +912,7 @@ const PlaybookContents = () => {
             { 
               days: 45,
               color: 'green',
+              status:'complete',
               details: {
                 cxSolution: "Implement personalized content recommendation engine",
                 actionableSteps: [
@@ -894,6 +931,7 @@ const PlaybookContents = () => {
             { 
               days: 90,
               color: 'red',
+              status:'Delay',
               details: {
                 cxSolution: "Launch interactive educational content hub",
                 actionableSteps: [
@@ -912,6 +950,7 @@ const PlaybookContents = () => {
             { 
               days: 180,
               color: 'blue',
+              status:'In progress',
               details: {
                 cxSolution: "Roll out AI-powered content personalization",
                 actionableSteps: [
@@ -950,6 +989,7 @@ const PlaybookContents = () => {
             { 
               days: 45,
               color: 'green',
+              status:'complete',
               details: {
                 cxSolution: "Implement personalized content recommendation engine",
                 actionableSteps: [
@@ -968,6 +1008,7 @@ const PlaybookContents = () => {
             { 
               days: 90,
               color: 'red',
+              status:'Delay',
               details: {
                 cxSolution: "Launch interactive educational content hub",
                 actionableSteps: [
@@ -986,6 +1027,7 @@ const PlaybookContents = () => {
             { 
               days: 180,
               color: 'blue',
+              status:'In progress',
               details: {
                 cxSolution: "Roll out AI-powered content personalization",
                 actionableSteps: [

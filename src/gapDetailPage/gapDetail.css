@@ -11,12 +11,13 @@
     background-color: white;
     padding: 0;
 padding: 16px 24px 0px 24px;
+width: 380px;
 }
 
 .back-button-gap {
   display: flex;
   align-items: start;
-  align-items: center;
+  /* align-items: center; */
   color: #333;
   cursor: pointer;
   font-size: 16px;
@@ -150,10 +151,7 @@ letter-spacing: -0.3px;
   padding-top: 30px;
 }
 
-
-
 .detail-section-actionable {
-
   padding: 0 24px;
 }
 
