@@ -39,6 +39,18 @@ const ActionDetailView = ({ section, onBack, item, actionable }) => {
       opacity: 0
     })
   };
+  const getStatusColor = (status) => {
+    switch (status) {
+      case 'Complete':
+        return '#BCFFBC';
+      case 'Delay':
+        return '#FEADAF';
+      case 'In progress':
+        return '#BCE3FF';
+      default:
+        return 'grey';
+    }
+  };
 
   return (
     <div className="action-detail-container">
@@ -89,6 +101,8 @@ const ActionDetailView = ({ section, onBack, item, actionable }) => {
           </div>
           <div className="detail-body">
             <p>{activeActionable.details.cxSolution}</p>
+
+            <div className='status' style={{ backgroundColor: getStatusColor(activeActionable.status)}}>Status: <span style={{fontWeight:'500'}}>{activeActionable.status}</span> </div>
           </div>
         </div>
 

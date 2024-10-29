@@ -12,7 +12,21 @@
 .tab-container {
     margin: 8px 0;
  min-width: 100%;
- 
+  }
+  .status{
+    margin-top: 8px;
+padding: 4px 16px;
+width: max-content;
+gap: 8px;
+border-radius: 16px;
+background: #BCFFBC;
+color: #242056;
+text-align: center;
+font-family: Poppins;
+font-size: 12px;
+font-style: normal;
+font-weight: 700;
+
   }
   .detail-section-actionable-detail{
     padding: 0 8px;
