@@ -69,4 +69,15 @@ flex-shrink: 1;
         height: 18px;
         width: 18px;
     }
+    
+}
+@media (max-width: 345px) {
+    .filter-chip {
+        padding: 5px 11px; 
+        font-size: 11px; /* Smaller font size */
+    }
+    .icon{
+        height: 16px;
+        width: 16px;
+    }
 }
