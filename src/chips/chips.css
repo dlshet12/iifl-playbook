@@ -2,11 +2,12 @@
     padding: 16px;
     display: flex;
    gap: 8px;
+   border-top: 1px solid #EEE;
     border-bottom: 1px solid #EEE;
     color:  #242056;
    font-size: 14px;
    position: fixed;
-   top: 60px;
+   top: 52px;
    left: 0;
    right: 0;
    z-index: 1000;
