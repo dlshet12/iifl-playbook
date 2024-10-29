@@ -1,7 +1,8 @@
 .filter-chips-container{
     padding: 16px;
     display: flex;
-   gap: 8px;
+   /* gap: 8px; */
+   justify-content: space-between;
    border-top: 1px solid #EEE;
     border-bottom: 1px solid #EEE;
     color:  #242056;
@@ -22,7 +23,7 @@
     z-index: 1000;
     background-color: rgb(255, 255, 255);
     border-bottom: 1px solid #EEE;
-  padding: 16px;
+  padding: 16px 20px;
 }
 .filter-chip{
     display: flex;
@@ -42,7 +43,7 @@ flex-shrink: 1;
 .search-chip{
     display: flex;
     align-items: center;
-    padding: 9px;
+    padding: 8px;
     /* padding: 8px; */
     border-radius: 18.5px;
     border: 1px solid #CCC;
@@ -64,12 +65,13 @@ flex-shrink: 1;
 /* For smaller screens, reduce padding and font size to make chips more compact */
 @media (max-width: 355px) {
     .filter-chips-container{
-        gap: 0;
-        justify-content: space-between;
+        /* gap: 0;
+        justify-content: space-between; */
+    
     }
     .filter-chip {
         padding: 5px 11px; 
-        font-size: 13px; /* Smaller font size */
+        font-size: 12px; /* Smaller font size */
     }
     .icon{
         height: 18px;
@@ -80,7 +82,7 @@ flex-shrink: 1;
 @media (max-width: 345px) {
     .filter-chip {
         padding: 5px 11px; 
-        font-size: 11px; /* Smaller font size */
+        font-size: 13px; /* Smaller font size */
     }
     .icon{
         height: 16px;
