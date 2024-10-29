@@ -53,7 +53,7 @@ flex-shrink: 1;
     width: 20px;
 }
 /* For smaller screens, reduce padding and font size to make chips more compact */
-@media (max-width: 600px) {
+@media (max-width: 385px) {
     .filter-chip {
         padding: 6px 12px; /* Reduced padding */
         font-size: 14px; /* Smaller font size */
