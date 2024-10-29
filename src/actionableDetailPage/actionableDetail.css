@@ -120,3 +120,8 @@ font-weight: 700;
     min-width: 330px; /* Optional max width for even smaller devices */
 }
 }
+@media (max-width: 355px) {
+  .tab-bg{
+    min-width: 300px;
+}
+}
