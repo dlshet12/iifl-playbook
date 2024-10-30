@@ -9,7 +9,7 @@ import './chips.css'
 // Define filter options
 const filterOptions = {
     persona: ['New', 'Existing', 'Offline', 'Agent'],
-    stage: ['EXPLORATION', 'CONSIDERATION', 'DECISION', 'POST-PURCHASE'],
+    stage: ['Exploration', 'Consideration', 'Decision', 'Post-purchase'],
     dbt: ['CX', 'UX', 'Media', 'Creative', 'SEO'],
     actionable: ['All', '45 Days', '90 Days', '160 Days']
   };
@@ -22,6 +22,9 @@ const FilterChips = ({ selectedFilters, setSelectedFilters, activeView  }) => {
   const areFiltersSelected = Object.values(selectedFilters).some(
     (filterValues) => filterValues.length > 0
   );
+
+  // Update filterOptions to title case when rendering
+const titleCase = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 
   // State for managing menu
   const [anchorEl, setAnchorEl] = useState(null);
@@ -40,11 +43,11 @@ const FilterChips = ({ selectedFilters, setSelectedFilters, activeView  }) => {
     setActiveFilter(null);
   };
 
-// Handle selecting a filter option
+// Update handleFilterSelect to keep the value in uppercase for filtering purposes
 const handleFilterSelect = (value) => {
   setSelectedFilters(prev => ({
     ...prev,
-    [activeFilter]: [...(prev[activeFilter] || []), value] // Initialize with empty array if undefined
+    [activeFilter]: [...(prev[activeFilter] || []), value.toUpperCase()] // Store in uppercase
   }));
   handleClose();
 };
@@ -109,7 +112,7 @@ const handleFilterSelect = (value) => {
             onClick={() => handleFilterSelect(option)}
             className="filter-menu-item"
           >
-            {option}
+         {titleCase(option)}
           </MenuItem>
         ))}
       </Menu>

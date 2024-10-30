@@ -6,7 +6,7 @@
     right: 0;
     background-color: #F5DEB3;
     /* Wheat color background */
-    padding: 12px 10px;
+    padding: 12px 20px;
     display: flex;
     justify-content: space-between;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
@@ -15,7 +15,7 @@
 
 .view-button {
     position: relative;
-    padding: 12px 24px;
+    /* padding: 12px 24px; */
     border: none;
     background: none;
     font-size: 14px;
