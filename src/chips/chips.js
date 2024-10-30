@@ -23,8 +23,10 @@ const FilterChips = ({ selectedFilters, setSelectedFilters, activeView  }) => {
     (filterValues) => filterValues.length > 0
   );
 
-  // Update filterOptions to title case when rendering
+    // Update filterOptions to title case when rendering
 const titleCase = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+
+
 
   // State for managing menu
   const [anchorEl, setAnchorEl] = useState(null);
@@ -66,10 +68,9 @@ const titleCase = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCas
           <button
           key={filterType}
           className={`filter-chip ${activeFilter === filterType ? 'active' : ''}} ${selectedFilters[filterType] && selectedFilters[filterType].length > 0 ? 'selected' : ''}`}
-          
           onClick={(e) => handleClick(e, filterType)}
         >
-          {filterType.charAt(0).toUpperCase() + filterType.slice(1)}
+            {filterType === 'dbt' ? 'DBT' : filterType.charAt(0).toUpperCase() + filterType.slice(1)}
           <svg className="chevron chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor">
   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
 </svg>
