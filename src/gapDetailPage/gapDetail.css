@@ -261,3 +261,9 @@ border: 1px solid #CBCBCB;
   color: #656565;
   
 }
+@media (min-width: 360px){
+  .detail-content{
+    margin-top: 245px;
+  }
+
+}
