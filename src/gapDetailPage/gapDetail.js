@@ -123,7 +123,9 @@ const DetailView = ({ section, onBack, item , activeTab: initialActiveTab }) => 
       </div>
       <div className="detail-body">
         {activeSection.actionable.map((item, index) => (
-          <div key={index} className="actionable-item" onClick={() => setSelectedActionable(item)}>
+          <div key={index} className="actionable-item" onClick={() => setSelectedActionable(item)}     style={{
+            borderTop: index > 0 ? 'none' : '1px solid #CBCBCB'  // Apply top border only for the first item
+          }}>
             <div className="day-indicator">
               <div className={`day-dot ${item.color}`}></div>
               <span className="day-text">{item.days} Days</span>
