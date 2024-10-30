@@ -82,7 +82,7 @@ line-height: normal;
      height: 100vh;
      display: flex;
      flex-direction: column;
-     /* overflow: hidden; */
+     overflow: hidden;
      width: 100%;
      max-width: 100vw;
  }
