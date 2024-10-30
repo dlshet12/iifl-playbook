@@ -44,15 +44,15 @@ letter-spacing: -0.3px;
 }
 
 .chevron {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
 }
 
 .detail-content {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  margin-top: 250px;
+  margin-top: 235px;
 }
 
 .detail-section {
@@ -78,9 +78,6 @@ letter-spacing: -0.3px;
   color: #333;
 }
 
-.detail-body {
-
-}
 
 .actionable-item,
 .kpi-item {
@@ -90,12 +87,6 @@ letter-spacing: -0.3px;
 
 .bullet {
   color: #666;
-}
-
-.gap-title {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 16px;
 }
 
 .personas-container {
@@ -110,21 +101,10 @@ letter-spacing: -0.3px;
   font-size: 14px;
 }
 
-.sections-container {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
+
 
 .section-card:hover {
   background: #f8f8f8;
-}
-
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
 }
 
 .section-type {
@@ -174,8 +154,11 @@ letter-spacing: -0.3px;
   display: flex;
   flex-direction: column;
   color: #242056;
-font-size: 16px;
-font-weight: 400;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.3px;
 }
 
 .actionable-item {
@@ -206,15 +189,15 @@ font-weight: 400;
 }
 
 .day-dot.green {
-  background: #10b981;
+  background: #BCFFBC;
 }
 
 .day-dot.red {
-  background: #ef4444;
+  background: #FEADAF;
 }
 
 .day-dot.blue {
-  background: #3b82f6;
+  background: #BCE3FF;
 }
 
 .day-text {
@@ -251,9 +234,9 @@ border: 1px solid #CBCBCB;
 
 .tab-button-gap {
   flex: 0 0 auto;
-  padding: 8px 16px;
   border: none;
   background: none;
+  padding: 4px 20px;
   border-radius: 50px;
   font-size: 14px;
   font-weight: 500;
@@ -275,5 +258,6 @@ border: 1px solid #CBCBCB;
 
 .tab-button-gap.active {
   background-color: #FEDCAD;
-  color: #333;
+  color: #656565;
+  
 }

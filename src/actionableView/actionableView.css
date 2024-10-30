@@ -10,12 +10,7 @@
     padding: 16px 24px 16px 24px;
 }
 
-.gap-title {
-    color: #242056;
-    font-size: 18px;
-    font-weight: 500;
-    margin-bottom: 12px;
-}
+
 
 .status-tags {
     display: flex;

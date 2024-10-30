@@ -30,7 +30,7 @@ const PlaybookContent = ({ items, selectedFilters, activeView, setActiveView, vi
     return items.filter(item => {
       // Check if the item matches the selected personas, stage, and DBT filters
       const personaMatch = selectedFilters.persona.length === 0 || selectedFilters.persona.some(persona => item.personas.includes(persona));
-      const stageMatch = selectedFilters.stage.length === 0 || selectedFilters.stage.includes(item.category);
+      const stageMatch = selectedFilters.stage.length === 0 || selectedFilters.stage.some(stage => stage.toLowerCase() === item.category.toLowerCase());
       const dbtMatch = selectedFilters.dbt.length === 0 || selectedFilters.dbt.some(tag => item.tags.includes(tag));
 
       return personaMatch && stageMatch && dbtMatch;

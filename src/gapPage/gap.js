@@ -57,7 +57,7 @@ const GapView = ({ selectedItem, onBack }) => {
       <div className='nav-back'>
         <button className="back-button" onClick={onBack}>
            <img src={back} alt='back' />
-         <div>Gap</div> 
+         <div className='nav-back-title'>Gap</div> 
         </button>
       </div>
 
@@ -81,7 +81,7 @@ const GapView = ({ selectedItem, onBack }) => {
       </div>
       <Box className="tags-container">
         {sortedTags.map((tag, index) => (
-          <Chip key={index} label={tag} className='chip_tag' sx={{backgroundColor: getChipColor(tag), fontSize:'12px',fontWeight:'500', color:'#656565', padding:'4px 7px'}} />
+          <Chip key={index} label={tag} className='chip_tag' sx={{backgroundColor: getChipColor(tag), fontSize:'12px',fontWeight:'500', color:'#656565', padding:'4px 7px', fontFamily:'Poppins'}} />
         ))}
       </Box>
       </div>
@@ -95,7 +95,7 @@ const GapView = ({ selectedItem, onBack }) => {
               <div className="section-header">
 
               <Chip  label={section.type} className='chip_tag' 
-              sx={{backgroundColor: getChipColor(section.type), fontSize:'12px',fontWeight:'500', color:'#656565', padding:'4px 7px'}} />
+              sx={{backgroundColor: getChipColor(section.type), fontSize:'12px',fontWeight:'500', color:'#656565', padding:'4px 7px', fontFamily:'Poppins' }} />
 
                 {/* <span className="section-type">{section.type}</span> */}
                 <svg className="chevron chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor">

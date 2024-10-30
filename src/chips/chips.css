@@ -3,12 +3,13 @@
     display: flex;
    /* gap: 8px; */
    justify-content: space-between;
-   border-top: 1px solid #EEE;
-    border-bottom: 1px solid #EEE;
+ /* Upward box-shadow */
+ box-shadow: 0px -1px 2px 0px rgba(33, 33, 33, 0.06), 0px -1px 3px 0px rgba(33, 33, 33, 0.10);
+ border-bottom: 1px solid #EEE;
     color:  #242056;
    font-size: 14px;
    position: fixed;
-   top: 52px;
+   top: 53px;
    left: 0;
    right: 0;
    z-index: 1000;
@@ -37,6 +38,7 @@ border: 1px solid #E2E2E2;
 background-color: white;
 color: #242056;
 font-size: 14px;
+font-weight: 500;
 white-space: nowrap;
 flex-shrink: 1;
 }
@@ -49,9 +51,14 @@ flex-shrink: 1;
     border: 1px solid #CCC;
 
 }
+.filter-chip.selected {
+    background-color: #FEEBD2; 
+    border-color: #F37021; 
+    color: #F37021; 
+}
 .icon{
-    height: 20px;
-    width: 20px;
+    height: 16px;
+    width: 16px;
 }
 /* For smaller screens, reduce padding and font size to make chips more compact */
 @media (max-width: 390px) {
@@ -72,10 +79,6 @@ flex-shrink: 1;
     .filter-chip {
         padding: 5px 11px; 
         font-size: 12px; /* Smaller font size */
-    }
-    .icon{
-        height: 18px;
-        width: 18px;
     }
     
 }

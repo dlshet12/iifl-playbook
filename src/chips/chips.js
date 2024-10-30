@@ -43,15 +43,13 @@ const titleCase = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCas
     setActiveFilter(null);
   };
 
-// Update handleFilterSelect to keep the value in uppercase for filtering purposes
-const handleFilterSelect = (value) => {
-  setSelectedFilters(prev => ({
-    ...prev,
-    [activeFilter]: [...(prev[activeFilter] || []), value.toUpperCase()] // Store in uppercase
-  }));
-  handleClose();
-};
-
+  const handleFilterSelect = (value) => {
+    setSelectedFilters(prev => ({
+      ...prev,
+      [activeFilter]: [...(prev[activeFilter] || []), value] // Store as-is without converting to uppercase
+    }));
+    handleClose();
+  };
   // Handle removing a selected filter
   const handleFilterRemove = (filterType, value) => {
     setSelectedFilters(prev => ({
@@ -67,7 +65,8 @@ const handleFilterSelect = (value) => {
       {filtersToShow.map((filterType) => (
           <button
           key={filterType}
-          className={`filter-chip ${activeFilter === filterType ? 'active' : ''}`}
+          className={`filter-chip ${activeFilter === filterType ? 'active' : ''}} ${selectedFilters[filterType] && selectedFilters[filterType].length > 0 ? 'selected' : ''}`}
+          
           onClick={(e) => handleClick(e, filterType)}
         >
           {filterType.charAt(0).toUpperCase() + filterType.slice(1)}
@@ -91,8 +90,8 @@ const handleFilterSelect = (value) => {
                 key={`${filterType}-${value}`}
                 label={value}
                 onDelete={() => handleFilterRemove(filterType, value)}
-                deleteIcon={<CloseIcon fontSize="small" sx={{fill:'#F37021'}}/>}
-                className="selected-filter-chip" sx={{color:'#F37021', borderColor:'#F37021',marginRight:'10px',marginBottom:'10px',height:'29px', fontFamily:'Poppins',fontSize:'14px'}}
+                deleteIcon={<CloseIcon fontSize="small" sx={{fill:'#F37021',   transform: 'scale(0.7)', }}/>}
+                className="selected-filter-chip" sx={{color:'#F37021',border: '1px solid #E2E2E2',marginRight:'10px',marginBottom:'10px',height:'29px', fontFamily:'Poppins',fontSize:'14px'}}
               />
             ))
           )}
