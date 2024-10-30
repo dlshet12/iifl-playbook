@@ -63,7 +63,7 @@ const titleCase = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCas
   return (
     <>
       {/* Main filter chips */}
-      <Box className="filter-chips-container">
+      <Box className={`filter-chips-container ${activeView === 'gap' ? 'justify-space-between' : 'gap-only'}`}>
       {filtersToShow.map((filterType) => (
           <button
           key={filterType}
