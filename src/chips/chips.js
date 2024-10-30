@@ -111,6 +111,7 @@ const titleCase = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCas
             key={option}
             onClick={() => handleFilterSelect(option)}
             className="filter-menu-item"
+            sx={{ fontFamily: 'Poppins', fontSize: '14px', fontWeight: '500' }}
           >
          {titleCase(option)}
           </MenuItem>
