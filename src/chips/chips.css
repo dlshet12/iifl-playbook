@@ -18,13 +18,16 @@
 }
 .selected-filters-container{
     position: fixed;
-    top: 130px;
+    top: 124px;
     left: 0;
     right: 0;
     z-index: 1000;
     background-color: rgb(255, 255, 255);
     border-bottom: 1px solid #EEE;
   padding: 16px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 .filter-chip{
     display: flex;
@@ -45,11 +48,10 @@ flex-shrink: 1;
 .search-chip{
     display: flex;
     align-items: center;
-    padding: 8px;
-    /* padding: 8px; */
-    border-radius: 18.5px;
+    background-color: white;
+    border-radius: 50px;
     border: 1px solid #CCC;
-
+padding: 8px;
 }
 .filter-chip.selected {
     background-color: #FEEBD2; 
@@ -59,6 +61,11 @@ flex-shrink: 1;
 .icon{
     height: 16px;
     width: 16px;
+}
+.search-icon{
+    height: 20px;
+    width: 20px;
+  
 }
 /* For smaller screens, reduce padding and font size to make chips more compact */
 @media (max-width: 390px) {

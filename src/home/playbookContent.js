@@ -146,7 +146,7 @@ const PlaybookContents = () => {
           actionable: [
             {
               days: 15,
-              color: 'yellow',
+              color: 'green',
               status:'Complete',
               details: {
                 cxSolution: "Launch targeted social media campaign",

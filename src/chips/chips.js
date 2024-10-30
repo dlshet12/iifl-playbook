@@ -75,10 +75,10 @@ const titleCase = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCas
 </svg>
         </button>
         ))}
-        <div 
+        <button 
           className="search-chip">
-         <img className='icon' src={search_icon} alt='search'/>
-          </div>
+         <img className='search-icon' src={search_icon} alt='search'/>
+          </button>
         </Box>
 
       {/* Selected filter chips */}
@@ -91,7 +91,7 @@ const titleCase = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCas
                 label={value}
                 onDelete={() => handleFilterRemove(filterType, value)}
                 deleteIcon={<CloseIcon fontSize="small" sx={{fill:'#F37021',   transform: 'scale(0.7)', }}/>}
-                className="selected-filter-chip" sx={{color:'#F37021',border: '1px solid #E2E2E2',marginRight:'10px',marginBottom:'10px',height:'29px', fontFamily:'Poppins',fontSize:'14px'}}
+                className="selected-filter-chip" sx={{color:'#F37021',border: '1px solid #E2E2E2',height:'29px', fontFamily:'Poppins',fontSize:'14px'}}
               />
             ))
           )}
