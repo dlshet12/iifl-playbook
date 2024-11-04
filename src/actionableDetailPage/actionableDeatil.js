@@ -41,7 +41,7 @@ const ActionDetailView = ({ section, onBack, item, actionable }) => {
   };
   const getStatusColor = (status) => {
     switch (status) {
-      case 'Complete':
+      case 'Completed':
         return '#BCFFBC';
       case 'Delay':
         return '#FEADAF';
