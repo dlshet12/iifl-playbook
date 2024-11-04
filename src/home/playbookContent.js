@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, } from '@mui/material';
 import './playbookContent.css';
 import GapView from '../gapPage/gap';
 import ListView from '../ListView/ListView';
 import FilterChips from '../chips/chips';
+import axios from 'axios';
 
 // Main PlaybookContent Component
 const PlaybookContent = ({ items, selectedFilters, activeView, setActiveView, view, setView  }) => {
@@ -66,7 +67,7 @@ const PlaybookContent = ({ items, selectedFilters, activeView, setActiveView, vi
 
 const PlaybookContents = () => {
 
-  const itemsData = [
+  const itemData = [
     {
       category: "EXPLORATION",
       title: "Lack of relevant and easily consumable information.",
@@ -1054,6 +1055,7 @@ const PlaybookContents = () => {
 
   ];
 
+  const [itemsData, setItemsData] = useState([]); 
   // State to track selected filters
   const [selectedFilters, setSelectedFilters] = useState({
     persona: [],
@@ -1063,6 +1065,21 @@ const PlaybookContents = () => {
   });
   const [activeView, setActiveView] = useState('gap');
   const [view, setView] = useState('list');
+
+   // Fetch data from API
+   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://f1studioz.in/demo/iifl-playbook-wordpress/wp-json/gap/v1/list');
+        setItemsData(response.data); // Update itemsData with API response
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
          {/* Conditionally render FilterChips based on view */}
