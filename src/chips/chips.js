@@ -1,10 +1,9 @@
 import { Box, Chip ,Menu, MenuItem} from '@mui/material';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import search_icon from '../asset/search_icon.svg';
 import CloseIcon from '@mui/icons-material/Close';
-import arrow from '../asset/back_icon.svg';
 import { useState } from 'react';
 import './chips.css'
+
 
 // Define filter options
 const filterOptions = {

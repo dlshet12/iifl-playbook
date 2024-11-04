@@ -33,7 +33,11 @@ const PlaybookContent = ({ items, selectedFilters, activeView, setActiveView, vi
       const stageMatch = selectedFilters.stage.length === 0 || selectedFilters.stage.some(stage => stage.toLowerCase() === item.category.toLowerCase());
       const dbtMatch = selectedFilters.dbt.length === 0 || selectedFilters.dbt.some(tag => item.tags.includes(tag));
 
-      return personaMatch && stageMatch && dbtMatch;
+      const actionableMatch = selectedFilters.actionable.length === 0 || selectedFilters.actionable.some(actionableDays => 
+        item.statuses.some(status => status.days === parseInt(actionableDays))
+      );
+
+      return personaMatch && stageMatch && dbtMatch && actionableMatch;
     });
   };
 
@@ -1054,7 +1058,8 @@ const PlaybookContents = () => {
   const [selectedFilters, setSelectedFilters] = useState({
     persona: [],
     stage: [],
-    dbt: []
+    dbt: [],
+    actionable: [] 
   });
   const [activeView, setActiveView] = useState('gap');
   const [view, setView] = useState('list');

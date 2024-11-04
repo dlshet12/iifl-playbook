@@ -49,7 +49,7 @@ const ListItem = ({ item, onClick,hideTags, hideCategory }) => {
       {!hideTags && (
       <Box className="tags-container">
         {sortedTags.map((tag, index) => (
-          <Chip key={index} label={tag} className='chip_tag' sx={{backgroundColor: getChipColor(tag), fontSize:'12px',fontWeight:'500', color:'#656565', padding:'4px 7px',color: '#656565', fontFamily: 'Poppins'}} />
+          <Chip key={index} label={tag} className='chip_tag' sx={{backgroundColor: getChipColor(tag), fontSize:'12px',fontWeight:'500', color:'#656565', padding:'4px 7px',fontFamily: 'Poppins'}} />
         ))}
       </Box>
       )}

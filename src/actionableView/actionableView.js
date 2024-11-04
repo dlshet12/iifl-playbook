@@ -1,7 +1,5 @@
-import { useState } from 'react';
 import './actionableView.css';
-const ActionableView = ({ items,selectedFilters= { dbt: [] } }) => {
-  const [daysFilter, setDaysFilter] = useState('all');
+const ActionableView = ({ items,selectedFilters= { dbt: [], actionable: [] } }) => {
 
 
   // Filter items based on selected DBT categories and days
@@ -11,8 +9,7 @@ const ActionableView = ({ items,selectedFilters= { dbt: [] } }) => {
     statuses: item.statuses.filter(status => {
       const dbtMatch = selectedFilters.dbt.length === 0 || 
                       selectedFilters.dbt.includes(status.category);
-      const daysMatch = daysFilter === 'all' || 
-                       status.days === parseInt(daysFilter);
+                      const daysMatch = selectedFilters.actionable.length === 0 || selectedFilters.actionable.some(days => status.days === parseInt(days));
       return dbtMatch && daysMatch;
     })
   })).filter(item => item.statuses.length > 0);
