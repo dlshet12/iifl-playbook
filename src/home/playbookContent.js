@@ -5,6 +5,7 @@ import GapView from '../gapPage/gap';
 import ListView from '../ListView/ListView';
 import FilterChips from '../chips/chips';
 import axios from 'axios';
+import Search from '../search/search';
 
 // Main PlaybookContent Component
 const PlaybookContent = ({ items, selectedFilters, activeView, setActiveView, view, setView  }) => {
@@ -1065,6 +1066,7 @@ const PlaybookContents = () => {
   });
   const [activeView, setActiveView] = useState('gap');
   const [view, setView] = useState('list');
+  const [showSearch, setShowSearch] = useState(false); 
 
    // Fetch data from API
    useEffect(() => {
@@ -1083,17 +1085,23 @@ const PlaybookContents = () => {
   return (
     <>
          {/* Conditionally render FilterChips based on view */}
-      {view === 'list' && (
+      {view === 'list' && !showSearch  && (
         <FilterChips selectedFilters={selectedFilters}
-         setSelectedFilters={setSelectedFilters}  activeView={activeView} />
+         setSelectedFilters={setSelectedFilters}  activeView={activeView} onSearchClick={() => setShowSearch(true)}/>
       )}
       
-      {/* Pass selectedFilters to PlaybookContent */}
-      <PlaybookContent items={itemsData} 
-      selectedFilters={selectedFilters} 
-      activeView={activeView}
-       setActiveView={setActiveView}  view={view}
-        setView={setView}/>
+      {showSearch ? (
+        <Search onClose={() => setShowSearch(false)} />
+      ) : (
+        <PlaybookContent
+          items={itemsData}
+          selectedFilters={selectedFilters}
+          activeView={activeView}
+          setActiveView={setActiveView}
+          view={view}
+          setView={setView}
+        />
+      )}
     </>
   )
 }

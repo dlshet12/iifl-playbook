@@ -14,7 +14,7 @@ const filterOptions = {
   };
 
   
-const FilterChips = ({ selectedFilters, setSelectedFilters, activeView  }) => {
+const FilterChips = ({ selectedFilters, setSelectedFilters, activeView, onSearchClick  }) => {
 
  // Add logic to select filters based on the active view
  const filtersToShow = activeView === 'gap' ? ['persona', 'stage', 'dbt'] : ['actionable', 'dbt'];
@@ -82,7 +82,7 @@ const titleCase = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCas
         </button>
         ))}
         <button 
-          className="search-chip">
+          className="search-chip" onClick={onSearchClick}>
          <img className='search-icon' src={search_icon} alt='search'/>
           </button>
         </Box>

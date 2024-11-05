@@ -92,7 +92,7 @@ const ListView = ({ items, onItemClick,hideTags, activeView, setActiveView,selec
           className={`view-button ${activeView === 'actionable' ? 'active' : ''}`}
           onClick={() => setActiveView('actionable')}
         >
-          VIEW BY Progress
+          VIEW BY PROGRESS
         </button>
       </Box>
     </Box>
