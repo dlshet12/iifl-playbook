@@ -26,26 +26,11 @@ const DetailView = ({ section, onBack, item , activeTab: initialActiveTab }) => 
         section={section} 
         actionable={selectedActionable}
         onBack={() => setSelectedActionable(null)} 
+        activeTab={activeTab}
       />
     );
   }
 
-  const slideVariants = {
-    enter: (direction) => ({
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0
-    }),
-    center: {
-      zIndex: 1,
-      x: 0,
-      opacity: 1
-    },
-    exit: (direction) => ({
-      zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
-      opacity: 0
-    })
-  };
 
     return (
       <div className="gap-detail-container">
@@ -94,20 +79,6 @@ const DetailView = ({ section, onBack, item , activeTab: initialActiveTab }) => 
         </div>
         <div className="detail-content">
 
-        {/* <AnimatePresence initial={false} custom={direction} mode="wait">
-          <motion.div
-            key={activeTab}
-            custom={direction}
-            variants={slideVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{
-              x: { type: "spring", stiffness: 300, damping: 30 },
-              opacity: { duration: 0.2 }
-            }}
-          > */}
-
           <div className="detail-section-solution">
             <div className="detail-header">
               <span className="detail-tag">Solution</span>
@@ -119,7 +90,7 @@ const DetailView = ({ section, onBack, item , activeTab: initialActiveTab }) => 
   
           <div className="detail-section-actionable">
       <div className="detail-header">
-        <span className="detail-tag">ACTIONABLE'S</span>
+        <span className="detail-tag">PROGRESS</span>
       </div>
       <div className="detail-body">
         {activeSection.actionable.map((item, index) => (

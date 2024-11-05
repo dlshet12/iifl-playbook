@@ -2,43 +2,28 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './actionableDetail.css';
 import back from '../asset/back_icon.svg';
-const ActionDetailView = ({ section, onBack, item, actionable }) => {
+const ActionDetailView = ({ section, onBack, item, actionable, activeTab }) => {
 
-  const [activeTab, setActiveTab] = useState(actionable.days);
+  const [activeDay, setActiveDay] = useState(actionable.days);
   const [activeActionable, setActiveActionable] = useState(section.actionable[0]);
   const [direction, setDirection] = useState(0);
   // Update active actionable when tab changes
   useEffect(() => {
-    const selected = section.actionable.find(action => action.days === activeTab);
+    const selected = section.actionable.find(action => action.days === activeDay);
     if (selected) {
       setActiveActionable(selected);
     }
-  }, [activeTab, section.actionable]);
+  }, [activeDay, section.actionable]);
 
-  const activeSection = item.sections.find(s => s.type === activeTab) || section;
+  const activeSection = item.sections.find(s => s.type === activeDay) || section;
 
   const handleTabChange = (newTab) => {
-    const currentIndex = item.tags.indexOf(activeTab);
+    const currentIndex = item.tags.indexOf(activeDay);
     const newIndex = item.tags.indexOf(newTab);
     setDirection(newIndex > currentIndex ? 1 : -1);
-    setActiveTab(newTab);
+    setActiveDay(newTab);
   };
-  const slideVariants = {
-    enter: (direction) => ({
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0
-    }),
-    center: {
-      zIndex: 1,
-      x: 0,
-      opacity: 1
-    },
-    exit: (direction) => ({
-      zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
-      opacity: 0
-    })
-  };
+
   const getStatusColor = (status) => {
     switch (status) {
       case 'Completed':
@@ -58,7 +43,7 @@ const ActionDetailView = ({ section, onBack, item, actionable }) => {
 
         <button className="back-button-gap-detail" onClick={onBack}>
           <img src={back} alt='back' />
-          <div className='back-gap-title'>Actionable</div>
+          <div className='back-gap-title'>{`${activeTab} Progress`}</div>
         </button>
 
 
@@ -69,7 +54,7 @@ const ActionDetailView = ({ section, onBack, item, actionable }) => {
                 <button
                   key={index}
                   onClick={() => handleTabChange(actionableItem.days)}
-                  className={`tab-button ${activeTab === actionableItem.days ? 'active' : ''}`}
+                  className={`tab-button ${activeDay === actionableItem.days ? 'active' : ''}`}
                 >
                   {actionableItem.days} days
                 </button>
@@ -78,20 +63,6 @@ const ActionDetailView = ({ section, onBack, item, actionable }) => {
           </div>
         </div>
       </div>
-
-      {/* <AnimatePresence initial={false} custom={direction} mode="wait">
-          <motion.div
-            key={activeTab}
-            custom={direction}
-            variants={slideVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{
-              x: { type: "spring", stiffness: 300, damping: 30 },
-              opacity: { duration: 0.2 }
-            }}
-          > */}
 
 
       <div className="actionable-content">
