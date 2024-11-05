@@ -22,8 +22,14 @@ const FilterChips = ({ selectedFilters, setSelectedFilters, activeView  }) => {
     (filterValues) => filterValues.length > 0
   );
 
-    // Update filterOptions to title case when rendering
+      // Update filterOptions to title case when rendering
 const titleCase = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  // const titleCase = (str) => {
+  //   return str
+  //     .split(" ")
+  //     .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize each word
+  //     .join(" ");
+  // };
 
 
 

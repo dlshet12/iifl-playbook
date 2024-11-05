@@ -95,7 +95,7 @@ const ActionDetailView = ({ section, onBack, item, actionable }) => {
 
 
       <div className="actionable-content">
-        <div className="detail-section-solution">
+        <div className="detail-section-solution-actionable">
           <div className="detail-header">
             <span className="detail-tag">Cx Solution</span>
           </div>

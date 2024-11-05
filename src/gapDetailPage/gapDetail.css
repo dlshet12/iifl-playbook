@@ -64,7 +64,6 @@ letter-spacing: -0.3px;
 .detail-section-solution{
   background: #F5F1F1;
   padding: 16px 24px;
-  border-radius: 8px;
 }
 
 .detail-header {
@@ -213,6 +212,7 @@ letter-spacing: -0.3px;
 }
 .tab-switcher-container {
   padding:  0 0 10px 0;
+  width: max-content;
 }
 
 .tab-switcher {
