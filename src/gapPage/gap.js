@@ -39,7 +39,7 @@ const GapView = ({ selectedItem, onBack }) => {
       };
     
         // Sort tags to show impact tags first
-        const sortedTags = [...item.tags].sort((a, b) => {
+        const sortedTags =  [...new Set(item.tags)].sort((a, b) => {
           const aIsImpact = item.impact.includes(a);
           const bIsImpact = item.impact.includes(b);
           if (aIsImpact && !bIsImpact) return -1;

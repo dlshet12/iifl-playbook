@@ -64,10 +64,33 @@ letter-spacing: -0.3px;
 .detail-section-solution{
   background: #F5F1F1;
   padding: 16px 24px;
+  position: relative;
+}
+.accordion-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.chevron {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.chevron-up {
+  transform: rotate(180deg);
+}
+
+.chevron-down {
+  transform: rotate(0deg);
 }
 
 .detail-header {
  margin-bottom: 8px;
+ display: flex;
+ justify-content: space-between;
 }
 .detail-body p{
   margin: 0;

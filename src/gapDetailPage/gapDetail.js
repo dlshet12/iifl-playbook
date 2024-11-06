@@ -9,7 +9,15 @@ const DetailView = ({ section, onBack, item , activeTab: initialActiveTab }) => 
   const [prefix, personasText] = item.description.split('|');
   const [selectedActionable, setSelectedActionable] = useState(null);
   const [direction, setDirection] = useState(0);
-    // Find the active section based on the current tab
+
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleAccordion = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  const uniqueTags = Array.from(new Set(item.tags));
+
     const activeSection = item.sections.find(s => s.type === activeTab) || section;
 
     const handleTabChange = (newTab) => {
@@ -31,11 +39,9 @@ const DetailView = ({ section, onBack, item , activeTab: initialActiveTab }) => 
     );
   }
 
-
     return (
       <div className="gap-detail-container">
-        <div className="nav-back-gap-detail">
-          
+        <div className="nav-back-gap-detail">    
           <button className="back-button-gap"  onClick={onBack}>
           <img src={back} alt='back' />
           <div className='back-gap-title'>   {item.title}</div> 
@@ -64,7 +70,7 @@ const DetailView = ({ section, onBack, item , activeTab: initialActiveTab }) => 
   
         <div className="tab-switcher-container">
           <div className="tab-switcher">
-            {item.tags.map((tag, index) => (
+            {uniqueTags.map((tag, index) => (
               <button
                 key={index}
                 onClick={() => handleTabChange(tag)}
@@ -81,13 +87,33 @@ const DetailView = ({ section, onBack, item , activeTab: initialActiveTab }) => 
 
           <div className="detail-section-solution">
             <div className="detail-header">
-              <span className="detail-tag">Solution</span>
+              <span className="detail-tag">Solution 1 / 2</span>
+              <button onClick={toggleAccordion} className="accordion-toggle">
+            <svg
+              className={`chevron ${isExpanded ? 'chevron-down' : 'chevron-up'}`}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </button>
+
             </div>
-            <div className="detail-body">
-              <p>{activeSection.content}</p>
-            </div>
+           {isExpanded && (
+          <div className="detail-body">
+            <p>{activeSection.content}</p>
+          </div>
+        )}
           </div>
   
+          {isExpanded && (
+            <>
           <div className="detail-section-actionable">
       <div className="detail-header">
         <span className="detail-tag">PROGRESS</span>
@@ -109,8 +135,7 @@ const DetailView = ({ section, onBack, item , activeTab: initialActiveTab }) => 
       </div>
     </div>
 
-    {/* </motion.div>
-        </AnimatePresence> */}
+  
   
           <div className="detail-section">
             <div className="detail-header">
@@ -131,6 +156,8 @@ const DetailView = ({ section, onBack, item , activeTab: initialActiveTab }) => 
               <span>Provide personalized, mobile-friendly content, including short videos, infographics, and FAQs, tailored to users' browsing history, preferences, and transaction patterns to clearly explain financial products and service</span>
             </div>
           </div>
+          </>
+            )}
         </div>
       </div>
     );
