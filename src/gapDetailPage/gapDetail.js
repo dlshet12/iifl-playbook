@@ -18,7 +18,7 @@ const DetailView = ({ section, onBack, item , activeTab: initialActiveTab }) => 
 
   const uniqueTags = Array.from(new Set(item.tags));
 
-    const activeSection = item.sections.find(s => s.type === activeTab) || section;
+  const activeSections = item.sections.filter(s => s.type === activeTab);
 
     const handleTabChange = (newTab) => {
       const currentIndex = item.tags.indexOf(activeTab);
@@ -83,11 +83,95 @@ const DetailView = ({ section, onBack, item , activeTab: initialActiveTab }) => 
         </div>
         </div>
         </div>
-        <div className="detail-content">
 
+
+        {/* <div className="detail-content">
+        {activeSections.map((section, index) => (
+          <div key={index} className="detail-section-solution">
+            <div className="detail-header">
+              <span className="detail-tag">Solution {index + 1} / {activeSections.length}</span>
+              <button onClick={toggleAccordion} className="accordion-toggle">
+                <svg
+                  className={`chevron ${isExpanded ? 'chevron-down' : 'chevron-up'}`}
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+            </div>
+            {isExpanded && (
+              <div className="detail-body">
+                <p>{section.content}</p>
+              </div>
+            )}
+
+            {isExpanded && (
+              <>
+                <div className="detail-section-actionable">
+                  <div className="detail-header">
+                    <span className="detail-tag">PROGRESS</span>
+                  </div>
+                  <div className="detail-body">
+                    {section.actionable.map((actionItem, actionIndex) => (
+                      <div
+                        key={actionIndex}
+                        className="actionable-item"
+                        onClick={() => setSelectedActionable(actionItem)}
+                        style={{
+                          borderTop: actionIndex > 0 ? 'none' : '1px solid #CBCBCB'  // Apply top border only for the first item
+                        }}
+                      >
+                        <div className="day-indicator">
+                          <div className={`day-dot ${actionItem.color}`}></div>
+                          <span className="day-text">{actionItem.days} Days</span>
+                        </div>
+                        <svg className="chevron chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="detail-section">
+                  <div className="detail-header">
+                    <span className="detail-tag">Impact</span>
+                  </div>
+                  <div className="detail-body">
+                    <span>{item.impact}</span>
+                  </div>
+                </div>
+
+                <div className="detail-section">
+                  <div className="detail-header">
+                    <span className="detail-tag">Reference links</span>
+                  </div>
+                  <div className="detail-body">
+                    <span>{section.referenceLinks || "No reference links available."}</span>
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+        ))}
+        </div> */}
+
+
+
+
+        <div className="detail-content">
+        {activeSections.map((section, index) => (
+          <>
           <div className="detail-section-solution">
             <div className="detail-header">
-              <span className="detail-tag">Solution 1 / 2</span>
+            <span className="detail-tag">Solution {index + 1} / {activeSections.length}</span>
               <button onClick={toggleAccordion} className="accordion-toggle">
             <svg
               className={`chevron ${isExpanded ? 'chevron-down' : 'chevron-up'}`}
@@ -107,7 +191,7 @@ const DetailView = ({ section, onBack, item , activeTab: initialActiveTab }) => 
             </div>
            {isExpanded && (
           <div className="detail-body">
-            <p>{activeSection.content}</p>
+                <p>{section.content}</p>
           </div>
         )}
           </div>
@@ -119,7 +203,7 @@ const DetailView = ({ section, onBack, item , activeTab: initialActiveTab }) => 
         <span className="detail-tag">PROGRESS</span>
       </div>
       <div className="detail-body">
-        {activeSection.actionable.map((item, index) => (
+        {section.actionable.map((item, index) => (
           <div key={index} className="actionable-item" onClick={() => setSelectedActionable(item)}     style={{
             borderTop: index > 0 ? 'none' : '1px solid #CBCBCB'  // Apply top border only for the first item
           }}>
@@ -158,7 +242,11 @@ const DetailView = ({ section, onBack, item , activeTab: initialActiveTab }) => 
           </div>
           </>
             )}
+            </>
+          ))}
         </div>
+        
+     
       </div>
     );
   };
