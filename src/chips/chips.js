@@ -7,14 +7,11 @@ import './chips.css'
 
 // Define filter options
 const filterOptions = {
-    persona: ['New', 'Existing', 'Offline', 'Agent'],
-    stage: ['Exploration', 'Consideration', 'Decision', 'Post-purchase'],
-    dbt: ['CX', 'UX', 'Media', 'Creative', 'SEO'],
     actionable: ['All', '45 Days', '90 Days', '160 Days']
   };
 
   
-const FilterChips = ({ selectedFilters, setSelectedFilters, activeView, onSearchClick  }) => {
+const FilterChips = ({ selectedFilters, setSelectedFilters, activeView, onSearchClick,itemsData  }) => {
 
  // Add logic to select filters based on the active view
  const filtersToShow = activeView === 'gap' ? ['persona', 'stage', 'dbt'] : ['actionable', 'dbt'];
@@ -65,6 +62,22 @@ const titleCase = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCas
     }));
   };
 
+   // Extract unique values for dropdowns dynamically
+   const getFilterOptions = (key) => {
+    switch (key) {
+      case 'persona':
+        return [...new Set(itemsData.flatMap(item => item.personas))];
+      case 'stage':
+        return [...new Set(itemsData.map(item => item.category))];
+      case 'dbt':
+        return [...new Set(itemsData.flatMap(item => item.tags))];
+      case 'actionable':
+        return filterOptions.actionable;
+      default:
+        return [];
+    }
+  };
+
   return (
     <>
       {/* Main filter chips */}
@@ -111,7 +124,7 @@ const titleCase = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCas
         onClose={handleClose}
         className="filter-menu"
       >
-        {activeFilter && filterOptions[activeFilter].map((option) => (
+        {activeFilter && getFilterOptions(activeFilter).map((option) => (
           <MenuItem
             key={option}
             onClick={() => handleFilterSelect(option)}

@@ -38,9 +38,11 @@ const PlaybookContent = ({ items, selectedFilters, activeView, setActiveView, vi
       const stageMatch = selectedFilters.stage.length === 0 || selectedFilters.stage.some(stage => stage.toLowerCase() === item.category.toLowerCase());
       const dbtMatch = selectedFilters.dbt.length === 0 || selectedFilters.dbt.some(tag => item.tags.includes(tag));
 
-      const actionableMatch = selectedFilters.actionable.length === 0 || selectedFilters.actionable.some(actionableDays => 
-        item.statuses.some(status => status.days === parseInt(actionableDays))
-      );
+   
+       const actionableMatch = selectedFilters.actionable.length === 0 || 
+       (item.statuses && selectedFilters.actionable.some(actionableDays => 
+         item.statuses.some(status => status.days === parseInt(actionableDays))
+       ));
 
       return personaMatch && stageMatch && dbtMatch && actionableMatch;
     });
@@ -1111,9 +1113,11 @@ const handleItemClick = () => {
     const personaMatch = selectedFilters.persona.length === 0 || selectedFilters.persona.some(persona => item.personas.includes(persona));
     const stageMatch = selectedFilters.stage.length === 0 || selectedFilters.stage.some(stage => stage.toLowerCase() === item.category.toLowerCase());
     const dbtMatch = selectedFilters.dbt.length === 0 || selectedFilters.dbt.some(tag => item.tags.includes(tag));
-    const actionableMatch = selectedFilters.actionable.length === 0 || selectedFilters.actionable.some(actionableDays => 
+    const actionableMatch = selectedFilters.actionable.length === 0 || 
+    (item.statuses && selectedFilters.actionable.some(actionableDays => 
       item.statuses.some(status => status.days === parseInt(actionableDays))
-    );
+    ));
+
 
     return searchMatch && personaMatch && stageMatch && dbtMatch && actionableMatch;
   });
@@ -1129,7 +1133,10 @@ const handleItemClick = () => {
          {/* Conditionally render FilterChips based on view */}
       {view === 'list' && !showSearch  && (
         <FilterChips selectedFilters={selectedFilters}
-         setSelectedFilters={setSelectedFilters}  activeView={activeView} onSearchClick={() => setShowSearch(true)}/>
+         setSelectedFilters={setSelectedFilters} 
+          activeView={activeView} 
+          onSearchClick={() => setShowSearch(true)}
+          itemsData={itemsData}/>
       )}
       
       {showSearch && (
