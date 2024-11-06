@@ -15,3 +15,7 @@
 .chip_tag{
     font-size: 12px;
 }
+/* Add extra margin when search results are active */
+.playbook-content-container.search-results-active {
+    margin-top: 3rem; /* Adjust this value to your needs */
+}

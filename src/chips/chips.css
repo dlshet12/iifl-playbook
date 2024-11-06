@@ -88,11 +88,7 @@ padding: 8px;
 }
 /* For smaller screens, reduce padding and font size to make chips more compact */
 @media (max-width: 355px) {
-    .filter-chips-container{
-        /* gap: 0;
-        justify-content: space-between; */
-    
-    }
+ 
     .filter-chip {
         padding: 5px 11px; 
         font-size: 12px; /* Smaller font size */

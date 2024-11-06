@@ -1067,6 +1067,9 @@ const PlaybookContents = () => {
   const [activeView, setActiveView] = useState('gap');
   const [view, setView] = useState('list');
   const [showSearch, setShowSearch] = useState(false); 
+  const [showSearchResults, setShowSearchResults] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+
 
    // Fetch data from API
    useEffect(() => {
@@ -1081,7 +1084,39 @@ const PlaybookContents = () => {
 
     fetchData();
   }, []);
+  const handleSearch = (term) => {
+    setSearchTerm(term.toLowerCase());  // Set search term in lowercase for case-insensitive search
+  };
 
+  const handleCloseSearch = () => {
+    setShowSearch(false);
+    setShowSearchResults(false);
+    setSearchTerm(""); // Reset search term when closing search
+};
+
+  const filteredItems = itemsData.filter((item) => {
+    const { category, title, tags, description, personas } = item;
+    const [prefix, personasText] = description.split('|');
+    const searchFields = [category, title, prefix, personasText, ...tags, ...personas];
+    const searchMatch = searchFields.some(field => field.toLowerCase().includes(searchTerm));
+
+    // Apply selected filters
+    const personaMatch = selectedFilters.persona.length === 0 || selectedFilters.persona.some(persona => item.personas.includes(persona));
+    const stageMatch = selectedFilters.stage.length === 0 || selectedFilters.stage.some(stage => stage.toLowerCase() === item.category.toLowerCase());
+    const dbtMatch = selectedFilters.dbt.length === 0 || selectedFilters.dbt.some(tag => item.tags.includes(tag));
+    const actionableMatch = selectedFilters.actionable.length === 0 || selectedFilters.actionable.some(actionableDays => 
+      item.statuses.some(status => status.days === parseInt(actionableDays))
+    );
+
+    return searchMatch && personaMatch && stageMatch && dbtMatch && actionableMatch;
+  });
+      // Generate className for PlaybookContent container based on conditions
+      const getPlaybookContentClassName = () => {
+        if (showSearch && showSearchResults) {
+            return 'playbook-content-container search-results-active';
+        }
+        return 'playbook-content-container';
+    };
   return (
     <>
          {/* Conditionally render FilterChips based on view */}
@@ -1090,18 +1125,22 @@ const PlaybookContents = () => {
          setSelectedFilters={setSelectedFilters}  activeView={activeView} onSearchClick={() => setShowSearch(true)}/>
       )}
       
-      {showSearch ? (
-        <Search onClose={() => setShowSearch(false)} />
-      ) : (
-        <PlaybookContent
-          items={itemsData}
-          selectedFilters={selectedFilters}
-          activeView={activeView}
-          setActiveView={setActiveView}
-          view={view}
-          setView={setView}
-        />
-      )}
+      {showSearch && (
+        <Search onClose={handleCloseSearch} 
+           onSearch={handleSearch}   showResults={setShowSearchResults}/>
+      ) }
+          {(!showSearch || showSearchResults) && (
+              <div className={getPlaybookContentClassName()}>
+                <PlaybookContent
+                    items={filteredItems}
+                    selectedFilters={selectedFilters}
+                    activeView={activeView}
+                    setActiveView={setActiveView}
+                    view={view}
+                    setView={setView}
+                />
+                </div>
+            )}
     </>
   )
 }
