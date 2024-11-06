@@ -1088,7 +1088,7 @@ const PlaybookContents = () => {
     fetchData();
   }, []);
   const handleSearch = (term) => {
-    setSearchTerm(term.toLowerCase());  // Set search term in lowercase for case-insensitive search
+    setSearchTerm(term.toLowerCase());  
   };
 
   const handleCloseSearch = () => {
@@ -1136,19 +1136,25 @@ const handleItemClick = () => {
         <Search onClose={handleCloseSearch} 
            onSearch={handleSearch}   showResults={setShowSearchResults}/>
       ) }
-          {(!showSearch || showSearchResults) && (
-              <div className={getPlaybookContentClassName()}>
-                <PlaybookContent
-                    items={filteredItems}
-                    selectedFilters={selectedFilters}
-                    activeView={activeView}
-                    setActiveView={setActiveView}
-                    view={view}
-                    setView={setView}
-                    onItemClick={handleItemClick}
-                />
-                </div>
-            )}
+         {(!showSearch || showSearchResults) && (
+        <div className={getPlaybookContentClassName()}>
+          {filteredItems.length > 0 ? (
+            <PlaybookContent
+              items={filteredItems}
+              selectedFilters={selectedFilters}
+              activeView={activeView}
+              setActiveView={setActiveView}
+              view={view}
+              setView={setView}
+              onItemClick={handleItemClick}
+            />
+          ) : (
+            <div className='no-search-result'>
+              No results found
+            </div>
+          )}
+            </div>
+              )}
     </>
   )
 }

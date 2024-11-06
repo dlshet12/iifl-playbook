@@ -19,3 +19,13 @@
 .playbook-content-container.search-results-active {
     margin-top: 3rem; /* Adjust this value to your needs */
 }
+.no-search-result{
+    text-align:center;
+    margin-top: 200px;
+    font-size: 16px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    color:rgb(120, 116, 116)
+}
