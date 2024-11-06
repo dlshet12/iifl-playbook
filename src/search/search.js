@@ -10,9 +10,9 @@ const Search = ({ onClose, onSearch, showResults  }) => {
       showResults(true); 
     };
     const handleClose = () => {
-        setSearchTerm(""); // Reset local search term
-        onSearch(""); // Reset parent's search term
-        onClose(); // Close search component
+        setSearchTerm(""); 
+        onSearch(""); 
+        onClose(); 
     };
     return (
         <div className="search-page-container">

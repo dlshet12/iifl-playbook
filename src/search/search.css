@@ -69,6 +69,7 @@
     border: none;
     padding: 0;
     cursor: pointer;
+    padding: 8px;
 }
 
 .search-img {

@@ -8,13 +8,16 @@ import axios from 'axios';
 import Search from '../search/search';
 
 // Main PlaybookContent Component
-const PlaybookContent = ({ items, selectedFilters, activeView, setActiveView, view, setView  }) => {
+const PlaybookContent = ({ items, selectedFilters, activeView, setActiveView, view, setView, onItemClick   }) => {
   const [selectedItem, setSelectedItem] = useState(null);
 
   
   const handleItemClick = (item) => {
     setSelectedItem(item);
     setView('gap');
+        if (onItemClick) {
+          onItemClick();
+        }
   };
 
   const handleBack = () => {
@@ -1094,6 +1097,10 @@ const PlaybookContents = () => {
     setSearchTerm(""); // Reset search term when closing search
 };
 
+const handleItemClick = () => {
+  handleCloseSearch(); // Close search when an item is clicked
+};
+
   const filteredItems = itemsData.filter((item) => {
     const { category, title, tags, description, personas } = item;
     const [prefix, personasText] = description.split('|');
@@ -1138,6 +1145,7 @@ const PlaybookContents = () => {
                     setActiveView={setActiveView}
                     view={view}
                     setView={setView}
+                    onItemClick={handleItemClick}
                 />
                 </div>
             )}
