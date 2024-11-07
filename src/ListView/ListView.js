@@ -66,7 +66,7 @@ const ListView = ({ items, onItemClick,hideTags, activeView, setActiveView,selec
       (filterValues) => filterValues.length > 0
     );
     return(
-      <Box  style={{ marginTop: filtersHeight + 10 }} className={`list-container ${areFiltersSelected ? 'extra-margin-top' : ''}`}>
+      <Box  style={{ marginTop: areFiltersSelected ? filtersHeight + 10 : 0 }}  className={`list-container ${areFiltersSelected ? 'extra-margin-top' : ''}`}>
       <div className={`views-wrapper ${activeView === 'gap' ? 'slide-gap' : 'slide-actionable'}`}>
         <div className="view">
           <div className="scrollable-content">
