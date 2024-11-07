@@ -1,7 +1,7 @@
+import { useEffect, useRef, useState } from 'react';
 import { Box, Chip ,Menu, MenuItem} from '@mui/material';
 import search_icon from '../asset/search_icon.svg';
 import CloseIcon from '@mui/icons-material/Close';
-import { useState } from 'react';
 import './chips.css'
 
 
@@ -11,7 +11,17 @@ const filterOptions = {
   };
 
   
-const FilterChips = ({ selectedFilters, setSelectedFilters, activeView, onSearchClick,itemsData  }) => {
+const FilterChips = ({ selectedFilters, setSelectedFilters, activeView, onSearchClick,itemsData,onFiltersHeightChange  }) => {
+  const selectedFiltersRef = useRef(null);
+  const [filtersHeight, setFiltersHeight] = useState(0);
+
+  useEffect(() => {
+    if (selectedFiltersRef.current) {
+      const height = selectedFiltersRef.current.offsetHeight;
+      setFiltersHeight(height);
+      onFiltersHeightChange(height); // Pass height to the parent component
+    }
+  }, [selectedFilters]); 
 
  // Add logic to select filters based on the active view
  const filtersToShow = activeView === 'gap' ? ['persona', 'stage', 'dbt'] : ['actionable', 'dbt'];
@@ -102,7 +112,7 @@ const titleCase = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCas
 
       {/* Selected filter chips */}
       {areFiltersSelected && (
-        <Box className="selected-filters-container">
+        <Box  ref={selectedFiltersRef} className="selected-filters-container">
           {Object.entries(selectedFilters).map(([filterType, values]) =>
             values.map((value) => (
               <Chip variant="outlined"

@@ -59,14 +59,14 @@ const ListItem = ({ item, onClick,hideTags, hideCategory }) => {
 
 
 // ListView Component
-const ListView = ({ items, onItemClick,hideTags, activeView, setActiveView,selectedFilters, hideCategory }) => {
+const ListView = ({ items, onItemClick,hideTags, activeView, setActiveView,selectedFilters, hideCategory,filtersHeight }) => {
  
     // Check if any filters are selected
     const areFiltersSelected = Object.values(selectedFilters).some(
       (filterValues) => filterValues.length > 0
     );
     return(
-      <Box  className={`list-container ${areFiltersSelected ? 'extra-margin-top' : ''}`}>
+      <Box  style={{ marginTop: filtersHeight + 10 }} className={`list-container ${areFiltersSelected ? 'extra-margin-top' : ''}`}>
       <div className={`views-wrapper ${activeView === 'gap' ? 'slide-gap' : 'slide-actionable'}`}>
         <div className="view">
           <div className="scrollable-content">

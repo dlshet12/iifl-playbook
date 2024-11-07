@@ -8,7 +8,7 @@ import axios from 'axios';
 import Search from '../search/search';
 
 // Main PlaybookContent Component
-const PlaybookContent = ({ items, selectedFilters, activeView, setActiveView, view, setView, onItemClick   }) => {
+const PlaybookContent = ({ items, selectedFilters, activeView, setActiveView, view, setView, onItemClick,filtersHeight   }) => {
   const [selectedItem, setSelectedItem] = useState(null);
 
   
@@ -62,7 +62,8 @@ const PlaybookContent = ({ items, selectedFilters, activeView, setActiveView, vi
          hideCategory={areFiltersSelected}
           activeView={activeView}
         setActiveView={setActiveView}
-        selectedFilters={selectedFilters} />
+        selectedFilters={selectedFilters}
+        filtersHeight={filtersHeight} />
       ) : (
         <GapView selectedItem={selectedItem} onBack={handleBack} />
       )}
@@ -1074,6 +1075,11 @@ const PlaybookContents = () => {
   const [showSearch, setShowSearch] = useState(false); 
   const [showSearchResults, setShowSearchResults] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [filtersHeight, setFiltersHeight] = useState(0);
+
+  const handleFiltersHeightChange = (height) => {
+    setFiltersHeight(height); // Update the filter height when it changes
+  };
 
 
    // Fetch data from API
@@ -1136,7 +1142,8 @@ const handleItemClick = () => {
          setSelectedFilters={setSelectedFilters} 
           activeView={activeView} 
           onSearchClick={() => setShowSearch(true)}
-          itemsData={itemsData}/>
+          itemsData={itemsData}
+          onFiltersHeightChange={handleFiltersHeightChange}/>
       )}
       
       {showSearch && (
@@ -1154,6 +1161,7 @@ const handleItemClick = () => {
               view={view}
               setView={setView}
               onItemClick={handleItemClick}
+              filtersHeight={filtersHeight}
             />
           ) : (
             <div className='no-search-result'>
