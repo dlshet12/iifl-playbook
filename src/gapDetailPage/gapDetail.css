@@ -1,21 +1,25 @@
 .gap-detail-container {
-  margin: 0 auto;
-  height: 140vh;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .nav-back-gap-detail {
   margin-bottom: 20px;
-    top: 53px;
-    position: fixed;
-    z-index: 1000;
-    background-color: white;
-    padding: 0;
-padding: 16px 24px 0px 24px;
-width: 100vw;
-margin: 0; /* Remove any margin */
-box-sizing: border-box; /* Ensure padding is included within the width */
-left: 0;
-right: 0;
+  top: 53px;
+  position: fixed;
+  z-index: 1000;
+  background-color: white;
+  padding: 0;
+  padding: 16px 24px 0px 24px;
+  width: 100vw;
+  margin: 0;
+  /* Remove any margin */
+  box-sizing: border-box;
+  /* Ensure padding is included within the width */
+  left: 0;
+  right: 0;
 }
 
 .back-button-gap {
@@ -31,16 +35,17 @@ right: 0;
   padding: 0 0 8px 0px;
 }
 
-.header_content{
+.header_content {
   padding: 0 0 0 32px;
 }
-.back-gap-title{
+
+.back-gap-title {
   text-align: left;
   color: #242056;
-  font-family:Poppins;
+  font-family: Poppins;
   font-weight: 500;
-line-height: normal;
-letter-spacing: -0.3px;
+  line-height: normal;
+  letter-spacing: -0.3px;
 }
 
 .chevron {
@@ -50,6 +55,8 @@ letter-spacing: -0.3px;
 }
 
 .detail-content {
+  overflow-y: auto;
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -62,11 +69,13 @@ letter-spacing: -0.3px;
   overflow: hidden;
   padding: 0 24px;
 }
-.detail-section-solution{
+
+.detail-section-solution {
   background: #F5F1F1;
   padding: 16px 24px;
   position: relative;
 }
+
 .accordion-toggle {
   background: none;
   border: none;
@@ -74,6 +83,7 @@ letter-spacing: -0.3px;
   display: flex;
   align-items: center;
 }
+
 .chevron {
   width: 16px;
   height: 16px;
@@ -90,13 +100,15 @@ letter-spacing: -0.3px;
 }
 
 .detail-header {
- margin-bottom: 8px;
- display: flex;
- justify-content: space-between;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
 }
-.detail-body p{
+
+.detail-body p {
   margin: 0;
 }
+
 .detail-tag {
   font-weight: 500;
   color: #333;
@@ -146,12 +158,14 @@ letter-spacing: -0.3px;
   letter-spacing: -0.3px;
   padding-bottom: 8px;
 }
-.category-badge-gap{
+
+.category-badge-gap {
   font-size: 14px;
-    color: #F37021;
-    font-weight: 600;
-    background-color: white;
+  color: #F37021;
+  font-weight: 600;
+  background-color: white;
 }
+
 .tags-container-tab {
   background-color: white;
   border-radius: 16px;
@@ -233,15 +247,16 @@ letter-spacing: -0.3px;
   width: 16px;
   height: 16px;
 }
+
 .tab-switcher-container {
-  padding:  0 0 10px 0;
+  padding: 0 0 10px 0;
   width: max-content;
 }
 
 .tab-switcher {
   background: white;
   border-radius: 50px;
-border: 1px solid #CBCBCB;
+  border: 1px solid #CBCBCB;
   padding: 4px;
   display: flex;
   justify-content: space-between;
@@ -268,7 +283,7 @@ border: 1px solid #CBCBCB;
   transition: all 0.3s ease;
   margin-right: 4px;
   white-space: nowrap;
-  font-family:Poppins;
+  font-family: Poppins;
 }
 
 .tab-button-gap:last-child {
@@ -282,10 +297,11 @@ border: 1px solid #CBCBCB;
 .tab-button-gap.active {
   background-color: #FEDCAD;
   color: #656565;
-  
+
 }
-@media (min-width: 360px){
-  .detail-content{
+
+@media (min-width: 360px) {
+  .detail-content {
     margin-top: 245px;
   }
 

@@ -5,9 +5,9 @@ import ActionableView from '../actionableView/actionableView.js';
 // ListItem Component with onClick handling
 const ListItem = ({ item, onClick,hideTags, hideCategory }) => {
   
-    // Split the description at the separator
-    const [prefix, personasText] = item.description.split('|');
+    const personasText = item.personas.join(', ');
 
+   
      // Function to determine chip color based on whether it's in impact array
   const getChipColor = (tag) => {
     return item.impact.includes(tag) 
@@ -38,13 +38,12 @@ const ListItem = ({ item, onClick,hideTags, hideCategory }) => {
         {item.title}
       </div>
       <div className="item-description">
-        {prefix}
-        {personasText && (
+      Personas Effected 
           <>
             <span className="separator">|</span>
-            <span className="personas">{personasText.trim()}</span>
+            <span className="personas"> {personasText}</span>
           </>
-        )}
+      
       </div>
       {!hideTags && (
       <Box className="tags-container">
