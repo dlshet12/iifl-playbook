@@ -6,7 +6,7 @@ import ActionDetailView from '../actionableDetailPage/actionableDeatil';
 
 const DetailView = ({ section, onBack, item, activeTab: initialActiveTab }) => {
   const [activeTab, setActiveTab] = useState(initialActiveTab || item.tags[0]);
-  const [prefix, personasText] = item.description.split('|');
+
   const [selectedActionable, setSelectedActionable] = useState(null);
   const [direction, setDirection] = useState(0);
 
@@ -24,6 +24,8 @@ const DetailView = ({ section, onBack, item, activeTab: initialActiveTab }) => {
     setDirection(newIndex > currentIndex ? 1 : -1);
     setActiveTab(newTab);
   };
+
+  const personasText = item.personas.join(', ');
 
   const toggleAccordion = (index) => {
     setIsExpandedArray((prev) => {
@@ -57,13 +59,12 @@ const DetailView = ({ section, onBack, item, activeTab: initialActiveTab }) => {
         <div style={{ backgroundColor: 'white', paddingBottom: '8px' }}>
           <div className='header_content'>
             <div className="item-description-bg">
-              {prefix}
-              {personasText && (
-                <>
-                  <span className="separator">|</span>
-                  <span className="personas">{personasText.trim()}</span>
-                </>
-              )}
+            Personas Effected 
+          <>
+            <span className="separator">|</span>
+            <span className="personas"> {personasText}</span>
+          </>
+      
             </div>
             <div className="category-badge-gap">
               {item.category}

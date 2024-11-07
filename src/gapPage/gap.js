@@ -51,7 +51,7 @@ const GapView = ({ selectedItem, onBack }) => {
     return <DetailView item={item} section={selectedSection}   activeTab={selectedSection.type}  onBack={() => setSelectedSection(null)} />;
   }
 
-  const [prefix, personasText] = item.description.split('|');
+  const personasText = item.personas.join(', ');
   return (
     <div className="gap-container">
       <div className='nav-back'>
@@ -71,13 +71,11 @@ const GapView = ({ selectedItem, onBack }) => {
         </h2>
 
         <div className="item-description">
-        {prefix}
-        {personasText && (
+        Personas Effected 
           <>
             <span className="separator">|</span>
-            <span className="personas">{personasText.trim()}</span>
+            <span className="personas"> {personasText}</span>
           </>
-        )}
       </div>
       <Box className="tags-container">
         {sortedTags.map((tag, index) => (
