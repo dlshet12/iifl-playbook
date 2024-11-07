@@ -1113,7 +1113,7 @@ const handleItemClick = () => {
     const { category, title, tags, description, personas } = item;
     const [prefix, personasText] = description.split('|');
     const searchFields = [category, title, prefix, personasText, ...tags, ...personas];
-    const searchMatch = searchFields.some(field => field.toLowerCase().includes(searchTerm));
+    const searchMatch = searchFields.some(field => field && field.toLowerCase().includes(searchTerm));
 
     // Apply selected filters
     const personaMatch = selectedFilters.persona.length === 0 || selectedFilters.persona.some(persona => item.personas.includes(persona));
@@ -1165,7 +1165,7 @@ const handleItemClick = () => {
             />
           ) : (
             <div className='no-search-result'>
-              No results found
+            
             </div>
           )}
             </div>

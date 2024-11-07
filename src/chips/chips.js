@@ -58,10 +58,18 @@ const titleCase = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCas
   };
 
   const handleFilterSelect = (value) => {
-    setSelectedFilters(prev => ({
-      ...prev,
-      [activeFilter]: [...(prev[activeFilter] || []), value] // Store as-is without converting to uppercase
-    }));
+    setSelectedFilters((prev) => {
+      // Check if the value is already selected
+      const currentFilterValues = prev[activeFilter] || [];
+      if (currentFilterValues.includes(value)) {
+        return prev; // If already selected, return without making changes
+      }
+      // If not selected, add the new value
+      return {
+        ...prev,
+        [activeFilter]: [...currentFilterValues, value]
+      };
+    });
     handleClose();
   };
   // Handle removing a selected filter
