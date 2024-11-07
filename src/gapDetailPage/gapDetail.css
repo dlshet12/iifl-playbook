@@ -53,11 +53,13 @@
 }
 
 .detail-content {
+  overflow-y: auto;
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 20px;
   margin-top: 235px;
+  padding-bottom: 40px;
 }
 
 .detail-section {

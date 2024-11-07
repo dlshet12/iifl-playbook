@@ -1,150 +1,158 @@
-.gap-container{
-    margin-top: 20px;
-    /* z-index: 1000; */
+.gap-container {
+  margin-top: 20px;
+  /* z-index: 1000; */
   background-color: white;
   display: flex;
   flex-direction: column;
-  height: 120vh;
 }
-.nav-back{
-    top: 52px;
-    position: fixed;
-    z-index: 1000;
-    background-color:white;
-    padding: 0 ;
-    width: 100%;
+
+.nav-back {
+  top: 52px;
+  position: fixed;
+  z-index: 1000;
+  background-color: white;
+  padding: 0;
+  width: 100%;
   padding: 0px 24px 0px 24px;
   border-bottom: 1px solid #EEE;
- 
+
 }
-.nav-back-title{
+
+.nav-back-title {
   color: #242056;
   font-family: Poppins;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
-  
+
 }
+
 .scrollable-gap-content {
   overflow-y: auto;
   flex-grow: 1;
 }
+
 .category-badge {
   font-size: 14px;
   margin-bottom: 8px;
-    color: #F37021;
-    font-weight: 600;
+  color: #F37021;
+  font-weight: 600;
 }
-.persona_card {  
+
+.persona_card {
   background: #fff;
   border-radius: 8px;
   padding: 24px 16px;
   margin: 100px 16px 20px 16px;
 }
-  .back-button {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 16px;
-    color:#242056 ;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 12px 0;
 
-  }
-  
-  .back-button:hover {
-    color: #333;
-  }
-   
-  .gap-title {
-    font-size: 20px;
-    font-weight: 500;
-    color: #242056;
-    margin: 0 0 8px 0;
-    font-style: normal;
-font-weight: 500;
-line-height: 140%; /* 28px */
-letter-spacing: -0.3px;
-  }
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  color: #242056;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 12px 0;
 
-  
-  .personas-container {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 24px;
-  }
-  
-  .persona-tag {
-    background-color: #e3f2fd;
-    color: #1976d2;
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: 500;
-  }
-  
-  .sections-container {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    padding: 0 24px;
-  }
-  
-  .section-card {
-    background: white;
-    border-bottom: 1px solid #E5E5E5;
-    cursor: pointer;
-    transition: box-shadow 0.2s ease;
-  }
-  
-  .section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 0 8px 0;
-  }
-  
-  .section-type {
-    font-size: 12px;
-    font-weight: 500;
-    color: #666;
-    background-color: #BCE3FF;
-    border-radius: 16px;
-    padding: 4px 7px;
-  }
-  
-  .section-content {
-    color: #242056;
-font-family: Poppins;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-letter-spacing: -0.3px;
-margin: 0 0 24px 0;
-  }
-  .chevron-right {
-    color: #242056;
-    transform: rotate(180deg);
-  }
-  .actions-container {
-    display: flex;
-    gap: 16px;
-  }
-  
-  .action-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #666;
-  }
-  
-  .action-button:hover {
-    color: #333;
-  }
-  
-  .persona_card{
-    background-color: #F5F1F1;
-  }
+}
+
+.back-button:hover {
+  color: #333;
+}
+
+.gap-title {
+  font-size: 20px;
+  font-weight: 500;
+  color: #242056;
+  margin: 0 0 8px 0;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
+  /* 28px */
+  letter-spacing: -0.3px;
+}
+
+
+.personas-container {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.persona-tag {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.sections-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0 24px 40px 24px;
+}
+
+.section-card {
+  background: white;
+  border-bottom: 1px solid #E5E5E5;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 8px 0;
+}
+
+.section-type {
+  font-size: 12px;
+  font-weight: 500;
+  color: #666;
+  background-color: #BCE3FF;
+  border-radius: 16px;
+  padding: 4px 7px;
+}
+
+.section-content {
+  color: #242056;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.3px;
+  margin: 0 0 24px 0;
+}
+
+.chevron-right {
+  color: #242056;
+  transform: rotate(180deg);
+}
+
+.actions-container {
+  display: flex;
+  gap: 16px;
+}
+
+.action-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+}
+
+.action-button:hover {
+  color: #333;
+}
+
+.persona_card {
+  background-color: #F5F1F1;
+}
