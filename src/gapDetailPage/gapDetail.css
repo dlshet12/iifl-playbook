@@ -46,6 +46,7 @@ letter-spacing: -0.3px;
 .chevron {
   width: 16px;
   height: 16px;
+  color: #242056;
 }
 
 .detail-content {
@@ -74,9 +75,10 @@ letter-spacing: -0.3px;
   align-items: center;
 }
 .chevron {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   transition: transform 0.3s ease;
+
 }
 
 .chevron-up {
@@ -161,9 +163,7 @@ letter-spacing: -0.3px;
   padding: 0 24px;
 }
 
-.detail-header {
-  
-}
+
 
 .detail-tag {
   color: #242056;

@@ -27,6 +27,25 @@ font-style: normal;
 font-weight: 700;
 
   }
+  .detail-header-actionable {
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+   }
+  .detail-body-actionable {
+    display: flex;
+    flex-direction: column;
+    color: #242056;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.3px;
+  }
+  .detail-body-actionable p{
+    margin: 0;
+  }
   .detail-section-actionable-detail{
     padding: 0 8px;
   }

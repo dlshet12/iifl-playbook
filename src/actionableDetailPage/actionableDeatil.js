@@ -70,17 +70,18 @@ const ActionDetailView = ({ section, onBack, item, actionable, activeTab }) => {
           <div className="detail-header">
             <span className="detail-tag">Cx Solution</span>
           </div>
-          <div className="detail-body">
+          <div className="detail-body-actionable">
             <p>{activeActionable.details.cxSolution}</p>
 
-            <div className='status' style={{ backgroundColor: getStatusColor(activeActionable.status)}}>Status: <span style={{fontWeight:'500'}}>{activeActionable.status}</span> </div>
-          </div>
+   </div>
         </div>
 
         <div className="detail-section-actionable-detail">
-          <div className="detail-header">
+          <div className="detail-header-actionable">
             <span className="detail-tag">ACTIONABLE</span>
+            <div className='status' style={{ backgroundColor: getStatusColor(activeActionable.status)}}>Status: <span style={{fontWeight:'500'}}>{activeActionable.status}</span> </div>
           </div>
+          
           <div className="detail-body-action">
             <ol className="actionable-steps-list">
               {activeActionable.details.actionableSteps.map((step, index) => (
