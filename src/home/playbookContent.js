@@ -30,21 +30,34 @@ const PlaybookContent = ({ items, selectedFilters, activeView, setActiveView, vi
     (filterValues) => filterValues.length > 0
   );
 
-  // Function to apply the filters to the items list
   const applyFilters = () => {
     return items.filter(item => {
-      // Check if the item matches the selected personas, stage, and DBT filters
-      const personaMatch = selectedFilters.persona.length === 0 || selectedFilters.persona.some(persona => item.personas.includes(persona));
-      const stageMatch = selectedFilters.stage.length === 0 || selectedFilters.stage.some(stage => stage.toLowerCase() === item.category.toLowerCase());
-      const dbtMatch = selectedFilters.dbt.length === 0 || selectedFilters.dbt.some(tag => item.tags.includes(tag));
-
-   
-       const actionableMatch = selectedFilters.actionable.length === 0 || 
-       (item.statuses && selectedFilters.actionable.some(actionableDays => 
-         item.statuses.some(status => status.days === parseInt(actionableDays))
-       ));
-
-      return personaMatch && stageMatch && dbtMatch && actionableMatch;
+      if (activeView === 'gap') {
+        // Gap view filtering
+        const personaMatch = selectedFilters.persona.length === 0 || 
+          selectedFilters.persona.some(persona => item.personas.includes(persona));
+        const stageMatch = selectedFilters.stage.length === 0 || 
+          selectedFilters.stage.some(stage => stage.toLowerCase() === item.category.toLowerCase());
+        const dbtMatch = selectedFilters.dbt.length === 0 || 
+          selectedFilters.dbt.some(tag => item.tags.includes(tag));
+        const actionableMatch = selectedFilters.actionable.length === 0 || 
+          (item.statuses && selectedFilters.actionable.some(actionableDays => 
+            item.statuses.some(status => status.days === parseInt(actionableDays))
+          ));
+  
+        return personaMatch && stageMatch && dbtMatch && actionableMatch;
+      } else {
+        // Progress view filtering
+        const dbtMatch = selectedFilters.dbt.length === 0 || 
+          (item.statuses && item.statuses.some(status => 
+            selectedFilters.dbt.includes(status.category)));
+        const actionableMatch = selectedFilters.actionable.length === 0 || 
+          (item.statuses && selectedFilters.actionable.some(actionableDays => 
+            item.statuses.some(status => status.days === parseInt(actionableDays))
+          ));
+  
+        return dbtMatch && actionableMatch;
+      }
     });
   };
 
@@ -1109,24 +1122,54 @@ const handleItemClick = () => {
   handleCloseSearch(); // Close search when an item is clicked
 };
 
-  const filteredItems = itemsData.filter((item) => {
-    const { category, title, tags, description, personas } = item;
-    const [prefix, personasText] = description.split('|');
-    const searchFields = [category, title, prefix, personasText, ...tags, ...personas];
-    const searchMatch = searchFields.some(field => field && field.toLowerCase().includes(searchTerm));
+const filteredItems = itemsData.filter((item) => {
+  const { category, title, tags, description, personas, statuses } = item;
+  const [prefix, personasText] = description.split('|');
+  
+  // Search functionality
+  let searchFields;
+  if (activeView === 'gap') {
+    searchFields = [category, title, prefix, personasText, ...(tags || []), ...(personas || [])];
+  } else {
+    // For progress view, include status categories in search
+    const statusCategories = (statuses || []).map(status => status.category);
+    searchFields = [title, prefix, ...(statusCategories || [])];
+  }
+  const searchMatch = searchTerm === "" || searchFields.some(field => 
+    field && field.toLowerCase().includes(searchTerm)
+  );
 
-    // Apply selected filters
-    const personaMatch = selectedFilters.persona.length === 0 || selectedFilters.persona.some(persona => item.personas.includes(persona));
-    const stageMatch = selectedFilters.stage.length === 0 || selectedFilters.stage.some(stage => stage.toLowerCase() === item.category.toLowerCase());
-    const dbtMatch = selectedFilters.dbt.length === 0 || selectedFilters.dbt.some(tag => item.tags.includes(tag));
+  // Filter logic based on active view
+  if (activeView === 'gap') {
+    // Gap view filtering
+    const personaMatch = selectedFilters.persona.length === 0 || 
+      selectedFilters.persona.some(persona => personas.includes(persona));
+    const stageMatch = selectedFilters.stage.length === 0 || 
+      selectedFilters.stage.some(stage => stage.toLowerCase() === category.toLowerCase());
+    const dbtMatch = selectedFilters.dbt.length === 0 || 
+      selectedFilters.dbt.some(tag => tags.includes(tag));
     const actionableMatch = selectedFilters.actionable.length === 0 || 
-    (item.statuses && selectedFilters.actionable.some(actionableDays => 
-      item.statuses.some(status => status.days === parseInt(actionableDays))
-    ));
-
+      (statuses && selectedFilters.actionable.some(actionableDays => 
+        statuses.some(status => status.days === parseInt(actionableDays))
+      ));
 
     return searchMatch && personaMatch && stageMatch && dbtMatch && actionableMatch;
-  });
+  } else {
+    // Progress view filtering
+    const dbtMatch = selectedFilters.dbt.length === 0 || 
+      (statuses && statuses.some(status => 
+        selectedFilters.dbt.includes(status.category)
+      ));
+    const actionableMatch = selectedFilters.actionable.length === 0 || 
+      (statuses && selectedFilters.actionable.some(actionableDays => 
+        statuses.some(status => status.days === parseInt(actionableDays))
+      ));
+
+    // For progress view, we only return items that have matching statuses
+    return searchMatch && dbtMatch && actionableMatch && 
+      statuses && statuses.length > 0;
+  }
+});
       // Generate className for PlaybookContent container based on conditions
       const getPlaybookContentClassName = () => {
         if (showSearch && showSearchResults) {

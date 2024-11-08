@@ -87,14 +87,30 @@ const titleCase = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCas
         return [...new Set(itemsData.flatMap(item => item.personas))];
       case 'stage':
         return [...new Set(itemsData.map(item => item.category))];
-      case 'dbt':
-        return [...new Set(itemsData.flatMap(item => item.tags))];
+        case 'dbt':
+          // Return different DBT options based on active view
+          if (activeView === 'gap') {
+            return [...new Set(itemsData.flatMap(item => item.tags))];
+          } else {
+            // For progress view, get unique categories from statuses
+            return [...new Set(itemsData.flatMap(item => 
+              (item.statuses || []).map(status => status.category)
+            ))];
+          }
       case 'actionable':
         return filterOptions.actionable;
       default:
         return [];
     }
   };
+
+    // Clear DBT filters when switching views
+    useEffect(() => {
+      setSelectedFilters(prev => ({
+        ...prev,
+        dbt: [] // Reset DBT filters when view changes
+      }));
+    }, [activeView]);
 
   return (
     <>
