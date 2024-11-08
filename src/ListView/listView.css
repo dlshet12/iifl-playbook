@@ -116,7 +116,7 @@ line-height: normal;
     display: flex;
     width: 200%;
     transition: transform 0.3s ease-in-out;
-    height: calc(100% - 60px); /* Account for button container height */
+    /* height: calc(100% - 60px);  */
     position: relative;
   }
   
@@ -133,7 +133,6 @@ line-height: normal;
   }
   
   .scrollable-content {
-    height: calc(100% - 60px);
     overflow-y: auto;
     padding-bottom: 70px;
   }
