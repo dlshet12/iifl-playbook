@@ -29,10 +29,33 @@ const PlaybookContent = ({ items, selectedFilters, activeView, setActiveView, vi
   };
 
   const handleStatusClick = (status, item) => {
-    setSelectedStatus({ item, status });
-    setSelectedItem(item); // Store selected item
-    setView('progressView'); 
+    const filteredSections = item.sections.filter(section => {
+      // Check if an actionable step matches the days and status
+      const actionableStep = section.actionable.find(actionable => 
+        parseInt(actionable.days) === status.days && actionable.status === status.status
+      );
+      return actionableStep;
+    });
+  
+    let solutionContent;
+    if (filteredSections.length > 0) {
+      // Find content based on the solution number or the default
+      const solutionIndex = item.statuses.filter(st => st.category === status.category).indexOf(status);
+      solutionContent = solutionIndex === 0 ? filteredSections[0].content : filteredSections[solutionIndex].content;
+    }
+  
+    // Pass filtered data to ProgressDetail
+    setSelectedStatus({
+      item,
+      status,
+      sections: filteredSections,
+      solutionContent
+    });
+    setSelectedItem(item);
+    setView('progressView');
   };
+  
+
 
    // Check if any filters are selected
    const areFiltersSelected = Object.values(selectedFilters).some(

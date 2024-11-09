@@ -2,18 +2,9 @@ import { useState, useEffect } from 'react';
 
 import './progressDetail.css';
 import back from '../asset/back_icon.svg';
-const ProgressDetail = ({item, onBack, selectedStatus }) => {
+const ProgressDetail = ({onBack, selectedStatus }) => {
 
-    if (!item || !selectedStatus) return null;
-
-  // Find the section content and actionable steps matching the clicked status
-  const section = item.sections.find(
-    sec => sec.type === selectedStatus.status.category
-  );
-
-  const actionable = section?.actionable.find(
-    act => act.days === selectedStatus.status.days && act.status === selectedStatus.status.status
-  );
+  const { sections, solutionContent } = selectedStatus || {};
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -29,11 +20,15 @@ const ProgressDetail = ({item, onBack, selectedStatus }) => {
   };
 
   return (
-    <div className="action-detail-container">
+<>
+{sections && sections.length > 0 ? (
+                sections.map((section, index) => (
+    
+    <div  key={index} className="action-detail-container">
       <div className="nav-back-actionable">
         <button className="back-button-gap-detail" onClick={onBack}>
           <img src={back} alt="back" />
-          <div className="back-gap-title"> Progress</div>
+          <div className="back-gap-title">{section.type} Progress</div>
         </button>
 
         <div className="tab-bg">
@@ -52,13 +47,14 @@ const ProgressDetail = ({item, onBack, selectedStatus }) => {
       </div>
 
 
+
         <div className="actionable-content">
           <div className="detail-section-solution-actionable">
             <div className="detail-header">
               <span className="detail-tag">Solution</span>
             </div>
             <div className="detail-body-actionable">
-              <p>{section?.content} </p>
+              <p>{section.content} </p>
             </div>
           </div>
 
@@ -76,7 +72,7 @@ const ProgressDetail = ({item, onBack, selectedStatus }) => {
                 className="actionable-steps-list"
    
               />
-                   <div dangerouslySetInnerHTML={{ __html: actionable?.details?.actionableSteps }} />
+                   <div dangerouslySetInnerHTML={{ __html: section.actionableSteps || '' }} />
             </div>
           </div>
 
@@ -90,12 +86,17 @@ const ProgressDetail = ({item, onBack, selectedStatus }) => {
                 className="actionable-steps-list"
            
               />
-                <div dangerouslySetInnerHTML={{ __html: actionable?.details?.kpis }} />
+                         <div dangerouslySetInnerHTML={{ __html: section.kpis || '' }} />
             </div>
           </div>
         </div>
         
     </div>
+      ))
+    ) : (
+      <p>No relevant data found.</p>
+  )}
+    </>
   );
 };
 

@@ -11,10 +11,10 @@ const ActionableView = ({ items = [], selectedFilters = { dbt: [], actionable: [
       return dbtMatch && daysMatch;
     })
   })).filter(item => item.statuses.length > 0);
-
   return (
     <div className="actionable-container">
       {filteredItems.map((item, index) => (
+     
         <div key={index} className="gap-item">
           <div className="gap-title">{item.title}</div>
           <div className="status-tags">
