@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './progressDetail.css';
 import back from '../asset/back_icon.svg';
@@ -54,12 +54,12 @@ const ProgressDetail = ({ onBack, selectedStatus }) => {
                   <span className="detail-tag">Solution</span>
                 </div>
                 <div className="detail-body-actionable">
-                  <p>{section.content} </p>
+                  <p>{solutionContent} </p>
                 </div>
               </div>
 
               {section.actionable.map((action, actionIndex) => (
-                <>
+                <React.Fragment key={actionIndex}>
                   <div className="detail-section-actionable-detail">
                     <div className="detail-header-actionable">
                       <span className="detail-tag">ACTIONABLE</span>
@@ -92,7 +92,7 @@ const ProgressDetail = ({ onBack, selectedStatus }) => {
                     </div>
                   </div>
 
-                </>
+                </React.Fragment>
               ))}
             </div>
           </div>
