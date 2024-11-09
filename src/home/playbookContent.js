@@ -6,11 +6,12 @@ import ListView from '../ListView/ListView';
 import FilterChips from '../chips/chips';
 import axios from 'axios';
 import Search from '../search/search';
+import ActionDetailView from '../actionableDetailPage/actionableDeatil';
 
 // Main PlaybookContent Component
 const PlaybookContent = ({ items, selectedFilters, activeView, setActiveView, view, setView, onItemClick,filtersHeight   }) => {
   const [selectedItem, setSelectedItem] = useState(null);
-
+  const [selectedStatus, setSelectedStatus] = useState(null);
   
   const handleItemClick = (item) => {
     setSelectedItem(item);
@@ -23,6 +24,12 @@ const PlaybookContent = ({ items, selectedFilters, activeView, setActiveView, vi
   const handleBack = () => {
     setView('list');
     setSelectedItem(null);
+    setSelectedStatus(null);
+  };
+
+  const handleStatusClick = (status, item) => {
+    setSelectedStatus({ item, status });
+    setView('actionDetail'); // Navigate to ActionDetailView
   };
 
    // Check if any filters are selected
@@ -71,15 +78,19 @@ const PlaybookContent = ({ items, selectedFilters, activeView, setActiveView, vi
       {view === 'list' ? (
         <ListView items={filteredItems}
          onItemClick={handleItemClick} 
+         handleStatusClick={handleStatusClick}
          hideTags={areFiltersSelected} 
          hideCategory={areFiltersSelected}
           activeView={activeView}
         setActiveView={setActiveView}
         selectedFilters={selectedFilters}
         filtersHeight={filtersHeight} />
-      ) : (
+      ) :  view === 'gap' ? (
         <GapView selectedItem={selectedItem} onBack={handleBack} />
-      )}
+      ) : view === 'actionDetail' && (
+        <ActionDetailView onBack={handleBack} item={selectedStatus.item} actionable={selectedStatus.status} /* other props */ />
+      )
+    }
     </Box>
   );
 };

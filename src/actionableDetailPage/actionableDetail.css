@@ -174,3 +174,9 @@
     min-width: 300px;
   }
 }
+
+.actionable-steps-list ul,
+.actionable-steps-list ol {
+  padding-left: 0; /* Removes left padding */
+  margin-left: 0; 
+}

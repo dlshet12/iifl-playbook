@@ -8,6 +8,7 @@ const DetailView = ({ section, onBack, item, activeTab: initialActiveTab }) => {
   const [activeTab, setActiveTab] = useState(initialActiveTab || item.tags[0]);
 
   const [selectedActionable, setSelectedActionable] = useState(null);
+  const [selectedSection, setSelectedSection] = useState(null);
   const [direction, setDirection] = useState(0);
 
   const [isExpandedArray, setIsExpandedArray] = useState(
@@ -41,11 +42,19 @@ const DetailView = ({ section, onBack, item, activeTab: initialActiveTab }) => {
         item={item}
         section={section}
         actionable={selectedActionable}
-        onBack={() => setSelectedActionable(null)}
+        onBack={() => {
+          setSelectedActionable(null);
+          setSelectedSection(null);
+        }}
         activeTab={activeTab}
       />
     );
   }
+
+  const handleActionableClick = (actionable, section) => {
+    setSelectedActionable(actionable);
+    setSelectedSection(section);
+  };
 
   return (
     <div className="gap-detail-container">
@@ -129,7 +138,7 @@ const DetailView = ({ section, onBack, item, activeTab: initialActiveTab }) => {
                   </div>
                   <div className="detail-body">
                     {section.actionable.map((item, index) => (
-                      <div key={index} className="actionable-item" onClick={() => setSelectedActionable(item)} style={{
+                      <div key={index} className="actionable-item" onClick={() => handleActionableClick(item, section)} style={{
                         borderTop: index > 0 ? 'none' : '1px solid #CBCBCB'  // Apply top border only for the first item
                       }}>
                         <div className="day-indicator">

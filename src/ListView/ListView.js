@@ -59,7 +59,7 @@ const ListItem = ({ item, onClick,hideTags, hideCategory }) => {
 
 
 // ListView Component
-const ListView = ({ items, onItemClick,hideTags, activeView, setActiveView,selectedFilters, hideCategory,filtersHeight }) => {
+const ListView = ({ items, onItemClick,hideTags, activeView, setActiveView,selectedFilters, hideCategory,filtersHeight,handleStatusClick }) => {
  
     // Check if any filters are selected
     const areFiltersSelected = Object.values(selectedFilters).some(
@@ -77,7 +77,7 @@ const ListView = ({ items, onItemClick,hideTags, activeView, setActiveView,selec
         </div>
         <div className="view">
           <div className="scrollable-content">
-           <ActionableView items={items} selectedFilters={selectedFilters}/>
+           <ActionableView items={items} selectedFilters={selectedFilters} handleStatusClick={handleStatusClick}/>
           </div>
         </div>
       </div>
