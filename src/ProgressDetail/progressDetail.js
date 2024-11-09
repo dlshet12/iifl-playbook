@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import './progressDetail.css';
 import back from '../asset/back_icon.svg';
-const ProgressDetail = ({onBack, selectedStatus }) => {
+const ProgressDetail = ({ onBack, selectedStatus }) => {
 
   const { sections, solutionContent } = selectedStatus || {};
 
@@ -20,82 +20,87 @@ const ProgressDetail = ({onBack, selectedStatus }) => {
   };
 
   return (
-<>
-{sections && sections.length > 0 ? (
-                sections.map((section, index) => (
-    
-    <div  key={index} className="action-detail-container">
-      <div className="nav-back-actionable">
-        <button className="back-button-gap-detail" onClick={onBack}>
-          <img src={back} alt="back" />
-          <div className="back-gap-title">{section.type} Progress</div>
-        </button>
+    <>
+      {sections && sections.length > 0 ? (
+        sections.map((section, index) => (
 
-        <div className="tab-bg">
-          <div className="tab-container">
-            <div style={{ display: 'flex', justifyContent: 'space-between' }} className="tab-action-switcher">
-      
-                <button
-             
-                >
-              days
-                </button>
-           
-            </div>
-          </div>
-        </div>
-      </div>
+          <div key={index} className="action-detail-container">
+            <div className="nav-back-actionable">
+              <button className="back-button-gap-detail" onClick={onBack}>
+                <img src={back} alt="back" />
+                <div className="back-gap-title">{section.type} Progress</div>
+              </button>
 
+              <div className="tab-bg">
+                <div className="tab-container">
+                  <div style={{ display: 'flex', justifyContent: 'space-between' }} className="tab-action-switcher">
 
+                    <button
 
-        <div className="actionable-content">
-          <div className="detail-section-solution-actionable">
-            <div className="detail-header">
-              <span className="detail-tag">Solution</span>
-            </div>
-            <div className="detail-body-actionable">
-              <p>{section.content} </p>
-            </div>
-          </div>
+                    >
+                      days
+                    </button>
 
-          <div className="detail-section-actionable-detail">
-            <div className="detail-header-actionable">
-              <span className="detail-tag">ACTIONABLE</span>
-              <div className="status">
-                Status: <span style={{ fontWeight: '500' }}></span>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div className="detail-body-action">
-          
-              <div
-                className="actionable-steps-list"
-   
-              />
-                   <div dangerouslySetInnerHTML={{ __html: section.actionableSteps || '' }} />
+
+
+            <div className="actionable-content">
+              <div className="detail-section-solution-actionable">
+                <div className="detail-header">
+                  <span className="detail-tag">Solution</span>
+                </div>
+                <div className="detail-body-actionable">
+                  <p>{section.content} </p>
+                </div>
+              </div>
+
+              {section.actionable.map((action, actionIndex) => (
+                <>
+                  <div className="detail-section-actionable-detail">
+                    <div className="detail-header-actionable">
+                      <span className="detail-tag">ACTIONABLE</span>
+                      <div className="status">
+                        Status: <span style={{ fontWeight: '500' }}>{action.status}</span>
+                      </div>
+                    </div>
+
+                    <div className="detail-body-action">
+
+                      <div
+                        className="actionable-steps-list"
+
+                      />
+                      <div dangerouslySetInnerHTML={{ __html: action.details.actionableSteps || '' }} />
+                    </div>
+                  </div>
+
+                  <div className="detail-section-actionable-detail">
+                    <div className="detail-header">
+                      <span className="detail-tag">KPI</span>
+                    </div>
+                    <div className="detail-body-action">
+
+                      <div
+                        className="actionable-steps-list"
+
+                      />
+                      <div dangerouslySetInnerHTML={{ __html: action.details.kpis || '' }} />
+                    </div>
+                  </div>
+
+                </>
+              ))}
             </div>
           </div>
 
-          <div className="detail-section-actionable-detail">
-            <div className="detail-header">
-              <span className="detail-tag">KPI</span>
-            </div>
-            <div className="detail-body-action">
-         
-                <div
-                className="actionable-steps-list"
-           
-              />
-                         <div dangerouslySetInnerHTML={{ __html: section.kpis || '' }} />
-            </div>
-          </div>
-        </div>
-        
-    </div>
-      ))
-    ) : (
-      <p>No relevant data found.</p>
-  )}
+        ))
+      ) : (
+        <p>No relevant data found.</p>
+      )}
     </>
   );
 };

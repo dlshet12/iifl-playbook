@@ -29,22 +29,27 @@ const PlaybookContent = ({ items, selectedFilters, activeView, setActiveView, vi
   };
 
   const handleStatusClick = (status, item) => {
+    // Filter sections to only include actionable steps matching the selected status and days
     const filteredSections = item.sections.filter(section => {
-      // Check if an actionable step matches the days and status
-      const actionableStep = section.actionable.find(actionable => 
+      const filteredActionables = section.actionable.filter(actionable => 
         parseInt(actionable.days) === status.days && actionable.status === status.status
       );
-      return actionableStep;
+      if (filteredActionables.length > 0) {
+        // If actionable steps match, replace section's actionable steps with the filtered ones
+        section.actionable = filteredActionables;
+        return true;
+      }
+      return false;
     });
   
+    // Prepare solution content if needed
     let solutionContent;
     if (filteredSections.length > 0) {
-      // Find content based on the solution number or the default
-      const solutionIndex = item.statuses.filter(st => st.category === status.category).indexOf(status);
+      const solutionIndex = item.statuses.findIndex(st => st.category === status.category);
       solutionContent = solutionIndex === 0 ? filteredSections[0].content : filteredSections[solutionIndex].content;
     }
   
-    // Pass filtered data to ProgressDetail
+    // Set the selectedStatus with filtered actionable steps and KPIs
     setSelectedStatus({
       item,
       status,
