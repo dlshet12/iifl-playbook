@@ -7,6 +7,7 @@ import FilterChips from '../chips/chips';
 import axios from 'axios';
 import Search from '../search/search';
 import ActionDetailView from '../actionableDetailPage/actionableDeatil';
+import ProgressDetail from '../ProgressDetail/progressDetail';
 
 // Main PlaybookContent Component
 const PlaybookContent = ({ items, selectedFilters, activeView, setActiveView, view, setView, onItemClick,filtersHeight   }) => {
@@ -29,7 +30,8 @@ const PlaybookContent = ({ items, selectedFilters, activeView, setActiveView, vi
 
   const handleStatusClick = (status, item) => {
     setSelectedStatus({ item, status });
-    setView('actionDetail'); // Navigate to ActionDetailView
+    setSelectedItem(item); // Store selected item
+    setView('progressView'); 
   };
 
    // Check if any filters are selected
@@ -86,9 +88,9 @@ const PlaybookContent = ({ items, selectedFilters, activeView, setActiveView, vi
         selectedFilters={selectedFilters}
         filtersHeight={filtersHeight} />
       ) :  view === 'gap' ? (
-        <GapView selectedItem={selectedItem} onBack={handleBack} />
-      ) : view === 'actionDetail' && (
-        <ActionDetailView onBack={handleBack} item={selectedStatus.item} actionable={selectedStatus.status} /* other props */ />
+        <GapView selectedItem={selectedItem}  onBack={handleBack} />
+      ) : view === 'progressView' && (
+        <ProgressDetail onBack={handleBack} selectedStatus={selectedStatus} />
       )
     }
     </Box>
