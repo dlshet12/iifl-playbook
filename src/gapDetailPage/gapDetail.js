@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import './gapDetail.css';
 import back from '../asset/back_icon.svg';
 import ActionDetailView from '../actionableDetailPage/actionableDeatil';

@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import './actionableDetail.css';
 import back from '../asset/back_icon.svg';
 const ActionDetailView = ({ section = {}, onBack, item = {}, actionable, activeTab }) => {

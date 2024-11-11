@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React ,{useState } from 'react';
 
 import './progressDetail.css';
 import back from '../asset/back_icon.svg';
 const ProgressDetail = ({ onBack, selectedStatus }) => {
 
-  const { sections, solutionContent } = selectedStatus || {};
+  const { sections, solutionContent,selectedDay } = selectedStatus || {};
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -17,6 +17,14 @@ const ProgressDetail = ({ onBack, selectedStatus }) => {
       default:
         return 'grey';
     }
+  };
+
+  // Define an array with the days you want to display
+  const daysOptions = [45, 90, 180];
+  const [activeDay, setActiveDay] = useState(selectedDay || 45);
+
+  const handleTabChange = (day) => {
+    setActiveDay(day);
   };
 
   return (
@@ -35,11 +43,15 @@ const ProgressDetail = ({ onBack, selectedStatus }) => {
                 <div className="tab-container">
                   <div style={{ display: 'flex', justifyContent: 'space-between' }} className="tab-action-switcher">
 
-                    <button
-
-                    >
-                      days
-                    </button>
+                  {daysOptions.map((day, index) => (
+                      <button
+                        key={index}
+                        onClick={() => handleTabChange(day)}
+                        className={`tab-button ${activeDay === day ? 'active' : ''}`}
+                      >
+                        {day} days
+                      </button>
+                    ))}
 
                   </div>
                 </div>
@@ -63,7 +75,7 @@ const ProgressDetail = ({ onBack, selectedStatus }) => {
                   <div className="detail-section-actionable-detail">
                     <div className="detail-header-actionable">
                       <span className="detail-tag">ACTIONABLE</span>
-                      <div className="status">
+                      <div className="status" style={{ backgroundColor: getStatusColor(action.status) }}>
                         Status: <span style={{ fontWeight: '500' }}>{action.status}</span>
                       </div>
                     </div>
