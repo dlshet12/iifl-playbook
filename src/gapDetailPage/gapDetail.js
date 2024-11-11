@@ -1,9 +1,33 @@
-import React, { useState } from 'react';
+import React, {useEffect, useRef, useState } from 'react';
 import './gapDetail.css';
 import back from '../asset/back_icon.svg';
 import ActionDetailView from '../actionableDetailPage/actionableDeatil';
 
 const DetailView = ({ section, onBack, item, activeTab: initialActiveTab }) => {
+
+  const [navHeight, setNavHeight] = useState(0);
+  const navRef = useRef(null);
+
+  useEffect(() => {
+    // Set initial height
+    if (navRef.current) {
+      setNavHeight(navRef.current.offsetHeight);
+    }
+
+    // Update height when window resizes or data changes
+    const handleResize = () => {
+      if (navRef.current) {
+        setNavHeight(navRef.current.offsetHeight);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   const [activeTab, setActiveTab] = useState(initialActiveTab || item.tags[0]);
 
   const [selectedActionable, setSelectedActionable] = useState(null);
@@ -57,7 +81,7 @@ const DetailView = ({ section, onBack, item, activeTab: initialActiveTab }) => {
 
   return (
     <div className="gap-detail-container">
-      <div className="nav-back-gap-detail">
+      <div ref={navRef} className="nav-back-gap-detail">
         <button className="back-button-gap" onClick={onBack}>
           <img src={back} alt='back' />
           <div className='back-gap-title'>   {item.title}</div>
@@ -99,7 +123,7 @@ const DetailView = ({ section, onBack, item, activeTab: initialActiveTab }) => {
         </div>
       </div>
 
-      <div className="detail-content">
+      <div className="detail-content"    style={{ marginTop: `${navHeight + 50}px` }}>
         {activeSections.map((section, index) => (
           <>
             <div key={index} className="detail-section-solution">
