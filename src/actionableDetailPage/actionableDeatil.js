@@ -35,6 +35,8 @@ const ActionDetailView = ({ section = {}, onBack, item = {}, actionable, activeT
         return '#BCFFBC';
       case 'Delay':
         return '#FEADAF';
+        case 'Not Started':
+          return '#FEADAF';
       case 'In progress':
         return '#BCE3FF';
       default:
