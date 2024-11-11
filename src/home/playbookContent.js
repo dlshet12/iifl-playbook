@@ -39,20 +39,20 @@ const PlaybookContent = ({ items, selectedFilters, activeView, setActiveView, vi
     
     if (targetSection) {
       // Filter actionable items that match the days and status
-      const filteredSection = {
-        ...targetSection,
-        actionable: targetSection.actionable.filter(actionable => 
-          parseInt(actionable.days) === status.days && actionable.status === status.status
-        )
-      };
+      // const filteredSection = {
+      //   ...targetSection,
+      //   actionable: targetSection.actionable.filter(actionable => 
+      //     parseInt(actionable.days) === status.days && actionable.status === status.status
+      //   )
+      // };
       
-      const filteredSections = filteredSection.actionable.length > 0 ? [filteredSection] : [];
+      // const filteredSections = filteredSection.actionable.length > 0 ? [filteredSection] : [];
       
       setSelectedStatus({
         item,
         status,
-        sections: filteredSections,
-        solutionContent: filteredSection.content || '',
+        sections: [targetSection],
+        solutionContent: targetSection.content || '',
         selectedDay: status.days 
       });
       setSelectedItem(item);
