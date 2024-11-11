@@ -158,7 +158,7 @@ const DetailView = ({ section, onBack, item, activeTab: initialActiveTab }) => {
                     <span className="detail-tag">Impact</span>
                   </div>
                   <div className="detail-body">
-                    <span>Provide personalized, mobile-friendly content, including short videos, infographics, and FAQs, tailored to users' browsing history, preferences, and transaction patterns to clearly explain financial products and service</span>
+                  <div dangerouslySetInnerHTML={{ __html: section.impact || '' }} />
 
                   </div>
                 </div>
@@ -169,7 +169,7 @@ const DetailView = ({ section, onBack, item, activeTab: initialActiveTab }) => {
                     <span className="detail-tag">Reference links</span>
                   </div>
                   <div className="detail-body">
-                    <span>Provide personalized, mobile-friendly content, including short videos, infographics, and FAQs, tailored to users' browsing history, preferences, and transaction patterns to clearly explain financial products and service</span>
+                  <div dangerouslySetInnerHTML={{ __html: section.reference || '' }} />
                   </div>
                 </div>
               </>
