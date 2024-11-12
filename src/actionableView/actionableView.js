@@ -3,13 +3,17 @@ import './actionableView.css';
 const ActionableView = ({ items = [], selectedFilters = { dbt: [], actionable: [] }, handleStatusClick }) => {
   const filteredItems = items.map(item => ({
     ...item,
-    statuses: (item.statuses || []).filter(status => {
-      const dbtMatch = selectedFilters.dbt.length === 0 || 
-                      selectedFilters.dbt.includes(status.category);
-      const daysMatch = selectedFilters.actionable.length === 0 || 
-                       selectedFilters.actionable.some(days => status.days === parseInt(days));
-      return dbtMatch && daysMatch;
-    })
+    statuses: (item.statuses || [])
+      // First filter for only 45-day "Not Started" statuses
+      .filter(status => status.days === 45 && status.status === "Not Started")
+      // Then apply any selected filters
+      .filter(status => {
+        const dbtMatch = selectedFilters.dbt.length === 0 || 
+                        selectedFilters.dbt.includes(status.category);
+        const daysMatch = selectedFilters.actionable.length === 0 || 
+                         selectedFilters.actionable.some(days => status.days === parseInt(days));
+        return dbtMatch && daysMatch;
+      })
   })).filter(item => item.statuses.length > 0);
 
   return (
