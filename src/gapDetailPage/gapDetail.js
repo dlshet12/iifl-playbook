@@ -32,6 +32,9 @@ const DetailView = ({ section, onBack, item, activeTab: initialActiveTab }) => {
 
   const [selectedActionable, setSelectedActionable] = useState(null);
   const [selectedSection, setSelectedSection] = useState(null);
+
+  const [selectedSolutionIndex, setSelectedSolutionIndex] = useState(null); 
+
   const [direction, setDirection] = useState(0);
 
   const [isExpandedArray, setIsExpandedArray] = useState(
@@ -65,18 +68,19 @@ const DetailView = ({ section, onBack, item, activeTab: initialActiveTab }) => {
         item={item}
         section={section}
         actionable={selectedActionable}
+        solutionIndex={selectedSolutionIndex}
         onBack={() => {
           setSelectedActionable(null);
-          setSelectedSection(null);
+          setSelectedSolutionIndex(null);
         }}
         activeTab={activeTab}
       />
     );
   }
 
-  const handleActionableClick = (actionable, section) => {
+  const handleActionableClick = (actionable, section, solutionIndex) => {
     setSelectedActionable(actionable);
-    setSelectedSection(section);
+    setSelectedSolutionIndex(solutionIndex);
   };
 
   return (
@@ -124,14 +128,14 @@ const DetailView = ({ section, onBack, item, activeTab: initialActiveTab }) => {
       </div>
 
       <div className="detail-content"    style={{ marginTop: `${navHeight + 50}px` }}>
-        {activeSections.map((section, index) => (
+        {activeSections.map((section, solutionIndex) => (
           <>
-            <div key={index} className="detail-section-solution">
+            <div key={solutionIndex} className="detail-section-solution">
               <div className="detail-header">
-                <span className="detail-tag">Solution {index + 1} / {activeSections.length}</span>
-                <button onClick={() => toggleAccordion(index)} className="accordion-toggle">
+                <span className="detail-tag">Solution {solutionIndex + 1} / {activeSections.length}</span>
+                <button onClick={() => toggleAccordion(solutionIndex)} className="accordion-toggle">
                   <svg
-                    className={`chevron ${isExpandedArray[index] ? 'chevron-down' : 'chevron-up'}`}
+                    className={`chevron ${isExpandedArray[solutionIndex] ? 'chevron-down' : 'chevron-up'}`}
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -146,14 +150,14 @@ const DetailView = ({ section, onBack, item, activeTab: initialActiveTab }) => {
                 </button>
 
               </div>
-              {isExpandedArray[index] && (
+              {isExpandedArray[solutionIndex] && (
                 <div className="detail-body">
                   <p>{section.content}</p>
                 </div>
               )}
             </div>
 
-            {isExpandedArray[index] && (
+            {isExpandedArray[solutionIndex] && (
               <>
                 <div className="detail-section-actionable">
                   <div className="detail-header">
@@ -161,7 +165,7 @@ const DetailView = ({ section, onBack, item, activeTab: initialActiveTab }) => {
                   </div>
                   <div className="detail-body">
                     {section.actionable.map((item, index) => (
-                      <div key={index} className="actionable-item" onClick={() => handleActionableClick(item, section)} style={{
+                      <div key={index} className="actionable-item" onClick={() => handleActionableClick(item, section,solutionIndex)} style={{
                         borderTop: index > 0 ? 'none' : '1px solid #CBCBCB'  // Apply top border only for the first item
                       }}>
                         <div className="day-indicator">

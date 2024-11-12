@@ -1,17 +1,16 @@
 import { useState, useEffect } from 'react';
 import './actionableDetail.css';
 import back from '../asset/back_icon.svg';
-const ActionDetailView = ({ section = {}, onBack, item = {}, actionable, activeTab }) => {
+const ActionDetailView = ({ section = {}, onBack, item = {}, actionable, activeTab,solutionIndex }) => {
 
   const [activeDay, setActiveDay] = useState(actionable?.days || '');
   const [activeActionable, setActiveActionable] = useState(actionable);
   const [direction, setDirection] = useState(0);
 
-   // Find the active section that matches both the type and contains the current actionable
-   const activeSection = item.sections.find(s => 
-    s.type === activeTab && 
-    s.actionable.some(a => a.days === activeDay)
-  );
+ // Modified: Find all sections that match the active tab
+ const activeSections = item.sections.filter(s => s.type === activeTab);
+ // Get the specific section based on solution index
+ const activeSection = activeSections[solutionIndex];
 
   useEffect(() => {
     if (actionable) {
@@ -20,14 +19,16 @@ const ActionDetailView = ({ section = {}, onBack, item = {}, actionable, activeT
     }
   }, [actionable]);
 
-  const handleTabChange = (newDays) => {
-    // Find the actionable item in the current section
-    const newActionable = activeSection?.actionable.find(a => a.days === newDays);
-    if (newActionable) {
-      setActiveDay(newDays);
-      setActiveActionable(newActionable);
-    }
-  };
+ // Ensure activeSection exists before accessing its properties
+ const handleTabChange = (newDays) => {
+  if (!activeSection) return;
+  
+  const newActionable = activeSection.actionable.find(a => a.days === newDays);
+  if (newActionable) {
+    setActiveDay(newDays);
+    setActiveActionable(newActionable);
+  }
+};
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -55,7 +56,7 @@ const ActionDetailView = ({ section = {}, onBack, item = {}, actionable, activeT
         <div className="tab-bg">
           <div className="tab-container">
             <div style={{ display: 'flex', justifyContent: 'space-between' }} className="tab-action-switcher">
-              {section.actionable?.map((actionableItem, index) => (
+              {activeSection.actionable.map((actionableItem, index) => (
                 <button
                   key={index}
                   onClick={() => handleTabChange(actionableItem.days)}
