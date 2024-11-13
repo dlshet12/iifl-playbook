@@ -27,37 +27,16 @@ const PlaybookContent = ({ items, selectedFilters, activeView, setActiveView, vi
     setSelectedStatus(null);
   };
 
-  const handleStatusClick = (status, item, solutionNumber) => {
-    // Find the index of the solution based on category and days
-    const solutionIndex = parseInt(solutionNumber.split(' ')[1]) - 1;
-    
-    // Filter sections that match the category
-    const matchingSections = item.sections.filter(section => section.type === status.category);
-    
-    // If we have multiple matching sections, pick the one corresponding to the solution number
-    const targetSection = matchingSections[solutionIndex];
-    
-    if (targetSection) {
-      // Filter actionable items that match the days and status
-      // const filteredSection = {
-      //   ...targetSection,
-      //   actionable: targetSection.actionable.filter(actionable => 
-      //     parseInt(actionable.days) === status.days && actionable.status === status.status
-      //   )
-      // };
-      
-      // const filteredSections = filteredSection.actionable.length > 0 ? [filteredSection] : [];
-      
-      setSelectedStatus({
-        item,
-        status,
-        sections: [targetSection],
-        solutionContent: targetSection.content || '',
-        selectedDay: status.days 
-      });
-      setSelectedItem(item);
-      setView('progressView');
-    }
+  const handleStatusClick = (section, item, solutionLabel) => {
+    const selectedActionable = section.actionable[0]; // Assuming you want the first actionable item here
+    setSelectedStatus({
+      sections: [section],
+      solutionContent: section.content, // section content
+      selectedDay: parseInt(selectedActionable.days), // initial selected day
+      status: selectedActionable.status,
+      solutionNumber: solutionLabel
+    });
+    setView('progressView');
   };
 
 

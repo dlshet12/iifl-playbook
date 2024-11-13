@@ -28,11 +28,11 @@
     color: #242056;
 }
 
-.status-completed {
+.green {
     background-color: #BCFFBC;
 }
 
-.status-delayed {
+.red {
     background-color: #FEADAF;
 }
 
@@ -40,6 +40,6 @@
     background-color: #FEADAF;
 }
 
-.status-in-progress {
+.blue {
     background-color: #BCE3FF;
 }
