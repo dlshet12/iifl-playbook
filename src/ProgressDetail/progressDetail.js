@@ -3,17 +3,15 @@ import React ,{useState, useEffect } from 'react';
 import './progressDetail.css';
 import back from '../asset/back_icon.svg';
 const ProgressDetail = ({ onBack, selectedStatus }) => {
-
-  const { sections, solutionContent,selectedDay, status: initialStatus, solutionNumber } = selectedStatus || {};
+  const { sections, solutionContent, selectedDay, solutionNumber, actionableArray } = selectedStatus || {};
 
   const getStatusColor = (status) => {
     switch (status) {
       case 'Completed':
         return '#BCFFBC';
       case 'Delay':
+      case 'Not Started':
         return '#FEADAF';
-        case 'Not Started':
-          return '#FEADAF';
       case 'In progress':
         return '#BCE3FF';
       default:
@@ -21,23 +19,21 @@ const ProgressDetail = ({ onBack, selectedStatus }) => {
     }
   };
 
-  // Define an array with the days you want to display
+  // Define the days you want to display
   const daysOptions = [45, 90, 180];
   const [activeDay, setActiveDay] = useState(selectedDay || 45);
   const [currentStatus, setCurrentStatus] = useState(null);
   const [currentActionable, setCurrentActionable] = useState(null);
 
+  // Update content based on selected day
   useEffect(() => {
-    if (sections && sections[0]) {
+    if (actionableArray) {
       updateContentForDay(activeDay);
     }
-  }, [activeDay, sections]);
+  }, [activeDay, actionableArray]);
 
   const updateContentForDay = (day) => {
-    const section = sections[0];
-    // Find the actionable item for the selected day
-    const actionableForDay = section.actionable.find(action => parseInt(action.days) === day);
-    
+    const actionableForDay = actionableArray.find(action => parseInt(action.days) === day);
     if (actionableForDay) {
       setCurrentActionable(actionableForDay);
       setCurrentStatus(actionableForDay.status);
@@ -50,11 +46,11 @@ const ProgressDetail = ({ onBack, selectedStatus }) => {
   const handleTabChange = (day) => {
     setActiveDay(day);
   };
+
   return (
     <>
       {sections && sections.length > 0 ? (
         sections.map((section, index) => (
-
           <div key={index} className="action-detail-container">
             <div className="nav-back-actionable">
               <button className="back-button-gap-detail" onClick={onBack}>
@@ -64,10 +60,9 @@ const ProgressDetail = ({ onBack, selectedStatus }) => {
 
               <div className="tab-bg">
                 <div className="tab-container">
-                  <div style={{ display: 'flex', justifyContent: 'space-between' }} className="tab-action-switcher">
-
-                  {daysOptions.map((day, index) => {
-                      const hasData = section.actionable.some(action => parseInt(action.days) === day);
+                  <div className="tab-action-switcher" style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    {daysOptions.map((day, index) => {
+                      const hasData = actionableArray.some(action => parseInt(action.days) === day);
                       return (
                         <button
                           key={index}
@@ -80,13 +75,10 @@ const ProgressDetail = ({ onBack, selectedStatus }) => {
                         </button>
                       );
                     })}
-
                   </div>
                 </div>
               </div>
             </div>
-
-
 
             <div className="actionable-content">
               <div className="detail-section-solution-actionable">
@@ -94,7 +86,7 @@ const ProgressDetail = ({ onBack, selectedStatus }) => {
                   <span className="detail-tag">Solution</span>
                 </div>
                 <div className="detail-body-actionable">
-                  <p>{solutionContent} </p>
+                  <p>{solutionContent}</p>
                 </div>
               </div>
 
@@ -109,7 +101,6 @@ const ProgressDetail = ({ onBack, selectedStatus }) => {
                     </div>
 
                     <div className="detail-body-action">
-                      <div className="actionable-steps-list" />
                       <div dangerouslySetInnerHTML={{ __html: currentActionable.details.actionableSteps || '' }} />
                     </div>
                   </div>
@@ -119,7 +110,6 @@ const ProgressDetail = ({ onBack, selectedStatus }) => {
                       <span className="detail-tag">KPI</span>
                     </div>
                     <div className="detail-body-action">
-                      <div className="actionable-steps-list" />
                       <div dangerouslySetInnerHTML={{ __html: currentActionable.details.kpis || '' }} />
                     </div>
                   </div>
@@ -129,7 +119,6 @@ const ProgressDetail = ({ onBack, selectedStatus }) => {
               )}
             </div>
           </div>
-
         ))
       ) : (
         <p>No relevant data found.</p>

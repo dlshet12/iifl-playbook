@@ -1,8 +1,7 @@
 
 import './actionableView.css';
 const ActionableView = ({ items = [], selectedFilters = { dbt: [], actionable: [] }, handleStatusClick }) => {
-
-  
+ 
   const filteredItems = items.map(item => ({
     ...item,
     sections: (item.sections || []).map(section => ({
@@ -72,7 +71,7 @@ const ActionableView = ({ items = [], selectedFilters = { dbt: [], actionable: [
                   <div 
                     key={statusIndex} 
                     className={`status-tag ${action.color}`} 
-                    onClick={() => handleStatusClick(section, item, solutionLabel)}
+                    onClick={() => handleStatusClick(section, items, solutionLabel)}
                   >
                     {solutionLabel} - {action.days} Days - {action.status}
                   </div>

@@ -27,18 +27,23 @@ const PlaybookContent = ({ items, selectedFilters, activeView, setActiveView, vi
     setSelectedStatus(null);
   };
 
-  const handleStatusClick = (section, item, solutionLabel) => {
-    const selectedActionable = section.actionable[0]; // Assuming you want the first actionable item here
+  const handleStatusClick = (section, items, solutionLabel) => {
+    const matchingSection = items.find(item => 
+      item.sections.some(sec => sec.content === section.content)
+    );
+  
+    // Store entire actionable array for use in different days
+    const actionableArray = matchingSection ? matchingSection.sections.find(sec => sec.content === section.content).actionable : [];
+  
     setSelectedStatus({
       sections: [section],
-      solutionContent: section.content, // section content
-      selectedDay: parseInt(selectedActionable.days), // initial selected day
-      status: selectedActionable.status,
+      solutionContent: section.content, 
+      actionableArray, // Store the whole array here
       solutionNumber: solutionLabel
     });
+    
     setView('progressView');
   };
-
 
    // Check if any filters are selected
    const areFiltersSelected = Object.values(selectedFilters).some(
