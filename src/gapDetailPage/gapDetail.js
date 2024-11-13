@@ -83,6 +83,8 @@ const DetailView = ({ section, onBack, item, activeTab: initialActiveTab }) => {
     setSelectedSolutionIndex(solutionIndex);
   };
 
+  const isScrollable = uniqueTags.length > 4;
+
   return (
     <div className="gap-detail-container">
       <div ref={navRef} className="nav-back-gap-detail">
@@ -111,8 +113,8 @@ const DetailView = ({ section, onBack, item, activeTab: initialActiveTab }) => {
 
         <div style={{ background: "white" }}>
 
-          <div className="tab-switcher-container">
-            <div className="tab-switcher">
+          <div  className="tab-switcher-container">
+            <div className={`tab-switcher ${isScrollable ? 'scrollable' : ''}`}>
               {uniqueTags.map((tag, index) => (
                 <button
                   key={index}

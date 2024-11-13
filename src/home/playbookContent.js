@@ -60,12 +60,9 @@ const PlaybookContent = ({ items, selectedFilters, activeView, setActiveView, vi
           selectedFilters.stage.some(stage => stage.toLowerCase() === item.category.toLowerCase());
         const dbtMatch = selectedFilters.dbt.length === 0 || 
           selectedFilters.dbt.some(tag => item.tags.includes(tag));
-        const actionableMatch = selectedFilters.actionable.length === 0 || 
-          (item.statuses && selectedFilters.actionable.some(actionableDays => 
-            item.statuses.some(status => status.days === parseInt(actionableDays))
-          ));
+    
   
-        return personaMatch && stageMatch && dbtMatch && actionableMatch;
+        return personaMatch && stageMatch && dbtMatch;
       } else {
         // Progress view filtering
         const dbtMatch = selectedFilters.dbt.length === 0 || 
@@ -184,12 +181,8 @@ const filteredItems = itemsData.filter((item) => {
       selectedFilters.stage.some(stage => stage.toLowerCase() === category.toLowerCase());
     const dbtMatch = selectedFilters.dbt.length === 0 || 
       selectedFilters.dbt.some(tag => tags.includes(tag));
-    const actionableMatch = selectedFilters.actionable.length === 0 || 
-      (statuses && selectedFilters.actionable.some(actionableDays => 
-        statuses.some(status => status.days === parseInt(actionableDays))
-      ));
 
-    return searchMatch && personaMatch && stageMatch && dbtMatch && actionableMatch;
+    return searchMatch && personaMatch && stageMatch && dbtMatch;
   } else {
     // Progress view filtering
     const dbtMatch = selectedFilters.dbt.length === 0 || 

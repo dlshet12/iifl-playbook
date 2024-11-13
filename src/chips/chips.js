@@ -7,7 +7,7 @@ import './chips.css'
 
 // Define filter options
 const filterOptions = {
-    actionable: ['All', '45 Days', '90 Days', '160 Days']
+    actionable: ['All', '45 Days', '90 Days', '180 Days']
   };
 
   
@@ -94,7 +94,7 @@ const titleCase = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCas
           } else {
             // For progress view, get unique categories from statuses
             return [...new Set(itemsData.flatMap(item => 
-              (item.statuses || []).map(status => status.category)
+              (item.sections || []).map(section => section.type)
             ))];
           }
       case 'actionable':

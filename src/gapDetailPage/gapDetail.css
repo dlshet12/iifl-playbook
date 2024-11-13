@@ -242,7 +242,7 @@
 
 .tab-switcher-container {
   padding: 0 0 10px 0;
-  width: max-content;
+  /* width: max-content; */
 }
 
 .tab-switcher {
@@ -250,16 +250,26 @@
   border-radius: 50px;
   border: 1px solid #CBCBCB;
   padding: 4px;
-  display: flex;
+  display: inline-flex;
   justify-content: space-between;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  white-space: nowrap;
+}
+/* Only allow horizontal scrolling when the scrollable class is present */
+.tab-switcher.scrollable {
   overflow-x: auto;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;    /* Firefox */
+  width: 100%;
+  
 }
 
-.tab-switcher::-webkit-scrollbar {
-  display: none;
+.tab-switcher.scrollable::-webkit-scrollbar {
+   /* Hide scrollbar for Chrome, Safari, and Opera */
+}
+
+.tab-button-gap {
+  flex-shrink: 0; /* Prevent buttons from shrinking */
 }
 
 .tab-button-gap {
