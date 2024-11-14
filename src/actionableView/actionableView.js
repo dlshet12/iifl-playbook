@@ -4,39 +4,56 @@ const ActionableView = ({ items = [], selectedFilters = { dbt: [], actionable: [
  
   const filteredItems = items.map(item => ({
     ...item,
-    sections: (item.sections || []).map(section => ({
-      ...section,
-      actionable: (section.actionable || []).filter(action => {
-        const dbtMatch = selectedFilters.dbt.length === 0 || 
-                        selectedFilters.dbt.includes(section.type);
-        const daysMatch = selectedFilters.actionable.length === 0 || 
-                         selectedFilters.actionable.some(days => action.days === days);
-
-        // Additional filtering logic based on the completion status and days threshold
-        if (action.status === "Completed") {
-          if (action.days === "45") {
-            return false; // skip 45 days - completed
-          } else if (action.days === "90") {
-            return false; // skip 90 days - completed
-          } else if (action.days === "180") {
-            return true; // show 180 days - completed
+    sections: (item.sections || []).map(section => {
+      // Apply general filtering and then take only the first actionable item
+      const filteredActionables = (section.actionable || []).filter(action => {
+        const dbtMatch = selectedFilters.dbt.length === 0 || selectedFilters.dbt.includes(section.type);
+        const daysMatch = selectedFilters.actionable.length === 0 || selectedFilters.actionable.some(days => action.days === days);
+   
+        // Apply general filtering to each action
+        return dbtMatch && daysMatch;
+      });
+   
+      // Now, we handle the logic to show the third item if the first two are "Completed"
+      const actionableArray = filteredActionables;
+   
+      if (actionableArray.length > 0) {
+        // If the first item is completed, check the second item
+        if (actionableArray[0].status === "Completed" && actionableArray.length > 1) {
+          // If the second item is completed, show the third item if it exists
+          if (actionableArray[1].status === "Completed" && actionableArray.length > 2) {
+            // Show the third item regardless of its status
+            return {
+              ...section,
+              actionable: [actionableArray[2]] // Show third item, no status check
+            };
+          }
+          // If the second is not completed, show the second item (if exists)
+          return {
+            ...section,
+            actionable: [actionableArray[1]]
+          };
+        }
+   
+        // If the first item is not "Completed", show the first non-"Completed" item as we did earlier
+        for (let i = 0; i < actionableArray.length; i++) {
+          if (actionableArray[i].status !== "Completed") {
+            return {
+              ...section,
+              actionable: [actionableArray[i]] // Show the first non-"Completed" item
+            };
           }
         }
-
-        // Return "Not Started" for 90 or 180 days if previous thresholds were complete
-        if (action.status === "Not Started" && action.days === "90") {
-          const prevAction = section.actionable.find(a => a.days === "45" && a.status === "Completed");
-          return prevAction ? true : false;
-        } else if (action.status === "Not Started" && action.days === "180") {
-          const prevAction = section.actionable.find(a => a.days === "90" && a.status === "Completed");
-          return prevAction ? true : false;
-        }
-
-        return dbtMatch && daysMatch;
-      }).slice(0, 1) // Take only the first actionable object after applying the filters
-    })).filter(section => section.actionable.length > 0)
+      }
+   
+      // If no non-"Completed" item is found, fall back to showing the first item
+      return {
+        ...section,
+        actionable: actionableArray.slice(0, 1) // Default behavior: show first actionable item
+      };
+    }).filter(section => section.actionable.length > 0)
   })).filter(item => item.sections.some(section => section.actionable.length > 0));
-
+   
   console.log("Filtered items:", filteredItems);
 
   return (
