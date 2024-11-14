@@ -68,7 +68,7 @@ const ListView = ({ items, onItemClick,hideTags, activeView, setActiveView,selec
     return(
       <Box  style={{ marginTop: areFiltersSelected ? filtersHeight + 10 : 0 }}  className={`list-container ${areFiltersSelected ? 'extra-margin-top' : ''}`}>
       <div className={`views-wrapper ${activeView === 'gap' ? 'slide-gap' : 'slide-actionable'}`}
-      style={{ height: activeView === 'gap' ? '410vh' : 'auto' }}>
+      style={{ height: activeView === 'gap' ? '380vh' : 'auto' }}>
         <div className="view">
           <div className="scrollable-content">
             {items.map((item, index) => (
