@@ -179,4 +179,6 @@
 .actionable-steps-list ol {
   padding-left: 0; /* Removes left padding */
   margin-left: 0; 
+  display: grid;
+  gap: 10px;
 }

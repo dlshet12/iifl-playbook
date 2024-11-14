@@ -106,6 +106,12 @@
 .detail-body p {
   margin: 0;
 }
+.detail-body ul,ol{
+margin: 8px;
+padding-left: 10px;
+  display: grid;
+  gap: 10px;
+}
 
 .detail-tag {
   font-weight: 500;
@@ -187,6 +193,18 @@
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.3px;
+  overflow-wrap: break-word; /* Ensure words/links wrap within container */
+  word-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%; 
+}
+.detail-body a {
+  color: #242056; /* Customize link color */
+  text-decoration: underline;
+  word-break: break-word; /* Ensures links wrap within container */
+  overflow-wrap: break-word;
+  max-width: 100%;
+  white-space: normal; /* Allows long links to wrap within the container */
 }
 
 .actionable-item {
