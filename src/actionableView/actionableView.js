@@ -8,7 +8,7 @@ const ActionableView = ({ items = [], selectedFilters = { dbt: [], actionable: [
       // Apply general filtering and then take only the first actionable item
       const filteredActionables = (section.actionable || []).filter(action => {
         const dbtMatch = selectedFilters.dbt.length === 0 || selectedFilters.dbt.includes(section.type);
-        const daysMatch = selectedFilters.actionable.length === 0 || selectedFilters.actionable.some(days => action.days === days);
+        const daysMatch = selectedFilters.actionable.length === 0 || selectedFilters.actionable.some(days => parseInt(days) === Number(action.days));
    
         // Apply general filtering to each action
         return dbtMatch && daysMatch;
