@@ -72,8 +72,11 @@ const PlaybookContent = ({ items, selectedFilters, activeView, setActiveView, vi
           (item.statuses && selectedFilters.actionable.some(actionableDays => 
             item.statuses.some(status => status.days === parseInt(actionableDays))
           ));
+
+          const stageMatch = selectedFilters.stage.length === 0 || 
+          selectedFilters.stage.some(stage => stage.toLowerCase() === item.category.toLowerCase());
   
-        return dbtMatch && actionableMatch;
+        return dbtMatch && actionableMatch && stageMatch;
       }
     });
   };
@@ -194,8 +197,11 @@ const filteredItems = itemsData.filter((item) => {
         statuses.some(status => status.days === parseInt(actionableDays))
       ));
 
+      const stageMatch = selectedFilters.stage.length === 0 || 
+      selectedFilters.stage.some(stage => stage.toLowerCase() === category.toLowerCase());
+
     // For progress view, we only return items that have matching statuses
-    return searchMatch && dbtMatch && actionableMatch && 
+    return searchMatch && dbtMatch && actionableMatch && stageMatch &&
       statuses && statuses.length > 0;
   }
 });

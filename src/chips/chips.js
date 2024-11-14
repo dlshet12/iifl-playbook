@@ -24,7 +24,7 @@ const FilterChips = ({ selectedFilters, setSelectedFilters, activeView, onSearch
   }, [selectedFilters]); 
 
  // Add logic to select filters based on the active view
- const filtersToShow = activeView === 'gap' ? ['persona', 'stage', 'dbt'] : ['actionable', 'dbt'];
+ const filtersToShow = activeView === 'gap' ? ['persona', 'stage', 'dbt'] : ['actionable', 'dbt', 'stage'];
   const areFiltersSelected = Object.values(selectedFilters).some(
     (filterValues) => filterValues.length > 0
   );
@@ -86,7 +86,11 @@ const titleCase = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCas
       case 'persona':
         return [...new Set(itemsData.flatMap(item => item.personas))];
       case 'stage':
+        if (activeView === 'gap') {
+          return [...new Set(itemsData.map(item => item.category))];
+        } else {
         return [...new Set(itemsData.map(item => item.category))];
+        }
         case 'dbt':
           // Return different DBT options based on active view
           if (activeView === 'gap') {
